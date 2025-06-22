@@ -19,7 +19,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'https://e-commerce-app-tau-flame.vercel.app/',
+    origin: 'https://e-commerce-app-tau-flame.vercel.app',
     methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
     credentials: true,
 }));
