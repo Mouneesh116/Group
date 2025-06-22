@@ -1,0 +1,111 @@
+/* src/components/Products.css */
+
+.adminproducts-product-management {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .adminproducts-add-product-form {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .adminproducts-add-product-form h4 {
+    grid-column: 1 / 3;
+    margin-bottom: 10px;
+  }
+  
+  .adminproducts-add-product-form label {
+    font-weight: bold;
+  }
+  
+  .adminproducts-add-product-form input[type="text"],
+  .adminproducts-add-product-form input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .adminproducts-add-product-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    grid-column: 1 / 3;
+  }
+  
+  .adminproducts-add-product-form button:hover {
+    background-color: #218838;
+  }
+  
+  .adminproducts-product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .adminproducts-product-table th,
+  .adminproducts-product-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .adminproducts-product-table th {
+    background-color: #f1f1f1;
+  }
+  
+  .adminproducts-product-table input[type="text"],
+  .adminproducts-product-table input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .adminproducts-product-actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .adminproducts-product-actions button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .adminproducts-product-actions button:hover {
+    background-color: #c82333;
+  }
+  
+  .adminproducts-product-actions .adminproducts-edit-button {
+    background-color: #007bff;
+  }
+  
+  .adminproducts-product-actions .adminproducts-edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .adminproducts-product-actions .adminproducts-cancel-button {
+    background-color: #6c757d;
+  }
+  
+  .adminproducts-product-actions .adminproducts-cancel-button:hover {
+    background-color: #5a6268;
+  }

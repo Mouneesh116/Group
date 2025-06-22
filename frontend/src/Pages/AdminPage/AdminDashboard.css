@@ -1,0 +1,37 @@
+.admindashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f4f9;
+  font-family: Arial, sans-serif;
+}
+ 
+.admindashboard-main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  align-items: center;
+}
+ 
+.admindashboard-main-content h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+ 
+.admindashboard-main-content .content-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+ 
+@media (max-width: 768px) {
+  .admindashboard {
+    flex-direction: column;
+  }
+ 
+  .admindashboard-main-content {
+    padding: 10px;
+  }
+}
+ 

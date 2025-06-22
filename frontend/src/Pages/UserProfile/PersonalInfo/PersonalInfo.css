@@ -1,0 +1,56 @@
+.personal-info {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensure padding is included */
+  text-align: left; /* Ensure content is left-aligned */
+}
+
+.personal-info-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px; /* Increased margin for better spacing */
+  color: #333; /* Darker color for prominence */
+}
+
+.personal-info p {
+  font-size: 1rem; /* Standard font size for text */
+  color: #555; /* Slightly softer color than title */
+  margin-bottom: 8px; /* Space between paragraphs */
+  line-height: 1.5; /* Improved line spacing for readability */
+  word-break: break-word; /* Ensure long words break */
+}
+
+.personal-info p strong {
+  color: #333; /* Make labels slightly darker */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .personal-info {
+    padding: 14px;
+  }
+  .personal-info-title {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .personal-info p {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .personal-info {
+    padding: 10px;
+  }
+  .personal-info-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .personal-info p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+}

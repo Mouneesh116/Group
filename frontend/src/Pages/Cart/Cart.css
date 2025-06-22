@@ -1,0 +1,379 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+}
+
+/* Cart Container */
+.shoppingcart-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Items */
+.shoppingcart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.shoppingcart-item-image {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  overflow: hidden;
+  display: block;
+  border-radius: 8px;
+}
+
+.shoppingcart-item-details {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.shoppingcart-item-details h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.shoppingcart-item-details p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+/* Quantity and Remove Controls */
+.shoppingcart-item-actions {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.shoppingcart-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shoppingcart-quantity-button {
+  /* height: 30px; */
+  padding: 5px 10px;
+  background-color: #1e1781;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.shoppingcart-quantity-button:hover {
+  background-color: #0056b3;
+}
+
+.shoppingcart-quantity-input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.shoppingcart-remove-button {
+  padding: 5px 10px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.shoppingcart-remove-button:hover {
+  background-color: #ff0000;
+}
+
+/* Summary Section */
+.shoppingcart-summary {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shoppingcart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.shoppingcart-summary-row span:last-child {
+  font-weight: bold;
+}
+
+.shoppingcart-buy-now-button {
+  width: 50%;
+  padding: 10px 20px;
+  background-color: #1e1781;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.shoppingcart-buy-now-button:hover {
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shoppingcart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .shoppingcart-item-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .shoppingcart-item-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .shoppingcart-summary {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .shoppingcart-summary-row {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shoppingcart-item-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .shoppingcart-item-details h3 {
+    font-size: 1rem;
+  }
+
+  .shoppingcart-item-details p {
+    font-size: 0.9rem;
+  }
+
+  .shoppingcart-summary-row {
+    font-size: 0.8rem;
+  }
+
+  .shoppingcart-buy-now-button {
+    font-size: 0.9rem;
+  }
+}
+/* Add these to your existing Cart.css */
+
+.shoppingcart-shipping-address-section {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.shoppingcart-shipping-address-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.shoppingcart-saved-addresses {
+  margin-bottom: 20px;
+}
+
+.shoppingcart-saved-addresses h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.shoppingcart-address-option {
+  display: flex;
+  align-items: flex-start; /* Align radio button with top of address */
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.shoppingcart-address-option:hover {
+  border-color: #059669;
+  box-shadow: 0 0 5px rgba(5, 150, 105, 0.2);
+}
+
+.shoppingcart-address-option input[type="radio"] {
+  margin-right: 15px;
+  margin-top: 5px; /* Align radio button vertically */
+  transform: scale(1.2); /* Make radio button slightly larger */
+  cursor: pointer;
+}
+
+.shoppingcart-address-details {
+  flex-grow: 1;
+}
+
+.shoppingcart-address-details p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.shoppingcart-address-details p strong {
+  font-weight: 600;
+  color: #333;
+}
+
+.shoppingcart-add-new-address-btn {
+  background-color: #059669; /* Green */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+  display: block; /* Make it a block button */
+  width: fit-content; /* Adjust width to content */
+  margin-left: auto; /* Center or align right */
+  margin-right: auto;
+}
+
+.shoppingcart-add-new-address-btn:hover {
+  background-color: #047857;
+}
+
+.shoppingcart-new-address-form {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.shoppingcart-new-address-form h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.shoppingcart-address-input {
+  width: calc(100% - 20px); /* Account for padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.shoppingcart-address-input:focus {
+  outline: none;
+  border-color: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+}
+
+.shoppingcart-save-address-btn {
+  background-color: #3b82f6; /* Blue */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.shoppingcart-save-address-btn:hover {
+  background-color: #2563eb;
+}
+
+.shoppingcart-error-message {
+  color: #ef4444; /* Red */
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Responsive adjustments for address section */
+@media (max-width: 768px) {
+  .shoppingcart-shipping-address-section {
+      padding: 15px;
+      margin-top: 20px;
+  }
+  .shoppingcart-address-input {
+      width: 100%;
+  }
+}
+/* Add to src/Pages/Cart/Cart.css */
+
+.shoppingcart-back-arrow {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: #555;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+.shoppingcart-back-arrow:hover {
+  color: #059669; /* Match your primary button color */
+}
+
+/* Adjust heading display if needed */
+.shoppingcart-new-address-form h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the text and arrow */
+  margin-bottom: 15px;
+  color: #555;
+}

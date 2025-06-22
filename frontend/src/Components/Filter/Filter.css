@@ -1,0 +1,318 @@
+.filter-sidebar {
+  background-color: #fff;
+  color: #333;
+  height: 100%; /* Take full height of its parent */
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* Added for potential mobile overlay/slide-in */
+  position: relative; /* Changed from fixed to relative for general use */
+  z-index: 10; /* Ensure it's above other content if used as overlay */
+}
+ 
+/* Header section with title and close button */
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+ 
+.filter-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  letter-spacing: 1px;
+}
+ 
+.filter-close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+ 
+.filter-close-button:hover {
+  color: #555;
+}
+ 
+/* Search Bar Styling */
+.filter-search-bar {
+  margin-bottom: 25px;
+}
+ 
+.filter-search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box;
+  outline: none;
+}
+ 
+.filter-search-bar input::placeholder {
+  color: #aaa;
+}
+ 
+.filter-search-bar input:focus {
+  border-color: #888;
+}
+ 
+/* General Filter Section Styling (Category, Latest Search, Sort By, Price Range) */
+.filter-section {
+  margin-bottom: 25px;
+}
+ 
+.filter-section h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+ 
+/* Container for filter buttons/tags */
+.filter-buttons,
+.filter-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+/* Individual Filter Buttons (for Categories and Sort By) */
+.filter-button {
+  background-color: #f0f0f0;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+ 
+.filter-button:hover {
+  background-color: #e5e5e5;
+  color: #333;
+  border-color: #d0d0d0;
+}
+ 
+.filter-button.active {
+  background-color: #6a00ff; /* Purple for active state, matching image */
+  color: #fff;
+  border-color: #6a00ff;
+  font-weight: 600;
+}
+ 
+/* Latest Search Tags */
+.filter-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e8f0fe;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+ 
+.filter-tag-close {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0;
+  line-height: 1;
+}
+ 
+/* Price Filter Dropdown Styling */
+.price-filter select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+ 
+.price-filter select:focus {
+  border-color: #888;
+}
+ 
+/* --- Main Layout and Responsiveness --- */
+ 
+/* Main container for the entire page (assuming this wraps the filter and product sections) */
+.main-container {
+  display: flex;
+  flex-direction: row; /* Default for desktop: side-by-side */
+  gap: 30px;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+ 
+/* Filter container on the left */
+.filter-container { /* This wraps .filter-sidebar */
+  flex: 0 0 320px; /* Fixed width for desktop, allows shrinking */
+  height: auto; /* Let content define height */
+}
+ 
+/* Products container on the right */
+.products-container {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+/* Filter row for sorting options (assuming this is above the products grid) */
+.filter-row-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+ 
+.filter-row-div div {
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+ 
+.filter-row-div div:hover {
+  color: #007bff;
+  font-weight: 600;
+}
+ 
+/* Products grid */
+.products-row-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+ 
+/* --- Responsive Design for the overall layout --- */
+ 
+/* For screens up to 1024px (e.g., tablets in landscape, smaller desktops) */
+@media (max-width: 1024px) {
+  .filter-container {
+    flex: 0 0 280px; /* Slightly narrower filter sidebar */
+  }
+  .main-container {
+    gap: 20px;
+    padding: 15px;
+  }
+  .products-row-div {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+ 
+/* For screens up to 768px (e.g., tablets in portrait, larger phones) */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column; /* Stack filter and products vertically */
+    padding: 10px;
+    gap: 20px;
+  }
+  .filter-container {
+    /* Removed display: none; */
+    flex: none; /* Remove flex sizing */
+    width: 100%; /* Take full width when stacked */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Add shadow when stacked */
+    border-radius: 10px;
+    padding: 15px;
+    /* To make it a modal/overlay for smaller screens, you'd add: */
+    /* position: fixed; */
+    /* top: 0; */
+    /* left: 0; */
+    /* height: 100vh; */
+    /* width: 100vw; */
+    /* z-index: 100; */
+    /* background-color: rgba(255, 255, 255, 0.95); */
+    /* transform: translateX(100%); */ /* Start off-screen */
+    /* transition: transform 0.3s ease-in-out; */
+  }
+ 
+  /* If you implement a toggle, you'd have a class like this: */
+  /* .filter-container.active { */
+  /* transform: translateX(0); */ /* Slide in */
+  /* } */
+ 
+  .filter-sidebar {
+    padding: 0; /* Padding is now on .filter-container */
+    height: auto; /* Let content dictate height when not a fixed overlay */
+  }
+  .products-row-div {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+ 
+/* For screens up to 480px (e.g., most smartphones) */
+@media (max-width: 480px) {
+  .filter-sidebar {
+    padding: 15px;
+  }
+  .filter-header {
+    margin-bottom: 20px;
+  }
+  .filter-title {
+    font-size: 1.1rem;
+  }
+  .filter-search-bar input {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  .filter-section h4 {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .filter-button {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+  .price-filter select {
+    padding: 9px 10px;
+    font-size: 0.85rem;
+  }
+  .products-row-div {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .filter-row-div {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+  .filter-row-div div {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,257 @@
+/* Container styling */
+.order-card-container {
+  display: flex;
+  flex-direction: column; /* Stack main content and buttons vertically */
+  align-items: flex-start; /* Align all content to the left within the card */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Wrapper for image and info */
+.order-card-main-content {
+  display: flex;
+  align-items: flex-start; /* Align image and info top-aligned */
+  gap: 15px; /* Space between image and info */
+  width: 100%; /* Take full width of the parent container */
+  margin-bottom: 15px; /* Space between main content and buttons */
+}
+
+/* Image styling */
+.order-card-image {
+  width: 80px; /* Default size */
+  height: 80px; /* Default size */
+  border-radius: 4px;
+  object-fit: contain;
+  flex-shrink: 0; /* Prevent image from shrinking smaller than its set size */
+  background-color: #fff; /* Ensure image background is white if it has transparency */
+  padding: 5px; /* Small padding around image */
+  border: 1px solid #eee; /* Light border around image */
+}
+
+/* Info section styling */
+.order-card-info {
+  flex: 1; /* Allows info section to take remaining width */
+  min-width: 0; /* Allows content within to shrink */
+  display: flex;
+  flex-direction: column; /* Stack title, date, price, status */
+  text-align: left; /* Ensure text is left-aligned */
+}
+
+.order-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+/* Style for individual detail lines (Date, Price, Status) */
+.order-card-detail {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+  word-break: break-word;
+  line-height: 1.4;
+  display: flex; /* Make detail lines flex containers */
+  gap: 5px; /* Space between label and value */
+  align-items: baseline; /* Align label and value based on their text baseline */
+}
+
+.order-card-detail strong {
+  flex-shrink: 0; /* Prevent label from shrinking */
+  color: #333; /* Make labels slightly darker */
+}
+
+
+/* Wrapper for buttons */
+.order-card-buttons {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap if necessary */
+  gap: 10px; /* Space between buttons */
+  width: 100%; /* Take full width */
+  justify-content: flex-start; /* Align buttons to the left */
+}
+
+/* Button styling */
+.order-card-review-button,
+.order-card-cancel-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease-in-out;
+  flex-shrink: 0; /* Prevent buttons from shrinking below content */
+  line-height: 1.2;
+}
+
+.order-card-review-button:hover {
+  background-color: #0056b3;
+}
+
+.order-card-cancel-button {
+  background-color: #dc3545;
+}
+
+.order-card-cancel-button:hover {
+  background-color: #c82333;
+}
+
+.order-card-cancel-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+
+/* Modal styling (mostly unchanged, ensuring `modal-button` class is distinct) */
+.order-card-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.order-card-modal {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  outline: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.order-card-modal-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.order-card-rating-stars {
+  margin: 10px 0;
+}
+
+.order-card-star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.order-card-star-selected {
+  color: #f39c12;
+}
+
+.order-card-review-textarea {
+  width: 100%;
+  height: 80px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.order-card-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.order-card-post-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  flex: 1;
+}
+
+.order-card-post-button:hover {
+  background-color: #218838;
+}
+
+/* Specific styling for the modal cancel button to avoid conflict */
+.order-card-cancel-button.modal-button {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  flex: 1;
+}
+
+.order-card-cancel-button.modal-button:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive Adjustments for OrderCard */
+@media (max-width: 768px) {
+  .order-card-container {
+    padding: 12px;
+  }
+
+  .order-card-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .order-card-title {
+    font-size: 16px;
+  }
+
+  .order-card-detail {
+    font-size: 13px;
+  }
+
+  .order-card-buttons {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 5px; /* Closer gap between stacked buttons */
+  }
+
+  .order-card-review-button,
+  .order-card-cancel-button {
+    width: 100%; /* Make buttons full width when stacked */
+    margin-left: 0; /* Remove potential leftover horizontal margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .order-card-container {
+    padding: 10px;
+  }
+
+  .order-card-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .order-card-review-button,
+  .order-card-cancel-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}

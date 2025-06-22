@@ -1,0 +1,352 @@
+/* General container for the orders view */
+.adminorder-orders-view {
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Space from other content */
+}
+
+.adminorder-orders-view h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 1.8em;
+}
+
+/* --- Filters and Search Section --- */
+.adminorder-filters-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto new lines on smaller screens */
+  gap: 15px; /* Space between filter elements */
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  align-items: center; /* Vertically align items */
+  justify-content: center; /* Center filters */
+}
+
+.adminorder-filters-section input[type="text"],
+.adminorder-filters-section input[type="date"],
+.adminorder-filters-section select {
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1em;
+  flex: 1; /* Allows inputs to grow and shrink */
+  min-width: 150px; /* Minimum width for inputs */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.adminorder-filters-section .adminorder-search-input {
+  min-width: 250px; /* Wider for general search */
+}
+
+.adminorder-filters-section .adminorder-filter-select {
+  background-color: #fff;
+}
+
+.adminorder-filters-section .adminorder-sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow sort controls to wrap */
+}
+
+.adminorder-filters-section .adminorder-sort-controls select {
+  flex-basis: auto; /* Don't force it to grow */
+}
+
+.adminorder-filters-section .adminorder-sort-controls button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.adminorder-filters-section .adminorder-sort-controls button:hover {
+  background-color: #0056b3;
+}
+
+/* Hide labels visually but keep for accessibility */
+.adminorder-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- Orders Cards Container --- */
+.adminorder-orders-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+  gap: 25px; /* Space between cards */
+  padding: 10px;
+}
+
+/* Individual Order Card */
+.order-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex; /* Use flexbox for internal card layout */
+  flex-direction: column; /* Stack left and right sections vertically on small screens */
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  padding: 15px;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.adminorder-order-card-left,
+.adminorder-order-card-right {
+  padding: 10px;
+  flex: 1; /* Allows sections to take available space */
+}
+
+.adminorder-order-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 10px; /* Space between left and right sections when stacked */
+  border-bottom: 1px solid #eee; /* Separator */
+  padding-bottom: 15px;
+}
+
+.adminorder-order-icon {
+  font-size: 3em;
+  color: #6c757d;
+  min-width: 50px; /* Ensure icon has space */
+  text-align: center;
+}
+
+.adminorder-order-items-list {
+  flex-grow: 1;
+}
+
+.adminorder-order-items-list p {
+  margin: 0;
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.4;
+}
+
+.adminorder-customer-info p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.adminorder-customer-info .adminorder-shipping-address {
+  font-style: italic;
+  font-size: 0.85em;
+}
+
+.adminorder-order-card-right p {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.adminorder-order-total {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #28a745; /* Green for total amount */
+  margin-top: 10px;
+}
+
+/* Order Status Dropdown */
+.adminorder-order-status-control select {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  background-color: #f0f0f0;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%; /* Full width within its container */
+  margin-top: 10px; /* Space from other info */
+}
+
+.adminorder-order-status-control select:hover {
+  background-color: #e2e6ea;
+}
+
+/* Status specific colors for dropdown background */
+.adminorder-status-dropdown.adminorder-status-pending {
+  background-color: #ffc107;
+  color: #343a40;
+} /* Yellow */
+.adminorder-status-dropdown.adminorder-status-processing {
+  background-color: #17a2b8;
+  color: white;
+} /* Light Blue */
+.adminorder-status-dropdown.adminorder-status-shipped {
+  background-color: #007bff;
+  color: white;
+} /* Blue */
+.adminorder-status-dropdown.adminorder-status-out-for-delivery {
+  background-color: #fd7e14;
+  color: white;
+} /* Orange */
+.adminorder-status-dropdown.adminorder-status-delivered {
+  background-color: #28a745;
+  color: white;
+} /* Green */
+.adminorder-status-dropdown.adminorder-status-cancelled {
+  background-color: #dc3545;
+  color: white;
+} /* Red */
+.adminorder-status-dropdown.adminorder-status-refunded {
+  background-color: #6c757d;
+  color: white;
+} /* Gray */
+
+/* --- Pagination Controls --- */
+.adminorder-pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.adminorder-pagination-controls button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.adminorder-pagination-controls button:disabled {
+  background-color: #adb5bd;
+  cursor: not-allowed;
+}
+
+.adminorder-pagination-controls button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.adminorder-pagination-controls span {
+  font-size: 1.1em;
+  color: #333;
+}
+
+/* --- Messages (Loading/Error/No Orders) --- */
+.adminorder-loading-message,
+.adminorder-error-message,
+.adminorder-no-orders-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+  color: #6c757d;
+}
+
+.adminorder-error-message {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* --- Responsiveness --- */
+
+/* Tablets and larger phones (e.g., 768px and up) */
+@media (min-width: 768px) {
+  .order-card {
+    flex-direction: row; /* Layout left and right sections side-by-side */
+  }
+
+  .adminorder-order-card-left {
+    border-bottom: none; /* Remove bottom border */
+    border-right: 1px solid #eee; /* Add right border as a separator */
+    padding-right: 15px;
+    margin-bottom: 0;
+    max-width: 60%; /* Adjust as needed */
+  }
+
+  .adminorder-order-card-right {
+    padding-left: 15px;
+    max-width: 40%; /* Adjust as needed */
+  }
+
+  /* Adjust grid columns for wider screens */
+  .adminorder-orders-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  }
+}
+
+/* Laptops and Desktops (e.g., 1024px and up) */
+@media (min-width: 1024px) {
+  .adminorder-orders-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Even wider cards */
+  }
+
+  .adminorder-filters-section {
+    justify-content: flex-start; /* Align filters to the start */
+  }
+}
+
+/* Small screens (e.g., 480px and down) */
+@media (max-width: 480px) {
+  .adminorder-orders-view {
+    padding: 10px;
+  }
+
+  .adminorder-orders-view h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .adminorder-filters-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .adminorder-filters-section input,
+  .adminorder-filters-section select,
+  .adminorder-filters-section button {
+    width: 100%; /* Full width on small screens */
+    min-width: unset;
+  }
+
+  .adminorder-orders-cards-container {
+    grid-template-columns: 1fr; /* Single column layout for cards */
+    gap: 15px;
+    padding: 5px;
+  }
+
+  .order-card {
+    padding: 10px;
+  }
+
+  .adminorder-order-card-left {
+    flex-direction: column; /* Stack icon and items vertically */
+    align-items: center;
+    gap: 10px;
+  }
+
+  .adminorder-order-icon {
+    font-size: 2.5em;
+    min-width: unset;
+  }
+}

@@ -1,0 +1,112 @@
+.admindetails-profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.admindetails-profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admindetails-profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.admindetails-profile-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.admindetails-profile-header p {
+  font-size: 16px;
+  color: #555;
+}
+
+.admindetails-role {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+}
+
+.admindetails-profile-stats {
+  margin-bottom: 20px;
+}
+
+.admindetails-profile-stats h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.admindetails-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.admindetails-stat-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admindetails-stat-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.admindetails-stat-card p {
+  font-size: 18px;
+  color: #333;
+}
+
+.admindetails-profile-actions {
+  text-align: center;
+}
+
+.admindetails-profile-actions h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.admindetails-action-button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admindetails-action-button:hover {
+  background-color: #0056b3;
+}
+
+.admindetails-logout-button {
+  background-color: #dc3545;
+}
+
+.admindetails-logout-button:hover {
+  background-color: #a71d2a;
+}

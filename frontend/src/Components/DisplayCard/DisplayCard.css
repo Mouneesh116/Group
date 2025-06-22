@@ -1,0 +1,332 @@
+/* --- Base Styles & Card Container --- */
+.displaycard-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Reduced padding */
+  background-color: #f0f2f5;
+  /* min-height: 100vh; */
+  box-sizing: border-box;
+}
+
+.displaycard-container {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  border-radius: 15px; /* Slightly smaller border-radius */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08); /* Adjusted shadow */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px; /* Decreased Max Width (from 350px) */
+  height: 480px; /* Adjusted fixed height for overall compactness */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  position: relative;
+}
+
+.displaycard-container:hover {
+  transform: translateY(-6px); /* Slightly less pronounced hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Row 1: Image Section --- */
+.displaycard-row1 {
+  background-color: #f8f8f8;
+  padding: 10px; /* Reduced padding */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.displaycard-image-wrapper {
+  width: 100%;
+  height: 200px; /* Reduced height for image area (from 250px) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px; /* Slightly smaller border-radius */
+  background-color: #fff;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.04); /* Adjusted shadow */
+}
+
+.displaycard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px; /* Adjusted border-radius */
+  transition: transform 0.5s ease;
+}
+
+.displaycard-container:hover .displaycard-image {
+  transform: scale(1.03); /* Slightly less zoom on hover */
+}
+
+/* --- Row 2: Description Section --- */
+.displaycard-row2 {
+  padding: 15px 20px; /* Reduced padding */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px; /* Added gap for better spacing */
+}
+
+.displaycard-description {
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+.displaycard-title h2 {
+  font-size: 1.4rem; /* Reduced font size (from 1.6rem) */
+  font-weight: 700;
+  margin: 0 0 8px 0; /* Adjusted margin */
+  line-height: 1.25; /* Adjusted line height */
+  color: #222;
+  text-align: center;
+  /* Ensure text truncation if it's too long for the new width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.displaycard-review-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+.displaycard-review-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px; /* Reduced padding */
+  border-radius: 20px; /* Slightly smaller border-radius */
+  font-size: 0.9rem; /* Reduced font size */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Reduced gap */
+  box-shadow: 0 3px 6px rgba(0, 128, 0, 0.2); /* Adjusted shadow */
+}
+
+.displaycard-star-icon {
+  color: gold;
+  font-size: 1em; /* Slightly smaller icon */
+}
+
+.displaycard-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem; /* Reduced font size (from 0.95rem) */
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced gap between list items */
+}
+
+.displaycard-details ul li {
+  margin-bottom: 0; /* Removed explicit margin, rely on gap */
+  display: flex;
+  align-items: center;
+  line-height: 1.3; /* Adjusted line height */
+  /* Ensure text truncation */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.displaycard-company-assured {
+  font-weight: 600;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Reduced gap */
+}
+
+.displaycard-trusted-icon {
+  font-size: 1em; /* Slightly smaller icon */
+  color: #007bff;
+}
+
+.displaycard-category-text {
+  font-weight: 500;
+  color: #444;
+}
+
+/* --- Row 3: Price & Order Section --- */
+.displaycard-row3 {
+  padding: 15px 20px; /* Reduced padding */
+  background-color: #f0f0f0;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Reduced gap */
+}
+
+.displaycard-price-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.displaycard-current-price {
+  font-size: 1.8rem; /* Reduced font size (from 2.2rem) */
+  font-weight: 800;
+  color: #1a73e8;
+  margin-bottom: 3px; /* Reduced margin */
+  display: flex;
+  align-items: baseline;
+  gap: 2px; /* Reduced gap */
+}
+
+.displaycard-currency-symbol {
+  font-size: 1.1em; /* Adjusted currency symbol size */
+  font-weight: normal;
+}
+
+.displaycard-prev-price {
+  font-size: 1rem; /* Reduced font size (from 1.1rem) */
+  color: #888;
+  text-decoration: line-through;
+  margin-right: 8px; /* Adjusted margin */
+}
+
+.displaycard-discount {
+  font-size: 0.85rem; /* Reduced font size (from 0.95rem) */
+  font-weight: 600;
+  color: #e67e22;
+  background-color: #fff3e0;
+  padding: 2px 6px; /* Reduced padding */
+  border-radius: 4px; /* Slightly smaller border-radius */
+  margin-top: 3px; /* Reduced margin */
+  white-space: nowrap; /* Ensure it stays on one line if possible */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.displaycard-order-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.displaycard-order-button {
+  background-color: #ff5722;
+  color: white;
+  padding: 10px 25px; /* Reduced padding */
+  border: none;
+  border-radius: 8px; /* Slightly smaller border-radius */
+  font-size: 1.1rem; /* Reduced font size (from 1.2rem) */
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(255, 87, 34, 0.3); /* Adjusted shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 85%; /* Adjusted width for slightly wider button */
+  max-width: 220px; /* Adjusted max-width */
+}
+
+.displaycard-order-button:hover {
+  background-color: #e64a19;
+  transform: translateY(-2px); /* Slightly less lift on hover */
+  box-shadow: 0 6px 12px rgba(255, 87, 34, 0.35);
+}
+
+.displaycard-order-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(255, 87, 34, 0.2);
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For larger tablets and small desktops */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .displaycard-container {
+    max-width: 280px; /* Further reduced max-width */
+    height: 450px; /* Adjusted height */
+  }
+  .displaycard-image-wrapper {
+    height: 180px;
+  }
+  .displaycard-title h2 {
+    font-size: 1.3rem;
+  }
+  .displaycard-current-price {
+    font-size: 1.7rem;
+  }
+  .displaycard-order-button {
+    font-size: 1rem;
+    padding: 9px 20px;
+    max-width: 200px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 767px) {
+  .displaycard-main-container {
+    padding: 10px; /* Reduced padding */
+    min-height: auto;
+  }
+
+  .displaycard-container {
+    max-width: 100%; /* Still full width */
+    height: 420px; /* Adjusted height for mobile */
+    border-radius: 10px; /* Smaller border-radius */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .displaycard-row1 {
+    padding: 8px; /* Further reduced padding */
+  }
+
+  .displaycard-image-wrapper {
+    height: 160px; /* Further reduced image height */
+    border-radius: 8px;
+  }
+
+  .displaycard-row2,
+  .displaycard-row3 {
+    padding: 12px 15px; /* Further reduced padding */
+    gap: 8px; /* Adjusted gap */
+  }
+
+  .displaycard-title h2 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .displaycard-review-button {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+
+  .displaycard-details ul {
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+
+  .displaycard-current-price {
+    font-size: 1.6rem;
+  }
+
+  .displaycard-prev-price {
+    font-size: 0.9rem;
+  }
+
+  .displaycard-discount {
+    font-size: 0.8rem;
+    padding: 1px 5px;
+  }
+
+  .displaycard-order-button {
+    font-size: 1rem;
+    padding: 8px 20px;
+    max-width: 180px;
+  }
+}

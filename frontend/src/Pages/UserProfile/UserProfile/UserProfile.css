@@ -1,0 +1,198 @@
+/* UserProfile.css */
+
+.user-profile {
+  max-width: 1200px;
+  margin: 40px auto; /* Centers the entire user profile container horizontally */
+  padding: 20px; /* Generous padding for the overall container */
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa; /* Light background for the whole profile page */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally within the user-profile */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  overflow-x: hidden; /* Prevent horizontal scroll for any child content that might escape */
+}
+
+/* Wrapper for the main content grid */
+.user-profile-main-content {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column for all items initially */
+  gap: 24px; /* Space between the main sections (PersonalInfo, then secondary sections) */
+  width: 100%; /* Ensure it takes full width of its parent */
+  max-width: 1000px; /* Optional: limit the max-width of the content grid itself */
+  margin-top: 20px; /* Space from the top of the user-profile container */
+}
+
+/* PersonalInfo styling (as a direct child of user-profile-main-content) */
+.user-profile-personal-info-wrapper {
+  display: flex;
+  justify-content: center; /* Center PersonalInfo horizontally */
+}
+
+/* This targets the root div of the PersonalInfo component */
+.personal-info {
+  background-color: #fff;
+  padding: 25px; /* Generous padding */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  width: 100%; /* Ensure it fills its wrapper */
+  max-width: 600px; /* Max width for PersonalInfo for good readability */
+  box-sizing: border-box;
+}
+
+.personal-info-title {
+  font-size: 1.6rem; /* Slightly larger title */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center; /* Center align title within the card */
+  border-bottom: 2px solid #a3e635; /* Green underline */
+  padding-bottom: 10px;
+}
+
+.personal-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 12px; /* More space between lines */
+  line-height: 1.6;
+}
+
+.personal-info strong {
+  color: #222;
+  display: inline-block; /* Helps with alignment */
+  min-width: 70px; /* Give labels a consistent width */
+}
+
+
+/* New container for Wishlist and Orders to make them side-by-side */
+.user-profile-secondary-sections {
+  display: flex;
+  flex-direction: column; /* Default to column (stacked) on smaller screens */
+  gap: 24px; /* Space between stacked sections */
+  width: 100%;
+}
+
+/* Styling for Wishlist and OrderList sections */
+.user-profile-wishlist-section,
+.user-profile-orders-section {
+  background-color: #fff;
+  padding: 25px; /* Consistent padding with PersonalInfo */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee; /* General border for these sections */
+  flex: 1; /* Allow them to grow and share space equally when in a row */
+  min-width: 0; /* Important for flex items within a row to shrink */
+  box-sizing: border-box;
+}
+
+.user-profile-wishlist-section {
+  border-color: #bfdbfe; /* Light blue border for wishlist */
+}
+
+.user-profile-orders-section {
+  border-color: #fde68a; /* Light yellow border for orders */
+}
+
+.user-profile-orders-title {
+  font-size: 1.6rem; /* Consistent title size */
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #fde68a;
+  padding-bottom: 10px;
+  text-align: center; /* Center align title */
+}
+
+.user-profile-orders-list {
+  max-height: 400px; /* Adjusted height for more content visibility */
+  overflow-y: auto;
+  padding-right: 8px; /* Space for scrollbar */
+}
+
+
+/* Responsive Adjustments */
+
+/* Larger screens: Personal Info at top (full width), Wishlist & Orders side-by-side below */
+@media (min-width: 769px) {
+  .user-profile-secondary-sections {
+    flex-direction: row; /* Make Wishlist and Orders side-by-side */
+  }
+}
+
+/* Medium screens and up (tablet landscape, small laptops) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .user-profile-main-content {
+    /* Keep single column grid for main content here, but let it take full width of its parent */
+    grid-template-columns: 1fr;
+    max-width: 700px; /* Limit overall content width */
+  }
+  .personal-info {
+    max-width: 100%; /* PersonalInfo can expand more within single column */
+  }
+}
+
+
+/* Smaller screens (mobile and tablet portrait) */
+@media (max-width: 768px) {
+  .user-profile {
+    margin: 15px auto; /* Reduced margin for mobile, keep centered */
+    padding: 15px; /* Consistent padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    min-width: 300px; /* Ensure a minimum width for the profile container */
+  }
+
+  .user-profile-main-content {
+    /* Removed max-width: 95% to avoid shrinking issues, relying on width: 100% within padded parent */
+    width: 100%;
+    gap: 20px; /* Slightly less gap */
+  }
+
+  /* All sections will naturally stack due to user-profile-main-content and user-profile-secondary-sections defaulting to column */
+  .personal-info,
+  .user-profile-wishlist-section,
+  .user-profile-orders-section {
+    padding: 20px;
+  }
+
+  .personal-info-title,
+  .user-profile-orders-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-profile {
+    padding: 10px;
+    margin: 10px auto; /* Further reduced margin for very small screens, keep centered */
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    min-width: 280px; /* Slightly smaller min-width for very narrow devices */
+  }
+
+  .user-profile-main-content {
+    /* Removed max-width, relying on width: 100% within padded parent */
+    width: 100%;
+    gap: 15px; /* Reduced gap */
+  }
+
+  .personal-info,
+  .user-profile-wishlist-section,
+  .user-profile-orders-section {
+    padding: 15px;
+  }
+
+  .personal-info-title,
+  .user-profile-orders-title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .personal-info p {
+    font-size: 0.95rem;
+  }
+}

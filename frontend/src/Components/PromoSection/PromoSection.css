@@ -1,0 +1,136 @@
+.promosection-hero {
+  background: url('https://webfetcher.co.uk/wp-content/uploads/2021/06/ecommerce-solution-img.jpg') no-repeat center center fixed; /* Full background image */
+  background-size: cover;
+  height: 100vh; /* Full viewport height */
+  position: relative; /* For overlay and content positioning */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  text-align: center; /* Center text within the content overlay */
+  overflow: hidden; /* Ensures no content spills out */
+}
+ 
+/* Dark overlay for text readability */
+.promosection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Darker overlay for better contrast, adjusted opacity */
+  z-index: 0;
+}
+ 
+/* Container for text content, positioned over the overlay */
+.promosection-hero-content-overlay {
+  position: relative; /* To be above the overlay */
+  z-index: 1;
+  color: white; /* All text within this container will be white */
+  max-width: 800px; /* Constrain content width */
+  padding: 20px;
+  opacity: 0; /* Initial state for animation */
+  transform: translateY(20px); /* Initial state for animation */
+  animation: fadeInSlideUp 1s forwards ease-out; /* Apply animation */
+}
+ 
+/* Animation for the content */
+@keyframes fadeInSlideUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+ 
+/* Main Title (e.g., BIG SUMMER SALE) */
+.promosection-hero-title {
+  font-size: 5.5rem; /* Large, impactful font size */
+  font-weight: 700; /* Bold */
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif; /* Example font, ensure imported or default to sans-serif */
+  letter-spacing: 2px; /* Spacing for impact */
+  text-transform: uppercase; /* All caps like the example */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for readability */
+  line-height: 1.1;
+  color: white; /* Explicitly white */
+}
+ 
+/* Subtitle (e.g., GET UP TO 50% OFF) */
+.promosection-hero-subtitle {
+  font-size: 2.2rem; /* Clear and prominent */
+  font-weight: 500;
+  margin-bottom: 2rem;
+  font-family: 'Open Sans', sans-serif; /* Example font */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+  color: white; /* Explicitly white */
+}
+ 
+/* Call to action button */
+.promosection-hero-button {
+  background-color: #007bff; /* Example blue color, adjust as needed */
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+ 
+.promosection-hero-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+ 
+/* --- Responsive Adjustments --- */
+ 
+/* For smaller desktops and large tablets */
+@media (max-width: 1200px) {
+  .promosection-hero-title {
+      font-size: 4.5rem;
+  }
+  .promosection-hero-subtitle {
+      font-size: 1.8rem;
+  }
+}
+ 
+/* For tablets (portrait) and larger phones */
+@media (max-width: 768px) {
+  .promosection-hero-title {
+      font-size: 3.5rem;
+      letter-spacing: 1px;
+  }
+  .promosection-hero-subtitle {
+      font-size: 1.5rem;
+  }
+  .promosection-hero-button {
+      padding: 12px 30px;
+      font-size: 1.1rem;
+  }
+}
+ 
+/* For small phones */
+@media (max-width: 480px) {
+  .promosection-hero-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.3rem;
+  }
+  .promosection-hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+  }
+  .promosection-hero-button {
+      padding: 10px 25px;
+      font-size: 1rem;
+  }
+  .promosection-hero-content-overlay {
+      padding: 10px;
+  }
+}

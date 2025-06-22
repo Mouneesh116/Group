@@ -1,0 +1,305 @@
+/* Outer wrapper for layout in grids, etc. */
+.productcard-main-wrapper {
+  padding: 8px; /* Padding around each card item */
+  box-sizing: border-box;
+  display: flex; /* Enables flexbox for centering */
+  justify-content: center; /* Centers the card horizontally within its wrapper */
+}
+
+/* Main Container for the Product Card - Default (Larger Screens) */
+.productcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.8rem;
+  background-color: #ffffff;
+  /* Default Dimensions for larger screens (e.g., desktops) */
+  width: 220px;
+  height: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Hover Effect */
+.productcard-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Section */
+.productcard-image-div {
+  width: 100%;
+  height: 120px; /* Consistent image height for default size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcfcfc;
+  margin-bottom: 0.6rem;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.productcard-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.productcard-container:hover .productcard-image {
+  transform: scale(1.05);
+}
+
+/* Text Section */
+.productcard-text-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1; /* Allows this section to fill remaining vertical space */
+  justify-content: space-between; /* Distributes content inside text div */
+}
+
+/* Title and Brand/Model Section */
+.productcard-text-title-div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.productcard-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+}
+
+.productcard-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+}
+
+.productcard-brand-model {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: left;
+}
+
+/* Price Section */
+.productcard-price-section {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 1rem;
+  color: #333;
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.productcard-current-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.productcard-prev-price {
+  font-size: 0.8rem;
+  color: #999;
+  text-decoration: line-through;
+  flex-shrink: 0;
+}
+
+.productcard-cart-icon {
+  font-size: 1rem;
+  color: #28a745;
+  margin-left: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.productcard-cart-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Reviews Section */
+.productcard-reviews-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+
+.productcard-star-div {
+  color: gold;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 2px;
+}
+
+.productcard-total-reviews {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+/* Offers Section */
+.productcard-offers-div {
+  font-weight: 600;
+  color: #e67e22;
+  font-size: 0.75rem;
+  text-align: left;
+  width: 100%;
+  padding: 3px 6px;
+  background-color: #fff3e0;
+  border-radius: 5px;
+  margin-top: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* For tablets and small laptops (e.g., 769px to 1024px) */
+@media (max-width: 1024px) {
+  .productcard-main-wrapper {
+    padding: 6px; /* Slightly reduced padding */
+  }
+  .productcard-container {
+    width: 200px; /* Reduced width for tablets */
+    height: 290px; /* Reduced height for tablets */
+    padding: 0.7rem;
+    /* Centering is already handled by .productcard-main-wrapper */
+  }
+  .productcard-image-div {
+    height: 100px; /* Adjusted image height */
+  }
+  .productcard-title {
+    font-size: 0.85rem;
+  }
+  .productcard-current-price {
+    font-size: 1rem;
+  }
+  .productcard-reviews-section {
+    font-size: 0.75rem;
+  }
+  .productcard-total-reviews {
+    font-size: 0.7rem;
+  }
+  .productcard-offers-div {
+    font-size: 0.7rem;
+  }
+}
+
+/* For mobile devices (e.g., 481px to 768px) - typically larger phones/small tablets */
+@media (max-width: 768px) {
+  .productcard-main-wrapper {
+    padding: 5px; /* Further reduced padding */
+  }
+  .productcard-container {
+    width: 170px; /* Significantly reduced width for mobile/small tablet */
+    height: 260px; /* Significantly reduced height for mobile/small tablet */
+    padding: 0.5rem;
+  }
+  .productcard-image-div {
+    height: 85px; /* Further reduced image height */
+    margin-bottom: 0.4rem;
+  }
+  .productcard-title {
+    font-size: 0.75rem;
+  }
+  .productcard-brand-model {
+    font-size: 0.65rem;
+  }
+  .productcard-price-section {
+    font-size: 0.8rem;
+    gap: 3px;
+    margin-top: 0.3rem;
+  }
+  .productcard-current-price {
+    font-size: 0.9rem;
+  }
+  .productcard-prev-price {
+    font-size: 0.65rem;
+  }
+  .productcard-cart-icon {
+    font-size: 0.8rem;
+  }
+  .productcard-reviews-section {
+    font-size: 0.65rem;
+    gap: 3px;
+    margin-bottom: 0.2rem;
+  }
+  .productcard-offers-div {
+    font-size: 0.65rem;
+    padding: 1px 3px;
+  }
+}
+
+/* For very small mobile devices (e.g., up to 480px) */
+@media (max-width: 480px) {
+  .productcard-main-wrapper {
+    padding: 3px; /* Minimal padding */
+  }
+  .productcard-container {
+    /* Use 100% width with a max-width to be flexible but not too big */
+    width: 95%; /* Take almost full width of its parent wrapper */
+    max-width: 140px; /* Caps the card size on smaller screens */
+    height: 220px; /* Smallest height for tiny screens */
+    padding: 0.4rem;
+    border-radius: 6px;
+  }
+  .productcard-image-div {
+    height: 70px; /* Smallest image height */
+    margin-bottom: 0.3rem;
+  }
+  .productcard-title {
+    font-size: 0.65rem;
+  }
+  .productcard-brand-model {
+    font-size: 0.55rem;
+  }
+  .productcard-price-section {
+    font-size: 0.75rem;
+    gap: 2px;
+    margin-top: 0.2rem;
+  }
+  .productcard-current-price {
+    font-size: 0.8rem;
+  }
+  .productcard-prev-price {
+    font-size: 0.55rem;
+  }
+  .productcard-cart-icon {
+    font-size: 0.7rem;
+  }
+  .productcard-reviews-section {
+    font-size: 0.6rem;
+    gap: 2px;
+    margin-bottom: 0.1rem;
+  }
+  .productcard-offers-div {
+    font-size: 0.55rem;
+    padding: 1px 2px;
+  }
+}

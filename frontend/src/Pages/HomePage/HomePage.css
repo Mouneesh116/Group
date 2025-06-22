@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+  
+  .homepage {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Hero Section */
+  .homepage-hero-section {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .homepage-hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .homepage-hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .homepage-cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: #ff7e5f;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .homepage-cta-button:hover {
+    background-color: #ffe0d3;
+  }
+  
+  /* Categories Section */
+  .homepage-categories-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .homepage-categories-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Offers Section */
+  .homepage-offers-section {
+    padding: 50px 50px;
+    background-color: #fff;
+    text-align: center;
+    margin: 40px;
+  }
+  
+  .homepage-offers-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  /* .homepage-footer-section{
+
+  } */
