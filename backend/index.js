@@ -17,7 +17,12 @@ import bcrypt from 'bcrypt';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://e-commerce-app-tau-flame.vercel.app/',
+    methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
+    credentials: true,
+}));
 const mongoUri = process.env.MONGO_URI_CONNECTION_STRING;
 const port = process.env.PORT || 4000;
 
