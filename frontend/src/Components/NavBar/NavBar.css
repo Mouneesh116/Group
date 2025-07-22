@@ -25,25 +25,14 @@
 
 /* Logo Styling */
 .navbar-logo-image {
-  height: 60px;
+  height: 50px;
   cursor: pointer;
   display: block;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .navbar-logo .logo-image {
   width: 200px;
-  height: 80px;
+  height: 70px;
   cursor: pointer;
   display: block;
 }
@@ -62,8 +51,8 @@
   gap: 20px;
 }
 
-.navbar-links-group a, /* Corrected selector */
-.navbar-login-link { /* Corrected selector */
+.navbar-links-group a,
+.navbar-login-link {
   color: #333;
   text-decoration: none;
   font-size: 1rem;
@@ -71,26 +60,26 @@
   white-space: nowrap;
 }
 
-.navbar-links-group a:hover, /* Corrected selector */
-.navbar-login-link:hover, /* Corrected selector */
-.navbar-cart-link:hover, /* Corrected selector */
-.navbar-profile-link:hover { /* Corrected selector */
-  color: #ff7e5f;
+.navbar-links-group a:hover,
+.navbar-login-link:hover,
+.navbar-cart-link:hover,
+.navbar-profile-link:hover {
+  color: #007BFF;
   cursor: pointer;
 }
 
-.navbar-links-group .navbar-link-active { /* Corrected selector */
-  color: #ff7e5f;
+.navbar-links-group .navbar-link-active {
+  color: #007BFF;
 }
 
 /* Search Bar */
-.navbar-search-section { /* Corrected selector */
+.navbar-search-section {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.navbar-search-section .navbar-search-input { /* Corrected selector */
+.navbar-search-section .navbar-search-input {
   padding: 5px 10px;
   padding-right: 30px;
   border: 1px solid #333;
@@ -99,7 +88,7 @@
   color: #333;
 }
 
-.navbar-search-icon-inside { /* Corrected selector */
+.navbar-search-icon-inside {
   position: absolute;
   right: 10px;
   color: #333;
@@ -107,14 +96,14 @@
 }
 
 /* Navbar Actions */
-.navbar-actions-group { /* Corrected selector */
+.navbar-actions-group {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar-cart-section, /* Corrected selector */
-.navbar-profile-section { /* Corrected selector */
+.navbar-cart-section,
+.navbar-profile-section {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -122,29 +111,29 @@
   cursor: pointer;
 }
 
-.navbar-profile-icon-fa { /* Corrected selector */
+.navbar-profile-icon-fa {
   font-size: 1.2rem;
   color: #333;
 }
 
-.navbar-cart-icon { /* Corrected selector */
+.navbar-cart-icon {
   font-size: 1.2rem;
   color: #333;
 }
 
 /* Cart Count Badge */
-.navbar-cart-link { /* Corrected selector */
+.navbar-cart-link {
   position: relative;
   display: inline-block;
-  color: #fff;
+  color: #fff; /* This was already white, kept it consistent for desktop */
   text-decoration: none;
 }
 
-.navbar-cart-count { /* Corrected selector */
+.navbar-cart-count {
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: #ff7e5f;
+  background-color: #007BFF;
   color: #fff;
   font-size: 0.7rem;
   font-weight: bold;
@@ -159,15 +148,15 @@
 }
 
 /* Hamburger menu for mobile - Hidden on desktop */
-.navbar-hamburger-menu { /* Corrected selector */
+.navbar-hamburger-menu {
   display: none; /* Hidden by default on desktop */
-  color: white;
+  color: white; /* Changed to white for visibility on mobile navbar */
   font-size: 1.5rem;
   cursor: pointer;
 }
 
 /* Mobile Menu Overlay - ***CRITICAL CHANGES HERE*** */
-.navbar-mobile-menu-overlay { /* Corrected selector */
+.navbarmobile-menu-overlay {
   display: flex; /* Keep it rendered to allow transitions */
   flex-direction: column;
   z-index: 999; /* Ensure it's above other page content */
@@ -190,18 +179,16 @@
   overflow-y: auto; /* Allow vertical scrolling if menu content is too long */
 }
 
-.navbar-mobile-menu-overlay.navbar-mobile-menu-open { /* Corrected selector */
+.navbarmobile-menu-overlay.navbarmobile-menu-open {
   transform: translateY(0); /* Slide into view */
   opacity: 1; /* Fade in */
   visibility: visible; /* Make visible */
 }
 
-/* .navbar-actions-group styling moved within media query if only for mobile,
- otherwise it affects desktop too. Keeping it global if it's meant to be. */
 .navbar-actions-group {
   display: flex;
 }
-.navbar-profile-section { /* Assuming this should be flex-direction: row; now */
+.navbar-profile-section {
   flex-direction: row;
 }
 
@@ -211,18 +198,18 @@
 /* ******************************************* */
 @media (max-width: 900px) {
   /* Adjust overall navbar padding for mobile */
-  .navbar-container { /* Corrected selector */
+  .navbar-container {
       padding: 10px 15px;
       min-height: auto; /* Allow height to adjust */
   }
 
   /* Hide desktop-specific elements */
-  .navbar-desktop-group { /* Corrected selector */
+  .navbar-desktop-group {
       display: none;
   }
 
   /* Show hamburger menu */
-  .navbar-hamburger-menu { /* Corrected selector */
+  .navbar-hamburger-menu {
       display: block;
   }
 
@@ -230,11 +217,11 @@
   .navbar-header-row {
       height: 70px; /* This is the height the fixed overlay will account for */
   }
-  
+
   /* Styling for groups within the mobile menu overlay */
-  .navbar-mobile-links-group, /* Corrected selector */
-  .navbar-mobile-search-group, /* Corrected selector */
-  .navbar-mobile-actions-group { /* Corrected selector */
+  .navbarmobile-links-group,
+  .navbarmobile-search-group,
+  .navbarmobile-actions-group {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -244,21 +231,34 @@
       box-sizing: border-box;
   }
 
-  .navbar-mobile-links-group { /* Corrected selector */
+  .navbarmobile-links-group {
       gap: 15px; /* Spacing between links */
   }
 
-  .navbar-mobile-search-group { /* Corrected selector */
+  /* Mobile Nav Links */
+  .navbar-nav-link { /* This targets the Link components inside mobile menu */
+      color: white; /* White text for mobile nav links */
+      text-decoration: none; /* No underline for mobile nav links */
+  }
+
+  /* Mobile Login/Logout Link */
+  .navbar-login-link {
+      color: white; /* White text for mobile login/logout */
+      text-decoration: none; /* No underline for mobile login/logout */
+  }
+
+  /* Mobile Search Group */
+  .navbarmobile-search-group {
       position: relative; /* For icon positioning */
   }
 
-  .navbar-mobile-search-group .navbar-search-input { /* Corrected selector */
+  .navbarmobile-search-group .navbar-search-input {
       width: calc(100% - 20px); /* Full width with padding */
       margin: 0 auto;
       padding-right: 40px; /* Space for icon */
   }
 
-  .navbar-mobile-search-group .navbar-search-icon-inside { /* Corrected selector */
+  .navbarmobile-search-group .navbar-search-icon-inside {
       position: absolute;
       right: 25px; /* Adjust based on padding */
       top: 50%;
@@ -267,16 +267,34 @@
       font-size: 1.2rem;
   }
 
-  .navbar-mobile-actions-group { /* Corrected selector */
+  /* Mobile Actions Group */
+  .navbarmobile-actions-group {
       gap: 15px; /* Spacing between actions */
       border-bottom: none; /* No border for the last section */
   }
 
-  .navbar-mobile-actions-group .navbar-cart-section, /* Corrected selector */
-  .navbar-mobile-actions-group .navbar-profile-section { /* Corrected selector */
+  .navbarmobile-actions-group .navbar-cart-section,
+  .navbarmobile-actions-group .navbar-profile-section {
       justify-content: center; /* Center icons/text */
   }
-  .navbar-mobile-actions-group .navbar-profile-section { /* Corrected selector */
+
+  /* Mobile Cart Icon */
+  .navbarmobile-actions-group .navbar-cart-icon {
+      color: white; /* Ensure cart icon is white */
+  }
+
+  /* Mobile Profile Icon */
+  .navbarmobile-actions-group .navbar-profile-icon-fa {
+      color: white; /* Ensure profile icon is white */
+  }
+
+  /* Mobile Profile Text (though empty in JSX, setting style for consistency) */
+  .navbarmobile-actions-group .navbar-profile-text {
+      color: white; /* Ensure profile text is white */
+      text-decoration: none; /* No underline for profile text */
+  }
+
+  .navbarmobile-actions-group .navbar-profile-section {
       margin-top: 0; /* Reset margin for profile icon in mobile */
   }
 }
