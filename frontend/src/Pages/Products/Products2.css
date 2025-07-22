@@ -17,6 +17,14 @@
   overflow-y: auto;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
+
+
+
+
+
+.products-productcard-link{
+  text-decoration: none;
+}
  
 /* Products container on the right */
 .products-container {

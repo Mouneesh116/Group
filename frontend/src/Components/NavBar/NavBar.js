@@ -32,6 +32,7 @@ const NavBar = () => {
         if (event.key === 'Enter' || event.type === 'click') {
             if (searchQuery.trim()) {
                 navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+                // navigate(`/search?query=${searchQuery.trim()}`);
                 setSearchQuery('');
                 handleNavLinkClick(); // Close menu after search on mobile
             }

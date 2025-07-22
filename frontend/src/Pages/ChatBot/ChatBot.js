@@ -49,11 +49,15 @@ const ChatBot = () => {
     setIsBotTyping(true); // Show typing indicator
 
     try {
+      const token = localStorage.getItem('token');
+
       // Send the user's message to your backend chatbot API
       const response = await axios.post(`${BACKEND_URL}/api/chatbot`, {
         message: newUserMessage.text,
         userId: userId,
+        token: token,
       });
+      console.log(newUserMessage.text, userId);
 
       const botResponse = response.data.reply || "I'm sorry, I couldn't get a clear response.";
 

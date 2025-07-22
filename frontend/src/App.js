@@ -30,6 +30,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import AboutUs from './Pages/AboutUs/AboutUs';
+import FloatingChatBot from './Pages/ChatBot/FloatingChatBot';
 
 const App = () => {
   const { user,role } = useContext(AuthContext);
@@ -68,10 +69,12 @@ const App = () => {
               </>
               
             </Routes>
+            <FloatingChatBot/>
             </WishListProvider>
           </OrderProvider>
         </CartProvider>
         <ToastContainer position='top-center' autoClose={2000}/>
+
     </div>
   );
 }

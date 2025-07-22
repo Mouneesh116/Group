@@ -87,10 +87,10 @@ const Products = () => {
     let filtered = [...products];
 
     if (categoryFilter) {
-      filtered = filtered.filter((product) => product.category === categoryFilter);
+      filtered = filtered.filter((product) => product?.category === categoryFilter);
     }
     if (subCategoryFilter) {
-      filtered = filtered.filter((product) => product.subCategory === subCategoryFilter);
+      filtered = filtered.filter((product) => product?.subCategory === subCategoryFilter);
     }
 
     if (priceSort === 'lowToHigh') {
@@ -217,7 +217,7 @@ const Products = () => {
 
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/products/update/${idToSave}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/product/update/${idToSave}`,
         updatedProduct,
         {
           headers: {
@@ -366,7 +366,7 @@ const Products = () => {
           ))}
         </select>
 
-        <label htmlFor="subCategoryFilter">Sub Category:</label>
+        {/* <label htmlFor="subCategoryFilter">Sub Category:</label>
         <select
           id="subCategoryFilter"
           value={subCategoryFilter}
@@ -379,7 +379,7 @@ const Products = () => {
               {subcategory}
             </option>
           ))}
-        </select>
+        </select> */}
 
         <label htmlFor="priceSort">Price:</label>
         <select id="priceSort" value={priceSort} onChange={(e) => setPriceSort(e.target.value)}>

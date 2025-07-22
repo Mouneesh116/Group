@@ -25,7 +25,25 @@
 
 /* Logo Styling */
 .navbar-logo-image {
-  height: 50px;
+  height: 60px;
+  cursor: pointer;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-logo .logo-image {
+  width: 200px;
+  height: 80px;
   cursor: pointer;
   display: block;
 }

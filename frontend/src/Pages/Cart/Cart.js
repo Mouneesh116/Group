@@ -495,6 +495,7 @@ const ShoppingCart = () => {
         );
 
         setCartItems([]); // Clear frontend cart
+        toast.dismiss();
 
         toast.success(
           "Thank you for your purchase! Your order has been placed."
@@ -502,6 +503,7 @@ const ShoppingCart = () => {
 
         navigate("/profile");
       } else {
+        toast.dismiss();
         toast.error(orderResponse.data.message || "Failed to place order.");
       }
     } catch (error) {
@@ -509,7 +511,7 @@ const ShoppingCart = () => {
         "Error placing order:",
         error.response?.data || error.message
       );
-
+      toast.dismiss();
       toast.error(
         error.response?.data?.message ||
           "An error occurred while placing your order."

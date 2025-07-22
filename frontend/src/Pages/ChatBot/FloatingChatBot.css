@@ -1,0 +1,56 @@
+/* Container for the floating chatbot */
+.floating-chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it appears above other elements */
+  }
+  
+  /* Floating button */
+  .floating-chatbot-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .floating-chatbot-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  /* Chatbot popup */
+  .chatbot-popup {
+    position: fixed;
+    bottom: 90px; /* Adjust based on button size */
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1001; /* Ensure it appears above the button */
+  }
+  
+  /* Close icon */
+  .floating-chatbot-button span {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  
+  /* Chat icon */
+  .chat-icon {
+    width: 24px;
+    height: 24px;
+  }

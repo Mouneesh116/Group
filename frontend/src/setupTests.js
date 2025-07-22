@@ -3,3 +3,23 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+
+
+
+jest.mock('react-router-dom', ()=> {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        ...originalModule,
+        useLocation: jest.fn(()=>({
+            pathname: '/',
+            search: '',
+            hash: '',
+            state: null
+        })),
+        useNavigate: jest.fn(),
+        useParams: jest.fn(()=>{})
+
+    }
+})

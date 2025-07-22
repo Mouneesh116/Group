@@ -1,40 +1,22 @@
-/* src/Pages/ChatBot/Chatbot.css */
-
-/* REMOVE any global html, body, #root styles from here entirely.
-   They belong in index.css or a global stylesheet. */
-
-/* Overall container for centering and background - now fits below Navbar */
+/* Floating ChatBot Wrapper */
 .chatbot-container-wrapper {
+    position: fixed; /* Make it float on the screen */
+    bottom: 80px; /* Position above the floating button */
+    right: 20px; /* Align to the right */
+    z-index: 1000; /* Ensure it appears above other elements */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw; /* Occupy full viewport width */
-    /* CRITICAL CHANGE: Calculate height based on Navbar height */
-    height: calc(100vh - 60px); /* 100vh minus estimated Navbar height (60px) */
-    margin-top: 60px; /* CRITICAL CHANGE: Push content down by Navbar height */
-    
-    background-color: #f3f4f6; /* A light gray background */
-    padding: 1rem; /* Default padding for larger screens */
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
-    /* Ensure it doesn't overlap other elements if it's not the only content below Navbar */
-    /* If you have other content, you might need to wrap ChatBot in a specific container */
-}
-
-/* Main chat window container */
-.chatbot-container {
-    position: relative;
-    width: 100%; /* Default to full width of wrapper */
-    max-width: 448px; /* Constrain width on larger screens */
-    height: 100%; /* Default to full height of wrapper (which is now calc(100vh - 60px)) */
-    max-height: 90vh; /* Limit height on larger screens to give some margin */
+    width: 100%; /* Full width for responsiveness */
+    max-width: 400px; /* Limit width on larger screens */
+    height: auto; /* Adjust height dynamically */
+    max-height: 80vh; /* Limit height to 80% of the viewport */
     background-color: #ffffff; /* White background for the chat box */
     border-radius: 0.5rem; /* Rounded corners */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
-    display: flex;
-    flex-direction: column; /* Stack header, messages, input vertically */
-    overflow: hidden; /* Hide content overflowing rounded corners */
+    overflow: hidden; /* Hide overflowing content */
     border: 1px solid #e5e7eb; /* Subtle border */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth animations */
 }
 
 /* Chat header */
@@ -64,6 +46,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    background-color: #f9fafb; /* Light gray background for messages */
+    max-height: 50vh; /* Limit the height to 60% of the viewport */
+    border-bottom: 1px solid #e5e7eb; /* Optional: Add a subtle border */
 }
 
 /* Custom Scrollbar */
@@ -104,8 +89,7 @@
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    /* Decreased font size for messages */
-    font-size: 0.8rem; /* Adjusted from 0.875rem to 0.8rem */
+    font-size: 0.875rem;
     color: #374151;
 }
 
@@ -124,7 +108,7 @@
 }
 
 .message-timestamp {
-    font-size: 0.75rem; /* Kept at 0.75rem for timestamps */
+    font-size: 0.75rem;
     margin-top: 0.25rem;
     display: block;
     text-align: right;
@@ -239,50 +223,15 @@
 }
 
 /* Media Queries for Responsiveness */
-/* On screens smaller than or equal to 768px (typical mobile portrait) */
 @media (max-width: 768px) {
     .chatbot-container-wrapper {
-        padding: 0;
-        width: 100vw; /* Keep 100vw for mobile full width */
-        height: calc(100vh - 60px); /* Still account for Navbar on mobile */
-        margin-top: 60px; /* Still push down on mobile */
+        bottom: 70px; /* Adjust for smaller screens */
+        right: 10px;
+        max-width: 90%; /* Take up more width on smaller screens */
+        max-height: 70vh; /* Reduce height for smaller screens */
     }
 
     .chatbot-container {
-        width: 100vw; /* Full viewport width */
-        height: 100%; /* Full height of its wrapper */
-        max-width: 100vw;
-        max-height: 100%;
-        border-radius: 0;
-        box-shadow: none;
-        border: none;
-    }
-
-    .chatbot-header {
-        border-radius: 0;
-    }
-}
-
-/* On screens larger than 768px (typical tablet/desktop) */
-@media (min-width: 769px) {
-    .chatbot-container-wrapper {
-        padding: 1rem;
-        width: 100vw; /* Keep 100vw for desktop */
-        height: calc(100vh - 60px); /* Keep accounting for Navbar */
-        margin-top: 60px; /* Keep pushing down */
-    }
-
-    .chatbot-container {
-        width: 100%;
-        max-width: 448px;
-        height: 100%; /* Full height of its wrapper (which is calc(100vh - 60px)) */
         border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e5e7eb;
-    }
-
-    .chatbot-header {
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
     }
 }

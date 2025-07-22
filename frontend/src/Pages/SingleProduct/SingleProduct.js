@@ -232,7 +232,7 @@ const SingleProduct = () => {
           </div>
           <div className="singleproduct-user-info">
             <p className="user-name">{review.userName}</p>
-            <p className="review-date">
+            {/* <p className="review-date">
               {review.reviewDate
                 ? new Date(review.reviewDate).toLocaleDateString('en-GB', {
                     day: '2-digit',
@@ -240,7 +240,7 @@ const SingleProduct = () => {
                     year: 'numeric',
                   })
                 : "Date not available"}
-            </p>
+            </p> */}
           </div>
           <div className="singleproduct-review-rating">
             {[...Array(review.rating)].map((_, i) => (
