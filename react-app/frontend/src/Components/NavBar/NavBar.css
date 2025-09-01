@@ -1,6 +1,6 @@
 /* General Navbar Styling */
 .navbar-container {
-  background-color: #e0d7d7; /* Dark background */
+  background-color: rgb(0, 0, 0); /* Dark background */
   color: #333;
   padding: 10px 20px; /* Consistent padding for desktop */
   position: sticky; /* Keep it sticky at the top */
@@ -27,12 +27,13 @@
 .navbar-logo-image {
   height: 50px;
   cursor: pointer;
-  display: block;
+  display: block;background-color:white;
+
 }
 
 .navbar-logo .logo-image {
-  width: 200px;
-  height: 70px;
+  width: 300px;
+  height: 150px;
   cursor: pointer;
   display: block;
 }
