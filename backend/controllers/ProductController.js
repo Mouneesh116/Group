@@ -177,6 +177,9 @@ export const getImageUrl = async (req, res) => {
 export const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find({});
+        if(products.length===0){
+            return res.status(200).json({ message: "No products found", products: [] });
+        }
         if (!products || products.length === 0) {
             return res.status(404).json({ message: "No products found" });
         }
@@ -187,3 +190,17 @@ export const getAllProducts = async (req, res) => {
         return res.status(500).json({ message: "Error fetching all products", error: error.message });
     }
 }
+
+export const bulkCreateProducts = async (req, res) => {
+    try {
+        const products = req.body;
+        if (!Array.isArray(products) || products.length === 0) {
+            return res.status(400).json({ message: "Invalid product data" });
+        }
+        const createdProducts = await Product.insertMany(products);
+        return res.status(201).json({ message: "Products created successfully", products: createdProducts });
+    } catch (error) {
+        console.error("Error creating products:", error);
+        return res.status(500).json({ message: "Error creating products", error: error.message });
+    }
+};
