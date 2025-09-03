@@ -17,7 +17,7 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
-  const [orderStatus, setOrderStatus] = useState(initialItemStatus || 'Pending');
+  const [orderStatus, setOrderStatus] = useState(initialItemStatus);
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
   const [isReturnDisabled, setIsReturnDisabled] = useState(false);
 

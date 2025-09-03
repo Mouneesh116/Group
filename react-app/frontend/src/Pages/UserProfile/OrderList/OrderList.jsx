@@ -107,7 +107,7 @@ const OrderList = () => {
           const dateB = new Date(b.date);
           return dateB - dateA; // For descending order (most recent first)
         });
- 
+        console.log('Fetched and sorted orders:', fetchedOrders);
         setOrders(fetchedOrders);
         setLoading(false);
       } catch (err) {
@@ -168,7 +168,7 @@ const OrderList = () => {
               title={item.title}
               quantity={item.quantity}
               // Pass the specific item's status as initialItemStatus
-              initialItemStatus={item.status || 'Pending'}
+              initialItemStatus={order.status}
               onOrderChange={handleOrderChange} // Pass the correct callback name
             />
           ))
