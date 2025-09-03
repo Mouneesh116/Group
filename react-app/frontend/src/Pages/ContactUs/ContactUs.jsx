@@ -42,7 +42,7 @@ const ContactUs = () => {
                     <div className="info-card">
                         <FontAwesomeIcon icon={faPhone} className="info-icon" />
                         <h3>Phone Number</h3>
-                        <p>+91 98765 43210</p>
+                        <p>+91 9390897312</p>
                         <p>Mon - Fri, 9 AM - 6 PM</p>
                     </div>
                     <div className="info-card">
@@ -91,16 +91,17 @@ const ContactUs = () => {
                 <h2 className="section-title">Find Us on the Map</h2>
                 <div className="map-embed">
                     {/* Replace with your actual Google Maps embed code (iframe) for your specific address */}
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124403.49883582236!2d80.12644265775438!3d13.04754766854128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d0201%3A0x6442340537a718c!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718617874987!5m2!1sen!2sin"
-                        width="100%"
-                        height="450"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Our Location on Map"
-                    ></iframe>
+                 <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.76444253197!2d78.34399637385317!3d17.423088583470143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93802a6442d9%3A0xec7c3aa0c3ab784!2sLoyalty%20Methods%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1756894467868!5m2!1sen!2sin"
+  width="100%"
+  height="450"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  title="Our Location on Map"
+/>
+
                 </div>
             </section>
  
