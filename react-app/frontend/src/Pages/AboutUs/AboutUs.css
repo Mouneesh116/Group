@@ -1,455 +1,266 @@
+/* ================================
+   Global Theme Base
+   ================================ */
 body {
-    font-family: 'Arial', sans-serif; /* Or 'Open Sans', 'Roboto' for modern feel */
-    margin: 0;
-    padding: 0;
-    background-color: #f8faff; /* Very light background, almost white */
-    color: #333;
-    line-height: 1.6;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
-.hero-title{
-    color: #403d3d;
+.fullscreen-container {
+  height: 100vh;   /* full viewport height */
+  width: 100vw;    /* full viewport width */
+  display: flex;
+  flex-direction: column;
 }
-.hero-subtitle{
-    color: #000000;
+
+/* Light Theme */
+.light {
+  background: #f8faff;
+  color: #333;
 }
- 
-.about-us-container {
-    max-width: 1200px; /* Max width for content, similar to example layouts */
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
+
+/* Dark Theme */
+.dark {
+  background: #1c1c1c;
+  color: #eee;
 }
- 
-/* Section Titles */
+
+/* ================================
+   Section Titles
+   ================================ */
 .section-title {
-    font-size: 2.2rem;
-    color: #2c3e50; /* Darker text for titles */
-    text-align: center;
-    margin-bottom: 50px;
-    position: relative;
-    padding-bottom: 15px;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  padding-bottom: 15px;
+  transition: color 0.3s ease;
 }
- 
+
+.light .section-title {
+  color: #2c3e50;
+}
+
+.dark .section-title {
+  color: #f0f0f0;
+}
+
 .section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background-color: #00bcd4; /* Ocean blue accent, matching active elements */
-    border-radius: 2px;
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #00bcd4;
+  border-radius: 2px;
 }
- 
-.sub-heading {
-    font-size: 1.1rem;
-    color: #7f8c8d;
-    text-align: center;
-    display: block;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
- 
-/* Icons */
-.icon-large {
-    font-size: 3.5rem;
-    color: #00bcd4;
-    margin-bottom: 20px;
-}
- 
-.icon-small {
-    color: #27ae60; /* Green for checkmarks */
-    margin-right: 8px;
-}
- 
- 
-/* --- Hero Section --- */
+
+/* ================================
+   Hero Section
+   ================================ */
 .about-hero-section {
-    background: linear-gradient(rgba(155, 219, 227, 0.7), rgba(159, 213, 220, 0.7)),
-                url('https://miro.medium.com/v2/resize:fit:1200/1*CJp8DymxI7g8rbLHTSUDxA.png') no-repeat center center/cover;
-    color: #000; /* Changed to black as requested */
-    text-align: center;
-    padding: 100px 20px;
-    margin-bottom: 60px;
-    border-radius: 10px; /* Slightly rounded corners */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px; /* Minimum height for the banner */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(rgba(0, 188, 212, 0.7), rgba(0, 188, 212, 0.7)),
+    url('https://miro.medium.com/v2/resize:fit:1200/1*CJp8DymxI7g8rbLHTSUDxA.png')
+      no-repeat center center/cover;
+  text-align: center;
+  padding: 100px 20px;
+  margin-bottom: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  transition: background 0.3s ease;
 }
- 
-.hero-content {
-    max-width: 800px;
-}
- 
+
 .hero-title {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
- 
+
 .hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 40px;
-    line-height: 1.8;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  line-height: 1.8;
 }
- 
+
 .hero-button {
-    background-color: #fff;
-    color: #00bcd4;
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #fff;
+  color: #00bcd4;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
 }
- 
+
 .hero-button:hover {
-    background-color: #e0f7fa; /* Lighter blue on hover */
-    color: #008ba3;
+  background: #e0f7fa;
+  color: #008ba3;
 }
- 
-/* --- General About Section Styling --- */
-.about-section {
-    padding: 60px 0;
-    margin-bottom: 40px;
-}
- 
- 
-/* --- Mission Section (Card Grid) --- */
+
+/* ================================
+   Mission Cards
+   ================================ */
 .mission-section {
-    background-color: #fff;
-    padding: 60px 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 60px 20px;
+  border-radius: 10px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
- 
-.mission-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    justify-content: center;
-    padding: 0 20px; /* Padding for the grid itself */
+
+.light .mission-section {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
- 
+
+.dark .mission-section {
+  background: #2a2a2a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
 .mission-card {
-    background-color: #fdfdfd;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 30px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
- 
+
+.light .mission-card {
+  background: #fdfdfd;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.dark .mission-card {
+  background: #333;
+  border: 1px solid #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
 .mission-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
 }
- 
-.mission-card h3 {
-    font-size: 1.4rem;
-    color: #34495e;
-    margin-top: 15px;
-    margin-bottom: 10px;
+
+.light .mission-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
- 
-.mission-card p {
-    font-size: 0.95rem;
-    color: #666;
+
+.dark .mission-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
- 
- 
-/* --- Values Section (Image + Text) --- */
+
+/* ================================
+   Values Section
+   ================================ */
 .values-section {
-    background-color: #e0f7fa; /* User's preferred light cyan background - Good! */
-    padding: 80px 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 80px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
 }
- 
-.values-content {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    gap: 50px;
-    max-width: 1000px;
-    align-items: center;
+
+.light .values-section {
+  background: #e0f7fa;
 }
- 
-.values-image-container {
-    flex: 1;
-    min-width: 300px; /* Ensures image takes reasonable space */
-    text-align: center;
+
+.dark .values-section {
+  background: #1e3a3a;
 }
- 
+
 .values-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
- 
-.values-text {
-    flex: 2;
-    min-width: 300px; /* Ensures text takes reasonable space */
-}
- 
-.values-text .section-title {
-    text-align: left; /* Align title to the left */
-    margin-bottom: 30px;
-}
- 
-.values-text .section-title::after {
-    left: 0; /* Align underline to the left */
-    transform: translateX(0);
-}
- 
-.values-text ul {
-    list-style: none;
-    padding: 0;
-}
- 
-.values-text ul li {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: #444;
-    display: flex;
-    align-items: center;
-}
- 
- 
-/* --- Testimonial Section --- */
+
+/* ================================
+   Testimonial Section
+   ================================ */
 .testimonial-section {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 60px 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 0.3s ease;
 }
- 
+
+.light .testimonial-section {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dark .testimonial-section {
+  background: #2a2a2a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
 .testimonial-card {
-    max-width: 800px;
-    margin: 40px auto 0;
-    padding: 40px;
-    background-color: #fdfdfd;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    position: relative;
-    border-top: 5px solid #6a00ff; /* Purple accent */
+  margin: 40px auto 0;
+  padding: 40px;
+  border-radius: 10px;
+  position: relative;
+  border-top: 5px solid #6a00ff;
+  transition: background 0.3s ease;
 }
- 
-.testimonial-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid #00bcd4;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+.light .testimonial-card {
+  background: #fdfdfd;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
- 
+
+.dark .testimonial-card {
+  background: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
 .testimonial-quote {
-    font-size: 1.25rem;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 25px;
-    position: relative;
-    padding: 0 20px;
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-bottom: 25px;
+  color: inherit;
 }
- 
-.testimonial-quote::before,
-.testimonial-quote::after {
-    content: '"';
-    font-size: 3rem;
-    color: #ccc;
-    position: absolute;
-    line-height: 0;
-    opacity: 0.5;
-}
- 
-.testimonial-quote::before {
-    left: 0;
-    top: 0;
-}
- 
-.testimonial-quote::after {
-    right: 0;
-    bottom: 0;
-}
- 
- 
-.testimonial-author {
-    font-size: 1.1rem;
-    color: #2c3e50;
-    font-weight: bold;
-}
- 
- 
-/* --- Call to Action Section --- */
+
+/* ================================
+   Call to Action
+   ================================ */
 .call-to-action-section {
-    background-color: #e0f7fa; /* Kept your desired light background */
-    color: #333; /* Changed to dark text for readability on light background */
-    text-align: center;
-    padding: 80px 20px;
-    margin-top: 60px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 80px 20px;
+  margin-top: 60px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
 }
- 
-.cta-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+
+.light .call-to-action-section {
+  background: #e0f7fa;
+  color: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
- 
-.cta-content p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+
+.dark .call-to-action-section {
+  background: #004d4d;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 }
- 
+
 .cta-button {
-    background-color: #6a00ff; /* Purple, provides good contrast */
-    color: #fff;
-    padding: 15px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  background: #6a00ff;
+  color: #fff;
+  padding: 15px 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
 }
- 
+
 .cta-button:hover {
-    background-color: #5a00e0;
-}
- 
-/* --- Responsive Adjustments --- */
-@media (max-width: 992px) {
-    .hero-title {
-        font-size: 3rem;
-    }
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
-    .section-title {
-        font-size: 2rem;
-    }
-    .mission-cards-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    .values-content {
-        flex-direction: column; /* Stack image and text vertically */
-        text-align: center;
-    }
-    .values-text .section-title {
-        text-align: center;
-    }
-    .values-text .section-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    .values-text ul {
-        text-align: left; /* Keep list items left-aligned within their flex container */
-        padding: 0 20px; /* Add some padding for lists on smaller screens */
-    }
-}
- 
-@media (max-width: 768px) {
-    .about-us-container {
-        padding: 15px;
-    }
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    .about-hero-section {
-        padding: 80px 15px;
-        min-height: 300px;
-    }
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 40px;
-    }
-    .mission-cards-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically */
-    }
-    .mission-card {
-        padding: 25px;
-    }
-    .values-section {
-        padding: 60px 15px;
-    }
-    .testimonial-card {
-        padding: 30px 15px;
-    }
-    .testimonial-quote {
-        font-size: 1.1rem;
-    }
-    .cta-content h2 {
-        font-size: 2rem;
-    }
-    .cta-content p {
-        font-size: 1rem;
-    }
-    .cta-button {
-        padding: 12px 30px;
-        font-size: 1.1rem;
-    }
-}
- 
-@media (max-width: 480px) {
-    .about-us-container {
-        padding: 10px;
-    }
-    .hero-title {
-        font-size: 2rem;
-    }
-    .hero-subtitle {
-        font-size: 0.9rem;
-    }
-    .about-hero-section {
-        padding: 60px 10px;
-        min-height: 250px;
-    }
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-    }
-    .icon-large {
-        font-size: 3rem;
-    }
-    .values-content {
-        gap: 30px;
-    }
-    .testimonial-card {
-        padding: 20px 10px;
-    }
-    .testimonial-quote {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
-    .testimonial-quote::before,
-    .testimonial-quote::after {
-        font-size: 2.5rem;
-    }
-    .testimonial-author {
-        font-size: 0.95rem;
-    }
-    .cta-content h2 {
-        font-size: 1.8rem;
-    }
-    .cta-content p {
-        font-size: 0.9rem;
-    }
+  background: #5a00e0;
 }

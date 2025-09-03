@@ -21,10 +21,10 @@ export const OffersSlider = () => {
     {
       offerMainImage: fashiWomanImagePlaceholder,
       smallText: 'BABY KIDS',
-      title: 'Black Friday',
+      title: 'Big billions day',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
       buttonText: 'SHOP NOW',
-      buttonLink: '/shop/black-friday',
+      buttonLink: '/categories',
       saleBadgeText: 'SALE 50%'
     },
     {
@@ -33,7 +33,7 @@ export const OffersSlider = () => {
       title: 'Summer Collection',
       description: 'Cozy up with our new arrivals. Discover warmth and style for the season ahead.',
       buttonText: 'EXPLORE NOW',
-      buttonLink: '/shop/winter',
+      buttonLink: 'categories/fashion',
       saleBadgeText: 'NEW!'
     },
     {
@@ -42,7 +42,7 @@ export const OffersSlider = () => {
       title: 'Special Offer',
       description: 'Don\'t miss out on exclusive discounts. Grab your favorites before they\'re gone!',
       buttonText: 'GET OFFER',
-      buttonLink: '/shop/special-offer',
+      buttonLink: '/categories',
       saleBadgeText: '25% OFF'
     },
     {
@@ -51,7 +51,7 @@ export const OffersSlider = () => {
       title: 'Tech Extravaganza',
       description: 'Upgrade your tech with our latest gadgets. Smart choices for smart living.',
       buttonText: 'BROWSE TECH',
-      buttonLink: '/shop/tech',
+      buttonLink: 'categories/electronics',
       saleBadgeText: 'FLASH SALE'
     },
   ];

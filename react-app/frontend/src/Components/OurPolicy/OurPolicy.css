@@ -1,43 +1,88 @@
 .policy-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 50px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
- 
-  .policy-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
- 
-  .policy-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
- 
-  .policy-title {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
- 
-  .policy-description {
-    color: #666;
-    font-size: 14px;
-  }
- 
-  /* Responsive layout for larger screens */
-  @media (min-width: 600px) {
-    .policy-container {
-      flex-direction: row;
-      justify-content: space-around;
-    }
- 
-    .policy-item {
-      max-width: 200px;
-    }
-  }
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 40px 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Each policy card */
+.policy-item {
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.policy-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Icon */
+.policy-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Titles */
+.policy-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Description */
+.policy-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ================================
+   Light Theme
+================================ */
+.light .policy-container {
+  background: #fafafa;
+  color: #222;
+}
+
+.light .policy-item {
+  background: #fff;
+  color: #222;
+}
+
+.light .policy-title {
+  color: #007BFF;
+}
+
+.light .policy-description {
+  color: #444;
+}
+
+/* ================================
+   Dark Theme
+================================ */
+.dark .policy-container {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+.dark .policy-item {
+  background: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.05);
+}
+
+.dark .policy-title {
+  color: #ff9800;
+}
+
+.dark .policy-description {
+  color: #ccc;
+}

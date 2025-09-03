@@ -1,56 +1,93 @@
-/* Container for the floating chatbot */
+/* ================================
+   Floating Chatbot Wrapper
+   ================================ */
 .floating-chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000; /* Ensure it appears above other elements */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000; /* stays above everything */
+}
+
+/* ================================
+   Floating Button
+   ================================ */
+.floating-chatbot-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #6a00ff;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.floating-chatbot-button:hover {
+  background: #5200cc;
+  transform: scale(1.05);
+}
+
+.floating-chatbot-button span {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.chat-icon {
+  stroke: #fff;
+  width: 28px;
+  height: 28px;
+}
+
+/* ================================
+   Chatbot Popup
+   ================================ */
+.chatbot-popup {
+  position: absolute;
+  bottom: 75px; /* sits above the button */
+  right: 0;
+  width: 360px;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease forwards;
+}
+
+/* Dark theme support */
+.dark .chatbot-popup {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+/* ================================
+   Animations
+   ================================ */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  /* Floating button */
-  .floating-chatbot-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .floating-chatbot-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
-  }
-  
-  /* Chatbot popup */
+}
+
+/* ================================
+   Responsive
+   ================================ */
+@media (max-width: 500px) {
   .chatbot-popup {
-    position: fixed;
-    bottom: 90px; /* Adjust based on button size */
-    right: 20px;
-    width: 350px;
-    max-height: 500px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 1001; /* Ensure it appears above the button */
+    width: 95vw;
+    height: 80vh;
+    bottom: 80px;
+    right: 50%;
+    transform: translateX(50%);
   }
-  
-  /* Close icon */
-  .floating-chatbot-button span {
-    font-size: 2rem;
-    line-height: 1;
-  }
-  
-  /* Chat icon */
-  .chat-icon {
-    width: 24px;
-    height: 24px;
-  }
+}

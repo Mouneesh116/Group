@@ -79,9 +79,6 @@ export const loginUser = async (req,res) => {
     }
 }
 
-
-
-
 export const getUser = async (req, res) => {
     try {
         const { userId } = req.params;
@@ -99,3 +96,44 @@ export const getUser = async (req, res) => {
         res.status(500).json({ message: "Error fetching user" });
     }
 }
+
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { username, email } = req.body;
+
+    if (!username || !email) {
+      return res.status(400).json({ message: "Username and email are required" });
+    }
+
+    // check if email already exists for another user
+    const emailExists = await User.findOne({ email, _id: { $ne: userId } });
+    if (emailExists) {
+      return res.status(400).json({ message: "Email already taken" });
+    }
+
+    // check if username already exists for another user
+    const usernameExists = await User.findOne({ username, _id: { $ne: userId } });
+    if (usernameExists) {
+      return res.status(400).json({ message: "Username already taken" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { username, email },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Error updating profile" });
+  }
+};

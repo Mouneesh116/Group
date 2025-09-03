@@ -1,204 +1,134 @@
+/* ================================
+   Categories Row Container
+   ================================ */
 .categories-row-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100vw; 
+  min-height: 100vh;
   padding: 40px 20px;
-  background-color: white;
-  width: 100%;
-  box-sizing: border-box;
-}
- 
-.categories-row-title {
-  font-size: 28px;
-  color: #080707;
-  margin-bottom: 30px;
   text-align: center;
-  font-weight: 700;
+  background: var(--categories-bg);
+  color: var(--categories-text);
+  transition: background 0.3s ease, color 0.3s ease;
 }
- 
-/* List of categories */
-.categories-row-list {
-  display: flex;
-  gap: 35px; /* Space between items */
-  flex-wrap: wrap; /* Allows items to wrap to next line */
-  justify-content: center; /* Center items in the row */
-  padding: 0;
-}
- 
-/* Individual category item (card with background image) */
-.categories-row-item {
-  flex: 0 0 auto; /* Prevent shrinking/growing by default */
-  width: 280px; /* Base width for larger screens (e.g., 3 across) */
-  height: 180px;
-  border-radius: 5px;
-  overflow: hidden;
+
+
+.categories-row-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--categories-title);
   position: relative;
+  display: inline-block;
+}
+
+.categories-row-title::after {
+  content: '';
+  display: block;
+  margin: 8px auto 0;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color); /* Accent line */
+  border-radius: 2px;
+}
+
+/* ================================
+   Grid Layout
+   ================================ */
+.categories-row-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* ================================
+   Category Items
+   ================================ */
+.categories-row-item {
+  width: 100%;
+  padding-top: 100%; /* Square ratio */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   cursor: pointer;
+  box-shadow: var(--categories-card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categories-row-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--categories-card-hover-shadow);
+}
+
+/* Overlay with category label */
+.categories-row-label-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s ease;
 }
- 
-/* Link styling (to cover the entire card) */
+
+.categories-row-item:hover .categories-row-label-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.categories-row-label-overlay p {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* Link reset */
 .categories-row-link {
   text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   width: 100%;
   height: 100%;
 }
- 
-/* Overlay for the category label */
-.categories-row-label-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 10px 20px;
-  border-radius: 3px;
-  text-align: center;
-  pointer-events: none;
-  transition: background-color 0.3s ease;
-}
- 
-.categories-row-label-overlay p {
-  margin: 0;
-  font-size: 18px;
-  color: #333;
-  font-weight: 700;
-  white-space: nowrap; /* Prevent text wrapping inside the label */
-}
- 
-/* Hover effects for category item */
-.categories-row-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1);
-}
- 
-.categories-row-item:hover .categories-row-label-overlay {
-    background-color: rgba(255, 255, 255, 0.95);
-}
- 
- 
-/* --- Responsive Design --- */
- 
-/* For screens up to 1200px (e.g., small desktops, large tablets) - Still 3 columns, slightly smaller */
-@media (max-width: 1200px) {
-  .categories-row-list {
-    gap: 15px;
-  }
-  .categories-row-item {
-    width: 250px; /* Adjusted width */
-    height: 150px;
-  }
-  .categories-row-label-overlay p {
-    font-size: 17px;
-  }
-}
- 
-/* For screens up to 992px (e.g., tablets in landscape) - Aim for 3 columns or adapt */
-@media (max-width: 992px) {
-  .categories-row-container {
-    padding: 30px 15px;
-  }
-  .categories-row-title {
-    font-size: 26px;
-  }
-  .categories-row-list {
-    gap: 15px;
-  }
-  /* flex-basis for 3 columns with a max width, allows slight shrinking */
-  .categories-row-item {
-    flex-basis: calc(33.33% - 10px); /* Approximately 3 columns, accounting for gap */
-    max-width: 280px; /* Max width for individual items */
-    height: 170px;
-  }
-  .categories-row-label-overlay {
-    padding: 8px 18px;
-  }
-  .categories-row-label-overlay p {
-    font-size: 16px;
-  }
-}
- 
-/* For screens up to 768px (e.g., tablets in portrait, large phones) - Aim for 2 columns */
+
+/* ================================
+   Responsive
+   ================================ */
 @media (max-width: 768px) {
-  .categories-row-container {
-    padding: 25px 10px;
-  }
   .categories-row-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
-  .categories-row-list {
-    gap: 10px;
-  }
-  .categories-row-item {
-    flex-basis: calc(50% - 10px); /* Exactly 2 columns with gap */
-    max-width: 225px; /* Limit size for very wide phones in landscape */
-    height: 120px;
-  }
-  .categories-row-label-overlay {
-    padding: 7px 15px;
-  }
+
   .categories-row-label-overlay p {
-    font-size: 15px;
+    font-size: 1rem;
   }
 }
- 
-/* For screens up to 576px (e.g., most smartphones) - Aim for 2 columns, smaller */
-@media (max-width: 576px) {
-  .categories-row-container {
-    padding: 20px 8px;
-  }
-  .categories-row-title {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  .categories-row-list {
-    gap: 10px;
-  }
-  .categories-row-item {
-    flex-basis: calc(50% - 10px); /* Still 2 columns */
-    max-width: 160px; /* Smaller max width for compactness */
-    height: 100px;
-  }
-  .categories-row-label-overlay {
-    padding: 5px 10px;
-  }
-  .categories-row-label-overlay p {
-    font-size: 13px;
-  }
+
+/* ================================
+   Theme Variables
+   ================================ */
+
+/* 🌞 Light Mode */
+.light {
+  --categories-bg: #fafafa;
+  --categories-text: #333;
+  --categories-title: #333;
+  --accent-color: #2196f3;
+
+  --categories-card-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --categories-card-hover-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
- 
-/* For screens up to 400px (e.g., very small smartphones) - Aim for 1 column */
-@media (max-width: 400px) {
-  .categories-row-container {
-    padding: 15px 5px;
-  }
-  .categories-row-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  .categories-row-list {
-    gap: 10px;
-  }
-  .categories-row-item {
-    flex-basis: 90%; /* Almost full width for a single column */
-    max-width: 300px; /* Max width for single column */
-    height: 140px;
-  }
-  .categories-row-label-overlay p {
-    font-size: 14px; /* Increase font size slightly for single column */
-  }
+
+/* 🌙 Dark Mode */
+.dark {
+  --categories-bg: #1c1c1c;
+  --categories-text: #f1f1f1;
+  --categories-title: #f1f1f1;
+  --accent-color: #90caf9; /* lighter blue for contrast */
+
+  --categories-card-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+  --categories-card-hover-shadow: 0 6px 15px rgba(255, 255, 255, 0.12);
 }

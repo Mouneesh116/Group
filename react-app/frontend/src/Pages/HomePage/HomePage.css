@@ -1,73 +1,178 @@
-/* General Styles */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-  
-  }
-  
-  .homepage {
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* Hero Section */
-  .homepage-hero-section {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    color: white;
-    text-align: center;
-    padding: 100px 20px;
-  }
-  
-  .homepage-hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .homepage-hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .homepage-cta-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: white;
-    color: #ff7e5f;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .homepage-cta-button:hover {
-    background-color: #ffe0d3;
-  }
-  
-  /* Categories Section */
-  .homepage-categories-section {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .homepage-categories-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Offers Section */
-  .homepage-offers-section {
-    padding: 50px 50px;
-    background-color: #fff;
-    text-align: center;
-    margin: 40px;
-  }
-  
-  .homepage-offers-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  /* .homepage-footer-section{
+/* ================================
+   Homepage Wrapper
+   ================================ */
+.homepage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: var(--homepage-bg);
+  color: var(--homepage-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  } */
+/* ================================
+   Hero Section
+   ================================ */
+.homepage-hero-section {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.35)
+    ),
+    url("../../Assets/Images/women.jpg") no-repeat center center/cover;
+  color: var(--hero-text);
+  text-align: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  transition: color 0.3s ease;
+}
+
+/* ================================
+   Categories Section
+   ================================ */
+.homepage-categories-section {
+  padding: 60px 20px;
+  background: var(--categories-bg);
+  color: var(--categories-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================================
+   Offers Section
+   ================================ */
+.homepage-offers-section {
+  padding: 60px 20px;
+  background: var(--offers-bg);
+  color: var(--offers-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================================
+   Our Policy Section
+   ================================ */
+.homepage-ourpolicy-section {
+  padding: 60px 20px;
+  background: var(--policy-bg);
+  color: var(--policy-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================================
+   Footer Section
+   ================================ */
+.homepage-footer-section {
+  margin-top: auto;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 40px 20px 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================================
+   Section Titles (for consistency)
+   ================================ */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  position: relative;
+  color: var(--section-title-text);
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 10px auto 0;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* ================================
+   Theme Variables
+   ================================ */
+
+/* 🌞 Light Mode */
+.light {
+  --homepage-bg: #ffffff;
+  --homepage-text: #222;
+
+  --hero-text: #ffffff;
+
+  --categories-bg: #fafafa;
+  --categories-text: #222;
+
+  --offers-bg: #ffffff;
+  --offers-text: #222;
+
+  --policy-bg: #f5f5f5;
+  --policy-text: #222;
+
+  --footer-bg: #111;
+  --footer-text: #fff;
+
+  --section-title-text: #222;
+  --accent-color: #6a00ff;
+}
+
+/* 🌙 Dark Mode */
+.dark {
+  --homepage-bg: #121212;
+  --homepage-text: #e0e0e0;
+
+  --hero-text: #f1f1f1;
+
+  --categories-bg: #1f1f1f;
+  --categories-text: #f1f1f1;
+
+  --offers-bg: #2a2a2a;
+  --offers-text: #f1f1f1;
+
+  --policy-bg: #222;
+  --policy-text: #e0e0e0;
+
+  --footer-bg: #000;
+  --footer-text: #ccc;
+
+  --section-title-text: #f1f1f1;
+  --accent-color: #bb86fc;
+}
+
+/* ================================
+   Responsive
+   ================================ */
+@media (max-width: 992px) {
+  .homepage-hero-section {
+    min-height: 60vh;
+    padding: 40px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-hero-section {
+    min-height: 50vh;
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-hero-section {
+    min-height: 40vh;
+    padding: 30px 10px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+}

@@ -1,32 +1,68 @@
-.not-found-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #dde0eb, #dde0e1);
-    animation: fadeIn 1s ease-in-out;
+/* ================================
+   Not Found Page
+   ================================ */
+.not-found-container {
+  min-height: 100vh; /* Full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #6a00ff, #00bcd4);
+  color: #fff;
 }
-.not-found-container h1{
-    font-size: 2rem;
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
+
+.not-found-container h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
-.not-found-container p{
-    font-size: 1.2rem;
-    color: #666;
-    text-align: center;
-    margin-top: 10px;
+
+.not-found-container p {
+  font-size: 1.2rem;
+  margin: 8px 0;
+  max-width: 600px;
 }
-.not-found-container button{
-    padding: 10px 20px;
-    background-color: #6e8efb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+/* ================================
+   Button
+   ================================ */
+.not-found-container button {
+  margin-top: 30px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  background: #fff;
+  color: #6a00ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.not-found-container button:hover {
+  background: #e0f7fa;
+  color: #5200cc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   Responsive
+   ================================ */
+@media (max-width: 768px) {
+  .not-found-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .not-found-container p {
     font-size: 1rem;
-    transition: background-color 0.3s ease;
-    margin: 2rem;
+  }
+
+  .not-found-container button {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
 }

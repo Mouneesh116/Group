@@ -1,234 +1,174 @@
+/* =========================
+   OfferCard Styles
+   ========================= */
 .offer-card-fashi-offer-banner {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1100px; /* Kept similar max-width as before */
-  height: 360px; /* Slightly reduced overall height to compact the image */
-  margin: 20px auto; /* Center the banner on the page */
-  background-color: #fcf8f0; /* Light background color similar to Fashi example */
-  border-radius: 5px; /* Subtle rounded corners */
-  overflow: hidden; /* Ensures image does not overflow */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  align-items: stretch;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 1200px;
+  margin: 2rem auto;
 }
- 
-/* Left Section: Text Content */
+
+.offer-card-fashi-offer-banner:hover {
+  transform: translateY(-6px);
+}
+
+/* Light Theme */
+.light .offer-card-fashi-offer-banner {
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.light .offer-card-fashi-offer-banner:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Theme */
+.dark .offer-card-fashi-offer-banner {
+  background: #2a2a2a;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.dark .offer-card-fashi-offer-banner:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   Left Text Section
+   ========================= */
 .offer-card-fashi-offer-text-content {
-  flex: 1.5; /* Increased flex to give more space to text, making image relatively smaller */
-  padding: 20px 40px;
-  text-align: left;
-  color: #333; /* Darker text color for readability on light background */
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
- 
-.offer-card-fashi-small-text {
-  font-size: 0.9rem; /* Slightly adjusted */
-  font-weight: 600;
-  color: #888;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+
+.light .offer-card-fashi-offer-text-content {
+  background: linear-gradient(135deg, #fdfdfd, #fafafa);
+  color: #222;
 }
- 
-.offer-card-fashi-title {
-  font-size: 3rem; /* Slightly adjusted */
-  font-weight: 900; /* Extra bold for impact */
-  margin-bottom: 8px;
-  line-height: 1.1;
-  color: #333; /* Dark color for prominence */
-}
- 
-.offer-card-fashi-description {
-  font-size: 0.9rem; /* Slightly adjusted */
-  color: #666;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
- 
-.offer-card-fashi-button {
-  background-color: #ffb600; /* Yellow button from Fashi example */
+
+.dark .offer-card-fashi-offer-text-content {
+  background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
   color: #fff;
-  padding: 10px 25px; /* Slightly adjusted */
-  border: none;
-  border-radius: 3px;
-  font-size: 0.95rem; /* Slightly adjusted */
-  font-weight: 700;
-  cursor: pointer;
+}
+
+.offer-card-fashi-small-text {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
   text-transform: uppercase;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.5rem;
+  color: #ff6b6b;
 }
- 
-.offer-card-fashi-button:hover {
-  background-color: #e6a200; /* Darker yellow on hover */
-  transform: translateY(-2px);
+
+.offer-card-fashi-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.2;
 }
- 
-.offer-card-fashi-button-link {
-  text-decoration: none; /* Remove underline from the link */
+
+.offer-card-fashi-description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 85%;
 }
- 
- 
-/* Right Section: Image */
+
+/* =========================
+   Button Styles
+   ========================= */
+.offer-card-fashi-button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.light .offer-card-fashi-button {
+  background: #222;
+  color: #fff;
+}
+
+.light .offer-card-fashi-button:hover {
+  background: #ff6b6b;
+  transform: scale(1.05);
+}
+
+.dark .offer-card-fashi-button {
+  background: #fff;
+  color: #222;
+}
+
+.dark .offer-card-fashi-button:hover {
+  background: #ff6b6b;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* =========================
+   Right Image Section
+   ========================= */
 .offer-card-fashi-offer-image-section {
-  flex: 0.5; /* Significantly reduced flex to make the image section much smaller horizontally */
-  background-size: cover; /* Ensures image covers the area */
+  flex: 1;
+  background-size: cover;
   background-position: center;
-  height: 100%; /* Fill the height of the banner */
-  position: relative; /* For positioning the sale badge */
+  position: relative;
+  min-height: 350px;
 }
- 
-/* Sale Badge */
+
+/* =========================
+   Sale Badge
+   ========================= */
 .offer-card-fashi-sale-badge {
   position: absolute;
-  top: 15%; /* Adjust position as seen in example */
-  right: 10%; /* Adjust position */
-  background-color: #ffb600; /* Yellow background */
-  color: #fff;
-  width: 85px; /* Slightly reduced circular badge size */
-  height: 85px; /* Slightly reduced circular badge size */
-  border-radius: 50%; /* Make it a circle */
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1rem; /* Slightly reduced font size */
-  line-height: 1.2;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: 3px solid white; /* White border for the circle */
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+  background: #ff6b6b;
+  color: #fff;
 }
- 
-.offer-card-fashi-sale-badge span:first-child {
-  font-size: 0.9rem; /* Slightly reduced font size */
-  margin-bottom: -5px; /* Adjust spacing between "SALE" and "50%" */
-}
-.offer-card-fashi-sale-badge span:last-child {
-  font-size: 1.3rem; /* Slightly reduced font size */
-  font-weight: 900;
-}
- 
- 
-/* --- Responsive Design --- */
- 
-@media (max-width: 992px) {
+
+/* Responsive */
+@media (max-width: 900px) {
   .offer-card-fashi-offer-banner {
-      max-width: 95%; /* Adjust max-width for responsiveness */
-      height: 320px; /* Adjusted height for stacked layout */
-      flex-direction: column; /* Stack columns on smaller screens */
-      padding: 0;
-      margin: 15px auto;
+    flex-direction: column-reverse;
   }
- 
+
   .offer-card-fashi-offer-text-content {
-      padding: 15px 20px;
-      flex: none; /* Remove flex grow */
-      width: 100%;
-      text-align: center; /* Center text when stacked */
+    padding: 2rem;
+    text-align: center;
   }
- 
-  .offer-card-fashi-title {
-      font-size: 2.3rem; /* Adjusted font size */
-  }
- 
+
   .offer-card-fashi-description {
-      font-size: 0.8rem; /* Adjusted font size */
-      margin-bottom: 10px;
+    max-width: 100%;
+    margin: 0 auto 1.5rem;
   }
- 
-  .offer-card-fashi-button {
-      padding: 8px 20px;
-      font-size: 0.9rem;
-  }
- 
+
   .offer-card-fashi-offer-image-section {
-      height: 160px; /* Fixed height for image section when stacked */
-      width: 100%;
-      flex: none; /* Remove flex grow */
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+    min-height: 250px;
   }
- 
+
   .offer-card-fashi-sale-badge {
-      width: 65px; /* Reduced size */
-      height: 65px;
-      font-size: 0.85rem;
-      top: 10%; /* Adjust position */
-      right: 10%; /* Adjust position */
-  }
-  .offer-card-fashi-sale-badge span:first-child {
-      font-size: 0.75rem;
-  }
-  .offer-card-fashi-sale-badge span:last-child {
-      font-size: 1rem;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
   }
 }
- 
-@media (max-width: 768px) {
-  .offer-card-fashi-offer-banner {
-      height: auto; /* Allow height to adjust based on content */
-  }
-  .offer-card-fashi-offer-text-content {
-      padding: 10px 15px;
-  }
-  .offer-card-fashi-title {
-      font-size: 1.8rem;
-  }
-  .offer-card-fashi-description {
-      font-size: 0.75rem;
-  }
-  .offer-card-fashi-button {
-      padding: 7px 18px;
-      font-size: 0.8rem;
-  }
-  .offer-card-fashi-offer-image-section {
-      height: 130px;
-  }
-  .offer-card-fashi-sale-badge {
-      width: 55px;
-      height: 55px;
-      font-size: 0.75rem;
-  }
-  .offer-card-fashi-sale-badge span:first-child {
-      font-size: 0.65rem;
-  }
-  .offer-card-fashi-sale-badge span:last-child {
-      font-size: 0.85rem;
-  }
-}
- 
-@media (max-width: 480px) {
-  .offer-card-fashi-offer-banner {
-      margin: 10px auto;
-  }
-  .offer-card-fashi-offer-text-content {
-      padding: 8px 10px;
-  }
-  .offer-card-fashi-title {
-      font-size: 1.4rem;
-  }
-  .offer-card-fashi-description {
-      font-size: 0.7rem;
-      margin-bottom: 8px;
-  }
-  .offer-card-fashi-button {
-      padding: 6px 15px;
-      font-size: 0.7rem;
-  }
-  .offer-card-fashi-offer-image-section {
-      height: 100px;
-  }
-  .offer-card-fashi-sale-badge {
-      width: 45px;
-      height: 45px;
-      font-size: 0.65rem;
-      top: 8%;
-      right: 8%;
-  }
-  .offer-card-fashi-sale-badge span:first-child {
-      font-size: 0.55rem;
-  }
-  .offer-card-fashi-sale-badge span:last-child {
-      font-size: 0.75rem;
-  }
-}
+  

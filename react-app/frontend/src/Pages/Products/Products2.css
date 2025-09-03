@@ -1,153 +1,111 @@
+/* ================================
+   Main Wrapper
+   ================================ */
 .products-p2-main-container {
   display: flex;
-  flex-direction: row; /* Default: sidebar on left, products on right */
-  min-height: 100vh;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
   padding: 20px;
-  box-sizing: border-box;
+  min-height: 100vh;
+  background: #fafafa;
 }
- 
-/* Filter container on the left */
+
+.dark .products-p2-main-container {
+  background: #1f1f1f;
+  color: #eee;
+}
+
+/* ================================
+   Filter Toggle Button (Mobile)
+   ================================ */
+.products-mobile-filter-toggle-button {
+  display: none;
+  margin-bottom: 15px;
+  padding: 10px 18px;
+  background: #6a00ff;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.products-mobile-filter-toggle-button:hover {
+  background: #5200cc;
+}
+
+/* ================================
+   Filter Container
+   ================================ */
 .products-filter-container {
-  flex: 0 0 320px; /* Fixed width for desktop filter, as discussed */
-  position: sticky;
-  top: 20px;
-  height: calc(100vh - 40px);
-  overflow-y: auto;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  width: 250px;
+  margin-right: 20px;
 }
 
-
-
-
-
-.products-productcard-link{
-  text-decoration: none;
+.products-filter-container.active {
+  display: block;
 }
- 
-/* Products container on the right */
+
+/* ================================
+   Products Container
+   ================================ */
 .products-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  gap: 20px;
 }
- 
-/* Products grid */
+
+/* ================================
+   Products Grid
+   ================================ */
 .products-row-div {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Flexible columns */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
 }
- 
-/* --- Mobile Filter Toggle Button --- */
-.products-mobile-filter-toggle-button {
-    display: none; /* Hidden by default on desktop */
-    background-color: #6a00ff; /* Purple, matching active filter button */
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    position: fixed; /* Fixed position on mobile */
-    bottom: 20px;
-    /* Removed 'right: 20px;' here */
-    z-index: 50; /* Above other content, but below the filter modal */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.2s ease;
+
+/* ================================
+   Product Link (wrapping card)
+   ================================ */
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
 }
- 
-.products-mobile-filter-toggle-button:hover {
-    background-color: #5a00e0;
+
+.product-link:hover {
+  transform: translateY(-4px);
 }
- 
- 
-/* --- Responsive Design for the overall layout --- */
- 
-/* For screens up to 1024px (e.g., tablets in landscape, smaller desktops) */
-@media (max-width: 1024px) {
+
+/* ================================
+   Responsive Layout
+   ================================ */
+@media (max-width: 992px) {
   .products-p2-main-container {
-    gap: 15px;
-    padding: 15px;
+    flex-direction: column;
   }
+
   .products-filter-container {
-    flex: 0 0 280px; /* Slightly narrower filter sidebar */
-  }
-  .products-row-div {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust product grid */
-  }
-}
- 
-/* For screens up to 768px (e.g., tablets in portrait, larger phones) */
-@media (max-width: 768px) {
-  .products-p2-main-container {
-    flex-direction: column; /* Stack filter and products vertically */
-    padding: 10px;
-    gap: 20px;
-  }
- 
-  .products-mobile-filter-toggle-button {
-    display: block; /* Show the filter button on mobile */
-    left: 50%; /* Position left edge at 50% of parent width */
-    transform: translateX(-50%); /* Move back by half of its own width to truly center */
-  }
- 
-  .products-filter-container {
+    display: none; /* hidden by default on mobile */
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-    background-color: rgba(255, 255, 255, 0.98);
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 20px;
-    flex: none;
-  }
- 
-  .products-filter-container.active {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
- 
-  .products-filter-sidebar {
+    width: 75%;
+    max-width: 320px;
     height: 100%;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
+    background: #fff;
+    box-shadow: 2px 0 18px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    z-index: 2000;
+    overflow-y: auto;
   }
- 
-  .products-row-div {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+
+  .dark .products-filter-container {
+    background: #2a2a2a;
   }
-}
- 
-/* For screens up to 480px (e.g., most smartphones) */
-@media (max-width: 480px) {
-  .products-p2-main-container {
-    padding: 10px;
-  }
-  .products-filter-container {
-    padding: 15px;
-  }
-  .products-row-div {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
+
   .products-mobile-filter-toggle-button {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-      bottom: 15px;
-      /* Already centered by left: 50% and transform: translateX(-50%) */
+    display: inline-block;
   }
 }

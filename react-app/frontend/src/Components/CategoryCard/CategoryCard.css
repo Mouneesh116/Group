@@ -1,45 +1,81 @@
-/* Container for the category card */
 .category-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem;
-    border-radius: 15px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.category-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.category-card-container:hover .category-card-image {
+  transform: scale(1.05);
+}
+
+/* Overlay title */
+.category-card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.category-card-title span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.category-card-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.category-card-link:hover {
+  color: #ffcc00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .category-card-container {
+    width: 150px;
   }
-  
-  /* Hover effect for the card */
-  .category-card-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Image inside the category card */
+
   .category-card-image {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 150px;
   }
-  
-  /* Title of the category */
-  .category-card-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
+
+  .category-card-title span {
+    font-size: 1rem;
   }
-  
-  /* Link inside the category card */
-  .category-card-link {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .category-card-container {
+    width: 120px;
   }
-  
-  .category-card-link:hover {
-    color: #007bff;
+
+  .category-card-image {
+    height: 120px;
   }
+
+  .category-card-title span {
+    font-size: 0.9rem;
+  }
+}

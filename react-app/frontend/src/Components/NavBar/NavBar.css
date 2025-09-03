@@ -1,21 +1,20 @@
-/* General Navbar Styling */
+/* ===================================
+   Base Navbar Container
+=================================== */
 .navbar-container {
-  background-color: rgb(0, 0, 0); /* Dark background */
-  color: #333;
-  padding: 10px 20px; /* Consistent padding for desktop */
-  position: sticky; /* Keep it sticky at the top */
+  padding: 10px 20px;
+  position: sticky;
   top: 0;
   z-index: 1000;
-  height: auto; /* Allow height to adjust based on content (e.g., logo) */
-  min-height: 70px; /* Ensure a minimum height for the desktop bar */
-  box-sizing: border-box; /* Include padding in dimensions */
-  display: flex; /* Flex container for header row and mobile overlay */
-  flex-direction: column; /* Allows mobile menu to stack below header if open */
-  width: 100%; /* Ensures navbar takes full width */
-  overflow: visible; /* CRUCIAL: Allow content to extend beyond if necessary */
+  min-height: 70px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Navbar Header Row (Logo, Desktop Nav/Search/Actions, Hamburger) */
+/* Header Row */
 .navbar-header-row {
   display: flex;
   align-items: center;
@@ -23,22 +22,15 @@
   width: 100%;
 }
 
-/* Logo Styling */
+/* Logo */
 .navbar-logo-image {
   height: 50px;
   cursor: pointer;
-  display: block;background-color:white;
-
-}
-
-.navbar-logo .logo-image {
-  width: 300px;
-  height: 150px;
-  cursor: pointer;
   display: block;
+  background-color: white;
 }
 
-/* Desktop Navigation Group (Initially flex, hidden on mobile) */
+/* Desktop group */
 .navbar-desktop-group {
   display: flex;
   align-items: center;
@@ -46,7 +38,7 @@
   gap: 20px;
 }
 
-/* Navbar Links */
+/* Links */
 .navbar-links-group {
   display: flex;
   gap: 20px;
@@ -54,248 +46,229 @@
 
 .navbar-links-group a,
 .navbar-login-link {
-  color: #333;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
   white-space: nowrap;
 }
 
-.navbar-links-group a:hover,
-.navbar-login-link:hover,
-.navbar-cart-link:hover,
-.navbar-profile-link:hover {
-  color: #007BFF;
-  cursor: pointer;
-}
-
 .navbar-links-group .navbar-link-active {
-  color: #007BFF;
+  border-bottom: 2px solid currentColor;
 }
 
-/* Search Bar */
+/* Search */
 .navbar-search-section {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.navbar-search-section .navbar-search-input {
+.navbar-search-input {
   padding: 5px 10px;
   padding-right: 30px;
-  border: 1px solid #333;
+  border: 1px solid;
   border-radius: 5px;
   font-size: 1rem;
-  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .navbar-search-icon-inside {
   position: absolute;
   right: 10px;
-  color: #333;
   cursor: pointer;
 }
 
-/* Navbar Actions */
+/* Actions */
 .navbar-actions-group {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar-cart-section,
-.navbar-profile-section {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #333;
-  cursor: pointer;
-}
-
-.navbar-profile-icon-fa {
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.navbar-cart-icon {
-  font-size: 1.2rem;
-  color: #333;
-}
-
-/* Cart Count Badge */
 .navbar-cart-link {
   position: relative;
   display: inline-block;
-  color: #fff; /* This was already white, kept it consistent for desktop */
   text-decoration: none;
+}
+
+.navbar-cart-icon,
+.navbar-profile-icon-fa {
+  font-size: 1.2rem;
 }
 
 .navbar-cart-count {
   position: absolute;
-  top: -10px;
+  top: -8px;
   right: -10px;
-  background-color: #007BFF;
-  color: #fff;
   font-size: 0.7rem;
   font-weight: bold;
   border-radius: 50%;
-  padding: 1px 5px;
+  padding: 2px 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 18px;
-  height: 18px;
   line-height: 1;
 }
 
-/* Hamburger menu for mobile - Hidden on desktop */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: inherit;
+}
+
+/* Hamburger */
 .navbar-hamburger-menu {
-  display: none; /* Hidden by default on desktop */
-  color: white; /* Changed to white for visibility on mobile navbar */
+  display: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-/* Mobile Menu Overlay - ***CRITICAL CHANGES HERE*** */
+/* ===================================
+   Mobile Menu Overlay
+=================================== */
 .navbarmobile-menu-overlay {
-  display: flex; /* Keep it rendered to allow transitions */
-  flex-direction: column;
-  z-index: 999; /* Ensure it's above other page content */
-
-  /* Animation properties for sliding and fading */
-  transform: translateY(-100%); /* Start off-screen (above) */
-  opacity: 0; /* Start completely transparent */
-  visibility: hidden; /* Hide from screen readers and interaction */
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
-
-  /* ***** NEW POSITIONING FOR FULL-SCREEN OVERLAY ***** */
-  position: fixed; /* CHANGE: Fixed to viewport, not relative to parent */
-  top: 70px; /* Aligns right below the header (adjust if header height changes) */
-  left: 0;
-  width: 100vw; /* Covers entire viewport width */
-  height: calc(100vh - 70px); /* Fills remaining viewport height below header */
-  background-color: #333; /* Ensure background covers the whole area */
-  padding: 20px; /* Padding for menu items inside overlay */
-  box-sizing: border-box; /* Include padding in height/width calculation */
-  overflow-y: auto; /* Allow vertical scrolling if menu content is too long */
-}
-
-.navbarmobile-menu-overlay.navbarmobile-menu-open {
-  transform: translateY(0); /* Slide into view */
-  opacity: 1; /* Fade in */
-  visibility: visible; /* Make visible */
-}
-
-.navbar-actions-group {
   display: flex;
-}
-.navbar-profile-section {
-  flex-direction: row;
+  flex-direction: column;
+  z-index: 999;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 70px);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
+.navbarmobile-menu-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
 
-/* ******************************************* */
-/* MOBILE RESPONSIVENESS (max-width: 900px) */
-/* ******************************************* */
+.navbarmobile-links-group,
+.navbarmobile-search-group,
+.navbarmobile-actions-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.navbarmobile-links-group {
+  gap: 15px;
+}
+
+/* ===================================
+   Responsive
+=================================== */
 @media (max-width: 900px) {
-  /* Adjust overall navbar padding for mobile */
-  .navbar-container {
-      padding: 10px 15px;
-      min-height: auto; /* Allow height to adjust */
-  }
-
-  /* Hide desktop-specific elements */
   .navbar-desktop-group {
-      display: none;
+    display: none;
   }
 
-  /* Show hamburger menu */
   .navbar-hamburger-menu {
-      display: block;
+    display: block;
   }
 
-  /* Ensure a consistent height for the header row on mobile */
   .navbar-header-row {
-      height: 70px; /* This is the height the fixed overlay will account for */
+    height: 70px;
   }
 
-  /* Styling for groups within the mobile menu overlay */
-  .navbarmobile-links-group,
-  .navbarmobile-search-group,
-  .navbarmobile-actions-group {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 15px 0; /* Vertical padding for sections */
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator between sections */
-      text-align: center;
-      box-sizing: border-box;
-  }
-
-  .navbarmobile-links-group {
-      gap: 15px; /* Spacing between links */
-  }
-
-  /* Mobile Nav Links */
-  .navbar-nav-link { /* This targets the Link components inside mobile menu */
-      color: white; /* White text for mobile nav links */
-      text-decoration: none; /* No underline for mobile nav links */
-  }
-
-  /* Mobile Login/Logout Link */
-  .navbar-login-link {
-      color: white; /* White text for mobile login/logout */
-      text-decoration: none; /* No underline for mobile login/logout */
-  }
-
-  /* Mobile Search Group */
   .navbarmobile-search-group {
-      position: relative; /* For icon positioning */
+    position: relative;
   }
 
-  .navbarmobile-search-group .navbar-search-input {
-      width: calc(100% - 20px); /* Full width with padding */
-      margin: 0 auto;
-      padding-right: 40px; /* Space for icon */
+  .navbarmobile-search-input {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding-right: 40px;
   }
 
-  .navbarmobile-search-group .navbar-search-icon-inside {
-      position: absolute;
-      right: 25px; /* Adjust based on padding */
-      top: 50%;
-      transform: translateY(-50%);
-      color: white; /* Make icon visible on dark background */
-      font-size: 1.2rem;
+  .navbarmobile-search-icon-inside {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    cursor: pointer;
   }
+}
 
-  /* Mobile Actions Group */
-  .navbarmobile-actions-group {
-      gap: 15px; /* Spacing between actions */
-      border-bottom: none; /* No border for the last section */
-  }
+/* ===================================
+   THEME STYLES
+=================================== */
 
-  .navbarmobile-actions-group .navbar-cart-section,
-  .navbarmobile-actions-group .navbar-profile-section {
-      justify-content: center; /* Center icons/text */
-  }
+/* Light Theme */
+.light .navbar-container {
+  background-color: #ffffff;
+  color: #222;
+  border-bottom: 1px solid #eaeaea;
+}
 
-  /* Mobile Cart Icon */
-  .navbarmobile-actions-group .navbar-cart-icon {
-      color: white; /* Ensure cart icon is white */
-  }
+.light .navbar-links-group a,
+.light .navbar-login-link,
+.light .navbar-search-input,
+.light .navbar-search-icon-inside,
+.light .navbar-cart-icon,
+.light .navbar-profile-icon-fa {
+  color: #222;
+}
 
-  /* Mobile Profile Icon */
-  .navbarmobile-actions-group .navbar-profile-icon-fa {
-      color: white; /* Ensure profile icon is white */
-  }
+.light .navbar-search-input {
+  border-color: #ccc;
+  background: #fff;
+}
 
-  /* Mobile Profile Text (though empty in JSX, setting style for consistency) */
-  .navbarmobile-actions-group .navbar-profile-text {
-      color: white; /* Ensure profile text is white */
-      text-decoration: none; /* No underline for profile text */
-  }
+.light .navbar-cart-count {
+  background: #007BFF;
+  color: #fff;
+}
 
-  .navbarmobile-actions-group .navbar-profile-section {
-      margin-top: 0; /* Reset margin for profile icon in mobile */
-  }
+.light .navbarmobile-menu-overlay {
+  background-color: #f9f9f9;
+  color: #222;
+  border-color: #ddd;
+}
+
+/* Dark Theme */
+.dark .navbar-container {
+  background-color: #000;
+  color: #f1f1f1;
+  border-bottom: 1px solid #444;
+}
+
+.dark .navbar-links-group a,
+.dark .navbar-login-link,
+.dark .navbar-search-input,
+.dark .navbar-search-icon-inside,
+.dark .navbar-cart-icon,
+.dark .navbar-profile-icon-fa {
+  color: #f1f1f1;
+}
+
+.dark .navbar-search-input {
+  border-color: #555;
+  background: #222;
+}
+
+.dark .navbar-cart-count {
+  background: #ff9800;
+  color: #000;
+}
+
+.dark .navbarmobile-menu-overlay {
+  background-color: #222;
+  color: #f1f1f1;
+  border-color: #333;
 }

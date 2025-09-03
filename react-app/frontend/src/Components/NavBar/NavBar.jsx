@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser, faShoppingCart, faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../Assets/Images/logo_fsp3.webp';
+import logo from "../../assets/Images/logo_fsp3.png";
 import { CartContext } from '../../Context/CartContext';
 import { AuthContext } from '../../Context/AuthContext';
 import { useTheme } from '../../Context/ThemeContext';   
