@@ -1,6 +1,31 @@
-.listed-products-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.listed-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* spacing between product cards */
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Responsive: single column on mobile */
+@media (max-width: 768px) {
+  .listed-products-container {
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+/* ---------------- THEME SUPPORT ---------------- */
+
+/* Light Theme */
+.light .listed-products-container {
+  background: #f9f9f9;
+  color: #222;
+}
+
+/* Dark Theme */
+.dark .listed-products-container {
+  background: #1e1e1e;
+  color: #eee;
 }

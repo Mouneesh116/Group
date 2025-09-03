@@ -1,177 +1,110 @@
-/* .search-results-main-container{
-    display: flex;
-    flex-direction: column;
-}
-.search-results-container{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-.search-results{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 4fr));
-    gap: 20px;
-}
-.search-results-productcard-link{
-    text-decoration: none;
-} */
-
-
-
-
-
-
-/* --- General Container for Search Results Page --- */
+/* ================================
+   Main Container
+   ================================ */
 .searchresults-main-container {
-    padding: 30px 20px;
-    max-width: 1400px; /* Limit overall width */
-    margin: 0 auto;
-    font-family: 'Inter', sans-serif; /* Using a modern font */
-    background-color: #f8f9fa; /* Light background for the page */
-    min-height: calc(100vh - 100px); /* Adjust based on your header/footer */
-    box-sizing: border-box;
+  padding: 40px 20px;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* --- Header Styling --- */
+/* ================================
+   Header
+   ================================ */
 .searchresults-header {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: #2c3e50; /* Darker text for prominence */
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-    padding-bottom: 15px;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
 }
 
-.searchresults-header::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    width: 80px;
-    height: 4px;
-    background-color: #007bff; /* Accent color under the header */
-    border-radius: 2px;
+.dark .searchresults-header {
+  color: #eee;
 }
 
-/* --- Content Area (for messages or grid) --- */
-.searchresults-content-area {
-    display: flex;
-    justify-content: center; /* Center messages and grid */
-    align-items: flex-start; /* Align grid items to the start vertically */
-    width: 100%;
-    min-height: 200px; /* Ensure some height for messages */
-}
-
-/* --- Messages (Loading, Error, No Results) --- */
+/* ================================
+   Messages
+   ================================ */
 .searchresults-message {
-    font-size: 1.2em;
-    color: #555;
-    text-align: center;
-    padding: 30px 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    width: 80%; /* Give some structure to messages */
-    max-width: 500px;
-    margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  color: #666;
+}
+
+.dark .searchresults-message {
+  color: #aaa;
 }
 
 .searchresults-error-message {
-    color: #dc3545; /* Red for errors */
-    font-weight: bold;
-    text-align: center;
-    padding: 30px 20px;
-    border: 1px solid #dc3545;
-    border-radius: 8px;
-    background-color: #fff3f3;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    width: 80%;
-    max-width: 600px;
-    margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  color: #d32f2f;
+  font-weight: bold;
 }
 
+/* ================================
+   Content Area
+   ================================ */
+.searchresults-content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-/* --- Products Grid --- */
+/* ================================
+   Flex Layout for Products
+   ================================ */
 .searchresults-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Spacing between cards */
-    justify-content: center; /* Center the grid items */
-    width: 100%; /* Take full width of its container */
-    max-width: 1200px; /* Keep grid within reasonable bounds */
-    margin: 0 auto; /* Center the grid itself */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center items */
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-/* --- Link Styling for Product Cards --- */
+/* ================================
+   Product Links
+   ================================ */
 .searchresults-productcard-link {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color from parent */
-    display: block; /* Make the link a block element so it wraps the card properly */
-    /* No additional styling needed here, DisplayCard itself has beautiful styling */
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 10px;
+  flex: 1 1 220px; /* grow/shrink, base width */
+  max-width: 260px; /* limit width so cards don’t stretch too far */
 }
 
-/* --- Responsive Adjustments --- */
-
-/* Medium devices (tablets, 768px and up) */
-@media (max-width: 1024px) {
-    .searchresults-header {
-        font-size: 2.2em;
-        margin-bottom: 30px;
-    }
-    .searchresults-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-    }
-    .searchresults-main-container {
-        padding: 25px 15px;
-    }
+.searchresults-productcard-link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Small devices (phones, 576px and up) */
-@media (max-width: 767px) {
-    .searchresults-main-container {
-        padding: 20px 10px;
-    }
-    .searchresults-header {
-        font-size: 2em;
-        margin-bottom: 25px;
-    }
-    .searchresults-header::after {
-        width: 60px;
-        height: 3px;
-    }
-    .searchresults-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
-        gap: 20px;
-        max-width: 350px; /* Constrain single column width */
-    }
-    .searchresults-message,
-    .searchresults-error-message {
-        width: 95%;
-        padding: 20px;
-        font-size: 1.1em;
-    }
+/* ================================
+   Responsive
+   ================================ */
+@media (max-width: 768px) {
+  .searchresults-header {
+    font-size: 1.6rem;
+  }
+
+  .searchresults-grid {
+    gap: 15px;
+    justify-content: space-evenly;
+  }
 }
 
-/* Extra small devices (less than 576px) */
 @media (max-width: 480px) {
-    .searchresults-header {
-        font-size: 1.8em;
-        margin-bottom: 20px;
-    }
-    .searchresults-header::after {
-        width: 50px;
-        height: 2px;
-    }
-    .searchresults-grid {
-        gap: 15px;
-    }
-    .searchresults-message,
-    .searchresults-error-message {
-        padding: 15px;
-        font-size: 1em;
-    }
+  .searchresults-header {
+    font-size: 1.4rem;
+  }
+
+  .searchresults-productcard-link {
+    flex: 1 1 100%; /* full width on very small screens */
+    max-width: 100%;
+  }
 }

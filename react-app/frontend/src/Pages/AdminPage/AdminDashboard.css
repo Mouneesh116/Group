@@ -1,37 +1,172 @@
+/* ================================
+   Admin Dashboard Layout
+   ================================ */
 .admindashboard {
   display: flex;
-  height: 100vh;
-  background-color: #f4f4f9;
-  font-family: Arial, sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
 }
- 
+
+/* ================================
+   Sidebar Styling (fixed left)
+   ================================ */
+.sidebar {
+  width: 250px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  padding-top: 70px; /* leave space for navbar if you want */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out, background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: inherit;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  background: var(--sidebar-hover-bg);
+  transform: translateX(5px);
+}
+
+.sidebar nav a.active {
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 6px;
+}
+
+.sidebar nav a svg {
+  font-size: 1.2rem;
+}
+
+/* Logout link styled differently */
+.sidebar-logout-link {
+  margin-top: auto;
+  background: var(--logout-bg);
+  color: var(--logout-text);
+  border-top: 1px solid var(--sidebar-border);
+}
+
+.sidebar-logout-link:hover {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+/* ================================
+   Main Content Area
+   ================================ */
 .admindashboard-main-content {
   flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  align-items: center;
+  padding: 30px;
+  margin-left: 250px; /* same as sidebar width */
+  transition: margin-left 0.3s ease, background 0.3s ease, color 0.3s ease;
+  background: var(--content-bg);
+  min-height: 100vh;
+  box-sizing: border-box;
 }
- 
-.admindashboard-main-content h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
- 
-.admindashboard-main-content .content-section {
-  background-color: #ffffff;
+
+.admindashboard-main-content > * {
+  background: var(--card-bg);
+  border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 4px 10px var(--card-shadow);
+  margin-bottom: 25px;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ================================
+   Mobile Sidebar
+   ================================ */
+.sidebar-hamburger {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 1.6rem;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
- 
-@media (max-width: 768px) {
-  .admindashboard {
-    flex-direction: column;
+
+/* Hide sidebar on mobile by default */
+@media (max-width: 991px) {
+  .sidebar {
+    transform: translateX(-100%);
   }
- 
+  .sidebar.open {
+    transform: translateX(0);
+  }
   .admindashboard-main-content {
-    padding: 10px;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .sidebar-hamburger {
+    display: block;
   }
 }
- 
+
+/* ================================
+   THEME VARIABLES
+   ================================ */
+
+/* Light Theme */
+.light .admindashboard {
+  --bg-color: #f4f6f9;
+  --text-color: #222;
+  --sidebar-bg: #1f1f2e;
+  --sidebar-text: #fff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --content-bg: #f9f9f9;
+  --card-bg: #fff;
+  --card-shadow: rgba(0, 0, 0, 0.05);
+  --accent-color: #4e9fff;
+  --logout-bg: rgba(255, 0, 0, 0.08);
+  --logout-text: #ff4d4d;
+}
+
+/* Dark Theme */
+.dark .admindashboard {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --sidebar-bg: #1c1c27;
+  --sidebar-text: #ddd;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.12);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --content-bg: #181a1f;
+  --card-bg: #252537;
+  --card-shadow: rgba(0, 0, 0, 0.25);
+  --accent-color: #4e9fff;
+  --logout-bg: rgba(255, 77, 77, 0.12);
+  --logout-text: #ff6b6b;
+}

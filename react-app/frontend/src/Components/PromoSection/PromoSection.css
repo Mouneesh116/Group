@@ -1,136 +1,94 @@
+/* Hero section container */
 .promosection-hero {
-  background: url('https://webfetcher.co.uk/wp-content/uploads/2021/06/ecommerce-solution-img.jpg') no-repeat center center fixed; /* Full background image */
-  background-size: cover;
-  height: 100vh; /* Full viewport height */
-  position: relative; /* For overlay and content positioning */
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Large hero space */
+  background: url("https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1600&q=80")
+    no-repeat center center/cover;
   display: flex;
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content */
-  text-align: center; /* Center text within the content overlay */
-  overflow: hidden; /* Ensures no content spills out */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
 }
- 
-/* Dark overlay for text readability */
+
+/* Dark overlay for readability */
 .promosection-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Darker overlay for better contrast, adjusted opacity */
-  z-index: 0;
-}
- 
-/* Container for text content, positioned over the overlay */
-.promosection-hero-content-overlay {
-  position: relative; /* To be above the overlay */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Default for light theme */
   z-index: 1;
-  color: white; /* All text within this container will be white */
-  max-width: 800px; /* Constrain content width */
+  transition: background 0.3s ease;
+}
+
+/* Hero content */
+.promosection-hero-content-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--promo-text, #fff);
   padding: 20px;
-  opacity: 0; /* Initial state for animation */
-  transform: translateY(20px); /* Initial state for animation */
-  animation: fadeInSlideUp 1s forwards ease-out; /* Apply animation */
 }
- 
-/* Animation for the content */
-@keyframes fadeInSlideUp {
-  from {
-      opacity: 0;
-      transform: translateY(50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
- 
-/* Main Title (e.g., BIG SUMMER SALE) */
+
+/* Title */
 .promosection-hero-title {
-  font-size: 5.5rem; /* Large, impactful font size */
-  font-weight: 700; /* Bold */
-  margin-bottom: 0.5rem;
-  font-family: 'Poppins', sans-serif; /* Example font, ensure imported or default to sans-serif */
-  letter-spacing: 2px; /* Spacing for impact */
-  text-transform: uppercase; /* All caps like the example */
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for readability */
-  line-height: 1.1;
-  color: white; /* Explicitly white */
-}
- 
-/* Subtitle (e.g., GET UP TO 50% OFF) */
-.promosection-hero-subtitle {
-  font-size: 2.2rem; /* Clear and prominent */
-  font-weight: 500;
-  margin-bottom: 2rem;
-  font-family: 'Open Sans', sans-serif; /* Example font */
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
-  color: white; /* Explicitly white */
-}
- 
-/* Call to action button */
-.promosection-hero-button {
-  background-color: #007bff; /* Example blue color, adjust as needed */
-  color: white;
-  padding: 15px 35px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
   text-transform: uppercase;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: inherit;
 }
- 
+
+/* Subtitle */
+.promosection-hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: inherit;
+}
+
+/* Button */
+.promosection-hero-button {
+  background: var(--promo-btn-bg, #ff6f61);
+  color: var(--promo-btn-text, #fff);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
 .promosection-hero-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background: var(--promo-btn-hover, #e85a4f);
+  transform: translateY(-2px);
 }
- 
-/* --- Responsive Adjustments --- */
- 
-/* For smaller desktops and large tablets */
-@media (max-width: 1200px) {
-  .promosection-hero-title {
-      font-size: 4.5rem;
-  }
-  .promosection-hero-subtitle {
-      font-size: 1.8rem;
-  }
+
+/* ================================
+   Light Theme
+================================ */
+.light .promosection-overlay {
+  background: rgba(0, 0, 0, 0.5); /* Keep dark overlay for light bg */
 }
- 
-/* For tablets (portrait) and larger phones */
-@media (max-width: 768px) {
-  .promosection-hero-title {
-      font-size: 3.5rem;
-      letter-spacing: 1px;
-  }
-  .promosection-hero-subtitle {
-      font-size: 1.5rem;
-  }
-  .promosection-hero-button {
-      padding: 12px 30px;
-      font-size: 1.1rem;
-  }
+
+.light .promosection-hero-content-overlay {
+  --promo-text: #fff;
+  --promo-btn-bg: #ff6f61;
+  --promo-btn-hover: #e85a4f;
+  --promo-btn-text: #fff;
 }
- 
-/* For small phones */
-@media (max-width: 480px) {
-  .promosection-hero-title {
-      font-size: 2.5rem;
-      margin-bottom: 0.3rem;
-  }
-  .promosection-hero-subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-  }
-  .promosection-hero-button {
-      padding: 10px 25px;
-      font-size: 1rem;
-  }
-  .promosection-hero-content-overlay {
-      padding: 10px;
-  }
+
+/* ================================
+   Dark Theme
+================================ */
+.dark .promosection-overlay {
+  background: rgba(255, 255, 255, 0.1); /* Lighter overlay for dark theme */
+}
+
+.dark .promosection-hero-content-overlay {
+  --promo-text: #f1f1f1;
+  --promo-btn-bg: #007bff;
+  --promo-btn-hover: #0056b3;
+  --promo-btn-text: #fff;
 }

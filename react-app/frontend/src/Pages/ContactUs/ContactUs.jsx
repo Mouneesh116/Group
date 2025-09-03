@@ -36,8 +36,8 @@ const ContactUs = () => {
                     <div className="info-card">
                         <FontAwesomeIcon icon={faMapMarkerAlt} className="info-icon" />
                         <h3>Our Location</h3>
-                        <p>123 Main Street, Anytown</p>
-                        <p>Chennai, Tamil Nadu, 600001, India</p>
+                        <p>Loyalty methods</p>
+                        <p>Hyderabad, Telangana, 500013, India</p>
                     </div>
                     <div className="info-card">
                         <FontAwesomeIcon icon={faPhone} className="info-icon" />

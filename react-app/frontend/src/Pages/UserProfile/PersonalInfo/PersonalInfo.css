@@ -1,56 +1,49 @@
 .personal-info {
-  background-color: #ffffff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box; /* Ensure padding is included */
-  text-align: left; /* Ensure content is left-aligned */
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.personal-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .personal-info-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 12px; /* Increased margin for better spacing */
-  color: #333; /* Darker color for prominence */
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #2196f3;
+  padding-bottom: 5px;
+  display: inline-block;
 }
 
 .personal-info p {
-  font-size: 1rem; /* Standard font size for text */
-  color: #555; /* Slightly softer color than title */
-  margin-bottom: 8px; /* Space between paragraphs */
-  line-height: 1.5; /* Improved line spacing for readability */
-  word-break: break-word; /* Ensure long words break */
+  font-size: 1rem;
+  margin: 8px 0;
+  color: #444;
 }
 
-.personal-info p strong {
-  color: #333; /* Make labels slightly darker */
+.personal-info strong {
+  color: #222;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 600px) {
   .personal-info {
-    padding: 14px;
+    padding: 15px 18px;
   }
+
   .personal-info-title {
-    font-size: 1.15rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
   }
+
   .personal-info p {
     font-size: 0.95rem;
-    margin-bottom: 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  .personal-info {
-    padding: 10px;
-  }
-  .personal-info-title {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
-  .personal-info p {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
   }
 }

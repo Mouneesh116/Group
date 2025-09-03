@@ -1,97 +1,103 @@
 import React, { useState, useContext } from 'react';
 import './Sidebar.css';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaUser, FaTachometerAlt, FaUsers, FaBox, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
-import { AuthContext } from '../../Context/AuthContext'; // Adjust the import path as necessary
+import {
+  FaBars,
+  FaUser,
+  FaTachometerAlt,
+  FaUsers,
+  FaBox,
+  FaShoppingCart,
+  FaSignOutAlt,
+} from 'react-icons/fa';
+import { AuthContext } from '../../Context/AuthContext';
+import { useTheme } from '../../Context/ThemeContext'; // ✅ theme support
+
 const Sidebar = ({ activeSection, setActiveSection }) => {
-  const [isOpen, setIsOpen] = useState(false); // State to toggle sidebar
-  const { role, setRole, setIsLoggedIn, logout } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const { setIsLoggedIn, logout } = useContext(AuthContext);
+  const { theme, toggleTheme } = useTheme(); // ✅ theme context
 
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-
     setIsLoggedIn(false);
     await logout();
-
-
     navigate('/login');
+  };
 
-  }
- 
- 
   const toggleSidebar = () => {
-    console.log('Toggling sidebar'); // Debugging
     setIsOpen(!isOpen);
   };
- 
+
   const handleSectionClick = (section) => {
     setActiveSection(section);
-    setIsOpen(false); // Close the sidebar after clicking a section
+    setIsOpen(false); // Close sidebar on mobile after navigation
   };
- 
+
   return (
     <>
-      {/* Hamburger Menu */}
+      {/* Hamburger Menu (mobile only) */}
       <div className="sidebar-hamburger" onClick={toggleSidebar}>
         <FaBars />
       </div>
- 
+
       {/* Sidebar */}
-      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <nav>
+      <aside className={`sidebar-container ${isOpen ? 'open' : ''} ${theme}`}>
+        <nav className="sidebar-nav">
           <a
             href="#admin"
-            onClick={() => handleSectionClick("Admin")}
-            className={activeSection === "Admin" ? "active" : ""}
-            title="Admin"
+            onClick={() => handleSectionClick('Admin')}
+            className={activeSection === 'Admin' ? 'active' : ''}
           >
-            <FaUser />
+            <FaUser /> <span>Admin</span>
           </a>
           <a
             href="#dashboard"
-            onClick={() => handleSectionClick("Dashboard")}
-            className={activeSection === "Dashboard" ? "active" : ""}
-            title="Dashboard"
+            onClick={() => handleSectionClick('Dashboard')}
+            className={activeSection === 'Dashboard' ? 'active' : ''}
           >
-            <FaTachometerAlt />
+            <FaTachometerAlt /> <span>Dashboard</span>
           </a>
           <a
             href="#user-activity"
-            onClick={() => handleSectionClick("User Activity")}
-            className={activeSection === "User Activity" ? "active" : ""}
-            title="User Activity"
+            onClick={() => handleSectionClick('User Activity')}
+            className={activeSection === 'User Activity' ? 'active' : ''}
           >
-            <FaUsers />
+            <FaUsers /> <span>Users</span>
           </a>
           <a
             href="#products"
-            onClick={() => handleSectionClick("Products")}
-            className={activeSection === "Products" ? "active" : ""}
-            title="Products"
+            onClick={() => handleSectionClick('Products')}
+            className={activeSection === 'Products' ? 'active' : ''}
           >
-            <FaBox />
+            <FaBox /> <span>Products</span>
           </a>
           <a
             href="#orders"
-            onClick={() => handleSectionClick("Orders")}
-            className={activeSection === "Orders" ? "active" : ""}
-            title="Orders"
+            onClick={() => handleSectionClick('Orders')}
+            className={activeSection === 'Orders' ? 'active' : ''}
           >
-            <FaShoppingCart />
+            <FaShoppingCart /> <span>Orders</span>
           </a>
           <a
             href="#logout"
             onClick={handleLogout}
             className="sidebar-logout-link"
-            title="Logout"
           >
-            <FaSignOutAlt />
+            <FaSignOutAlt /> <span>Logout</span>
           </a>
         </nav>
-      </div>
+
+        {/* ✅ Theme Toggle */}
+        <div className="sidebar-theme-toggle">
+          <button onClick={toggleTheme} className="theme-toggle-btn">
+            {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          </button>
+        </div>
+      </aside>
     </>
   );
 };
- 
+
 export default Sidebar;
