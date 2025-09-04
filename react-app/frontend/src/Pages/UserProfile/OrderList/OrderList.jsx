@@ -1,83 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import './OrderList.css';
-// import OrderCard from '../OrderCard/OrderCard';
-// import axios from 'axios';
-
-// const OrderList = () => {
-//   const [orders, setOrders] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchOrders = async () => {
-//       try {
-//         const token = localStorage.getItem('token');
-//         const response = await axios.get(http://localhost:8080/api/orders/getOrders`, {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         });
-//         setOrders(response.data.orders || []);
-//         setLoading(false);
-//       } catch (err) {
-//         console.error('Error fetching orders:', err);
-//         setError(err.response?.data?.message || 'Error fetching orders');
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchOrders();
-//   }, []);
-//   const handleOrderCancel = (orderId, productId) => {
-//     console.log('Order Cancel Callback Triggered:', { orderId, productId });
-//     setOrders((prevOrders) =>
-//       prevOrders
-//         .map((order) =>
-//           order.id === orderId
-//             ? {
-//                 ...order,
-//                 items: order.items.filter((item) => item.productId !== productId),
-//               }
-//             : order
-//         )
-//         .filter((order) => order.items.length > 0) // Remove orders with no items left
-//     );
-//   };
-
-//   if (loading) {
-//     return <p>Loading orders...</p>;
-//   }
-
-//   if (error) {
-//     return <p>Error: {error}</p>;
-//   }
-
-//   return (
-//     <div className="order-list">
-//       {orders.length > 0 ? (
-//         orders.map((order) =>
-//           order.items.map((item) => (
-//             <OrderCard
-//               key={item.productId}
-//               order={order} // Pass the entire order object
-//               productId={item.productId}
-//               price={item.price}
-//               title={item.title}
-//               onOrderCancel={handleOrderCancel} // Pass the callback function}
-//             />
-//           ))
-//         )
-//       ) : (
-//         <p>No orders found.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default OrderList;
-
-
-
 import React, { useState, useEffect } from 'react';
 import './OrderList.css';
 import OrderCard from '../OrderCard/OrderCard';
@@ -144,7 +64,6 @@ const OrderList = () => {
       })
     );
   };
-  // --- END OF UPDATED handleOrderChange FUNCTION ---
  
   if (loading) {
     return <p>Loading orders...</p>;
@@ -157,25 +76,38 @@ const OrderList = () => {
   return (
     <div className="order-list">
       {orders.length > 0 ? (
-        orders.map((order) =>
-          // Iterate through each item within each order
-          order.items.map((item) => (
-            <OrderCard
-              key={`${order.id}-${item.productId}`} // Use a combined key for uniqueness across items in different orders
-              order={order} // Pass the entire order object
-              productId={item.productId}
-              price={item.price } // Total price for the quantity ordered
-              title={item.title}
-              quantity={item.quantity}
-              // Pass the specific item's status as initialItemStatus
-              initialItemStatus={order.status}
-              onOrderChange={handleOrderChange} // Pass the correct callback name
-            />
-          ))
-        )
-      ) : (
-        <p>No orders found.</p>
-      )}
+  orders.map((order) =>
+    order.items.map((item, index) => {
+      // ✅ Normalize product id for keys and props
+      const pid = (item?.productId && typeof item.productId === 'object')
+        ? item.productId._id
+        : item?.productId;
+
+      // If still falsy, create a fallback to avoid "undefined"
+      const safeProductId = pid || `missing-${index}`;
+
+      // Build a stable, unique key: orderId + productId (+ index as tie-breaker)
+      const key = `${String(order.id)}-${String(safeProductId)}-${index}`;
+
+      return (
+        <OrderCard
+          key={key}
+          order={order}
+          productId={safeProductId}
+          title={item.title}
+          price={item.price}
+          quantity={item.quantity}
+          initialItemStatus={order.status}
+          imageUrl={item.image}       // ← already coming from your API
+          onOrderChange={handleOrderChange}
+        />
+      );
+    })
+  )
+) : (
+  <p>No orders found.</p>
+)}
+
     </div>
   );
 };
