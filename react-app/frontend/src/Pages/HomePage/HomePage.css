@@ -30,16 +30,18 @@
   padding: 60px 20px;
   box-sizing: border-box;
   transition: color 0.3s ease;
+  margin-bottom: 30px;
 }
 
 /* ================================
    Categories Section
    ================================ */
 .homepage-categories-section {
-  padding: 60px 20px;
+  padding: 60px 40px;
   background: var(--categories-bg);
   color: var(--categories-text);
   transition: background 0.3s ease, color 0.3s ease;
+  margin-bottom: 0px;
 }
 
 /* ================================

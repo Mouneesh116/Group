@@ -5,6 +5,7 @@
   width: 100vw; 
   min-height: 100vh;
   padding: 40px 20px;
+  
   text-align: center;
   background: var(--categories-bg);
   color: var(--categories-text);
@@ -49,6 +50,7 @@
   padding-top: 100%; /* Square ratio */
   position: relative;
   border-radius: 12px;
+
   overflow: hidden;
   background-size: cover;
   background-position: center;
