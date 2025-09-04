@@ -53,8 +53,6 @@ export const getProducts = async (req, res) => {
       res.status(500).json({ message: 'Server Error', error: error.message });
     }
   };
-  
-
 export const getProduct = async (req,res) => {
     try {
         const { id } = req.params;
@@ -82,9 +80,6 @@ export const deleteProduct = async (req,res, next) => {
        console.error(error);
     }
 }
-
-
-
 
 export const updateProduct = async (req, res) => {
     try {
@@ -156,6 +151,7 @@ export const getImageUrl = async (req, res) => {
       return res.status(400).json({ message: "Order product ID is required" });
     }
     const product = await Product.findById(orderProductId);
+    console.log(product);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -169,10 +165,6 @@ export const getImageUrl = async (req, res) => {
     res.status(500).json({ message: "Error fetching image URL", error: error.message });
   }
 }
-
-
-
-
 
 export const getAllProducts = async (req, res) => {
     try {

@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Accessibility for React Modal
 Modal.setAppElement('#root');
 
-const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, initialItemStatus }) => {
+const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, initialItemStatus }) => {
   const { userName } = useContext(AuthContext);
   const token = localStorage.getItem('token');
 
@@ -31,6 +31,7 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        console.log("Image URL response:", response.data);
         if (response.data?.imageUrl) {
           setOrderImg(response.data.imageUrl);
         }
@@ -51,7 +52,6 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
     } else {
       setIsReturnDisabled(false);
     }
-
     fetchImageUrl();
   }, [productId, token, orderStatus]);
 
@@ -143,7 +143,7 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
   };
 
   // Format date
-  const orderDate = order?.date ? new Date(order.date) : null;
+  const orderDate = order?.orderDate ? new Date(order.orderDate) : null;
   const formattedDate = orderDate && !isNaN(orderDate) ? orderDate.toLocaleDateString() : 'N/A';
 
   return (
@@ -189,7 +189,7 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
         <button
           className="order-card-review-button"
           onClick={() => setIsReviewModalOpen(true)}
-          disabled={orderStatus.toLowerCase() !== 'delivered'}
+          disabled={orderStatus.toLowerCase() === 'delivered'|| orderStatus.toLowerCase() === 'cancelled'}
         >
           Review
         </button>
@@ -198,7 +198,7 @@ const OrderCard = ({ order, productId, price, title, onOrderChange, quantity, in
       {/* Review Modal */}
       <Modal
         isOpen={isReviewModalOpen}
-        onRequestClose={() => setIsReviewModalOpen(false)}
+        onRequestClose={() => setIsReviewModalOpen(true)}
         className="order-card-modal"
         overlayClassName="order-card-modal-overlay"
       >
