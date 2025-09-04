@@ -31,7 +31,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("Image URL response:", response.data);
+        // console.log("Image URL response:", response.data);
         if (response.data?.imageUrl) {
           setOrderImg(response.data.imageUrl);
         }
@@ -143,7 +143,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
   };
 
   // Format date
-  const orderDate = order?.orderDate ? new Date(order.orderDate) : null;
+  const orderDate = order?.date ? new Date(order.date) : null;
   const formattedDate = orderDate && !isNaN(orderDate) ? orderDate.toLocaleDateString() : 'N/A';
 
   return (

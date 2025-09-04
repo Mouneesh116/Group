@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+// import { set } from 'mongoose';
 
 export const AuthContext = createContext();
 
@@ -59,6 +60,9 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (response.status === 200) {
+        // setIsLoggedIn(false);
+        // setUser(null);
+        // setRole(null);
         console.log('Signup successful:', response.data.message);
         return { success: true, message: response.data.message };
       } else {
