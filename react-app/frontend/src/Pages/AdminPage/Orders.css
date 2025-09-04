@@ -492,3 +492,59 @@
       width: 100%; /* Full width when stacked */
   }
 }
+/* ================== EXISTING CSS (your code remains unchanged) ================== */
+/* your original Orders.css is untouched above this line */
+
+
+/* ================== DARK MODE UPDATES ================== */
+body.dark-mode {
+  background-color: #121212; /* overall background */
+  color: #e0e0e0;
+}
+
+body.dark-mode .adminorder-orders-view {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode .adminorder-filters-section {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+}
+
+body.dark-mode .adminorder-filters-section input,
+body.dark-mode .adminorder-filters-section select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode .order-card {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border: 1px solid #333;
+}
+
+body.dark-mode .order-card .order-item {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+}
+
+body.dark-mode .order-card .order-customer {
+  color: #d1d1d1;
+}
+
+body.dark-mode .order-card .order-total {
+  color: #ffffff;
+}
+
+body.dark-mode .order-card select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode .order-card select option {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
