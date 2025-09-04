@@ -60,7 +60,7 @@ const ContactUs = () => {
                 <div className="contact-form-content">
                     <div className="form-image-container">
                         {/* Placeholder image - Replace with a relevant image for your brand */}
-                        <img src="https://zorbasmedia.com/wp-content/uploads/2022/12/E-comm-%D1%81%D1%82%D0%B0%D1%82%D1%8C%D1%8F.png" alt="Contact Us" className="form-image" />
+                        <img src="https://thaka.bing.com/th/id/OIP.Sd95M9F1DkBOSRzboK_I6gHaE7?w=292&h=195&c=7&r=0&o=5&cb=thfc1&dpr=1.5&pid=1.7&ucfimg=1" alt="Contact Us" className="form-image" />
                     </div>
                     <form className="contact-form envelope-form" onSubmit={handleSubmit}> {/* Added envelope-form class */}
                         <div className="form-group">
