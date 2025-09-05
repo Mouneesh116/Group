@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.post('/api/products/add', protect, admin, createProduct);
 
-
+// 🔥 updated: bulk-create is admin protected
+router.post('/api/products/bulk-create',  bulkCreateProducts);
 
 router.get('/api/products',getProducts);
 router.get('/api/products/getAllProducts', getAllProducts);
@@ -15,5 +16,5 @@ router.get('/api/product/:id', getProduct);
 router.delete('/api/product/delete/:id',protect, admin, deleteProduct);
 router.put('/api/product/update/:id',protect, admin, updateProduct);
 router.get('/api/products/getProductImage/:orderProductId', getImageUrl);
-router.post('/api/products/bulk-create', bulkCreateProducts);
+
 export default router;
