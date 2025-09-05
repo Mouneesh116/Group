@@ -1,38 +1,40 @@
-/* Hero section container */
+/* ===============================
+   Hero Section Container
+   =============================== */
 .promosection-hero {
   position: relative;
   width: 100%;
-  height: 70vh; /* Large hero space */
+  height: 70vh;
   background: url("https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1600&q=80")
-    no-repeat center center/cover;
+    no-repeat center center / cover;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 0 0 20px 20px;
+  transition: background 0.3s ease;
 }
 
 /* Dark overlay for readability */
 .promosection-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* Default for light theme */
   z-index: 1;
   transition: background 0.3s ease;
 }
 
-/* Hero content */
+/* Hero Content */
 .promosection-hero-content-overlay {
   position: relative;
   z-index: 2;
   text-align: center;
-  color: var(--promo-text, #fff);
   padding: 20px;
+  color: var(--promo-text, #fff);
 }
 
 /* Title */
 .promosection-hero-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
   letter-spacing: 2px;
   margin-bottom: 15px;
@@ -42,7 +44,7 @@
 
 /* Subtitle */
 .promosection-hero-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 25px;
   color: inherit;
 }
@@ -65,30 +67,30 @@
   transform: translateY(-2px);
 }
 
-/* ================================
+/* ===============================
    Light Theme
-================================ */
+   =============================== */
 .light .promosection-overlay {
-  background: rgba(0, 0, 0, 0.5); /* Keep dark overlay for light bg */
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
 }
 
 .light .promosection-hero-content-overlay {
-  --promo-text: #fff;
+  --promo-text: #ffffff;
   --promo-btn-bg: #ff6f61;
   --promo-btn-hover: #e85a4f;
-  --promo-btn-text: #fff;
+  --promo-btn-text: #ffffff;
 }
 
-/* ================================
+/* ===============================
    Dark Theme
-================================ */
+   =============================== */
 .dark .promosection-overlay {
-  background: rgba(255, 255, 255, 0.1); /* Lighter overlay for dark theme */
+  background: rgba(255, 255, 255, 0.12); /* Subtle overlay on dark bg */
 }
 
 .dark .promosection-hero-content-overlay {
-  --promo-text: #f1f1f1;
+  --promo-text: #000000;
   --promo-btn-bg: #007bff;
   --promo-btn-hover: #0056b3;
-  --promo-btn-text: #fff;
+  --promo-btn-text: #ffffff;
 }

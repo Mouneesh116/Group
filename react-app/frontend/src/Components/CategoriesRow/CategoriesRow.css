@@ -1,11 +1,8 @@
-/* ================================
-   Categories Row Container
-   ================================ */
+
 .categories-row-container {
   width: 100vw; 
   min-height: 100vh;
   padding: 40px 20px;
-  
   text-align: center;
   background: var(--categories-bg);
   color: var(--categories-text);
@@ -37,8 +34,8 @@
    ================================ */
 .categories-row-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 60px;
   justify-items: center;
 }
 

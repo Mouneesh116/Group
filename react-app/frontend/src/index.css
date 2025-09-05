@@ -1,14 +1,4 @@
-
-
-.light {
-  background: #fff;
-  color: #222;
-}
-
-.dark {
-  background: #222;
-  color: #fff;
-}
+/* ===== Base layout ===== */
 html, body, #root {
   height: 100%;
   width: 100%;
@@ -19,4 +9,145 @@ html, body, #root {
 body {
   display: flex;
   flex-direction: column;
+  background-color: var(--app-bg);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== THEME VARIABLES ===== */
+/* Default (light) – also applied if .light is on <html> */
+:root,
+:root.light,
+html.light {
+  height: 100%;
+  /* App surfaces */
+  --app-bg: #f7f7f9;
+  --card-bg: #ffffff;
+  --elevated-bg: #ffffff;
+
+  /* Text */
+  --text-color: #1f1f1f;
+  --muted-text: #666a73;
+
+  /* Borders & shadows */
+  --border-color: #e6e8ee;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+
+  /* Accents */
+  --primary: #2196f3;
+  --primary-contrast: #ffffff;
+
+  /* Status / semantic */
+  --success: #2e7d32;
+  --danger: #e53935;
+  --danger-hover: #c62828;
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-text: #1f1f1f;
+  --input-border: #cfd3dc;
+}
+
+/* Dark theme */
+:root.dark,
+html.dark {
+  height: 100%;
+  --app-bg: #17181b;
+  --card-bg: #1f2024;
+  --elevated-bg: #24252a;
+
+  --text-color: #f5f6f8;
+  --muted-text: #aab0bb;
+
+  --border-color: #32343a;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  --primary: #90caf9;
+  --primary-contrast: #0d0e10;
+
+  --success: #81c784;
+  --danger: #ef5350;
+  --danger-hover: #e53935;
+
+  --input-bg: #22242a;
+  --input-text: #f5f6f8;
+  --input-border: #3a3d45;
+}
+
+/* ===== Utility / shared patterns ===== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: var(--danger-hover);
+}
+
+/* ===== Optional: themed scrollbars (Chromium) ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
 }

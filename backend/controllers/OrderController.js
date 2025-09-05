@@ -107,11 +107,7 @@ export const getAllOrders = async (req, res) => {
   }
 };
 
-/* -----------------------------------------
- * Update order status
- * - If set to "Shipped": generate OTP, email it, and save expiry
- * - If trying to set "Delivered": block (must go through OTP verification)
- * ----------------------------------------- */
+
 export const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -175,10 +171,13 @@ export const updateOrderStatus = async (req, res) => {
  * ----------------------------------------- */
 export const verifyDeliveryOtp = async (req, res) => {
   try {
+    console.log("Verifying OTP with data:", req.params, req.body);
     const { orderId } = req.params;
     const { userOtp } = req.body;
 
     const order = await Order.findById(orderId);
+    console.log("Found order:", order);
+
     if (!order) return res.status(404).json({ message: "Order not found" });
 
     if (order.status !== "Shipped") {

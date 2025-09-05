@@ -2,7 +2,8 @@
    General Container
    ================================ */
 .shoppingcart-container {
-  max-width: 1200px;
+  max-width: 100%;
+  max-height: 100%;
   margin: 2rem auto;
   padding: 1.5rem;
   border-radius: 12px;
@@ -273,10 +274,4 @@
   .shoppingcart-summary {
     font-size: 1rem;
   }
-}
-.fullscreen-container {
-  height: 100vh;   /* full viewport height */
-  width: 100vw;    /* full viewport width */
-  display: flex;
-  flex-direction: column;
 }

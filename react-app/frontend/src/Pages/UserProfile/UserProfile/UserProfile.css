@@ -1,9 +1,13 @@
+/* ===============================
+   User Profile (theme-ready)
+   =============================== */
 .user-profile {
   width: 100%;
   min-height: 100vh;
-  background: #f9f9fb;
+  background: var(--page-bg, #f9f9fb);
   padding: 30px 40px;
   box-sizing: border-box;
+  color: var(--text-color, #222);
 }
 
 .user-profile-main-content {
@@ -11,7 +15,7 @@
   margin: 0 auto;
 }
 
-/* Personal Info Section */
+/* Personal Info Section wrapper */
 .user-profile-personal-info-wrapper {
   margin-bottom: 30px;
 }
@@ -23,48 +27,89 @@
   align-items: flex-start;
 }
 
+/* Card base */
+.user-profile-wishlist-section,
+.user-profile-orders-section {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e2e2e2);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--card-shadow, 0 2px 6px rgba(0,0,0,0.08));
+  min-height: 300px;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
 /* Wishlist Section */
 .user-profile-wishlist-section {
   flex: 1;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  min-height: 300px;
 }
 
 /* Orders Section */
 .user-profile-orders-section {
   flex: 2;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  min-height: 300px;
 }
 
 .user-profile-orders-title {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 15px;
-  border-bottom: 2px solid #2196f3;
+  border-bottom: 2px solid var(--accent-color, #2196f3);
   display: inline-block;
   padding-bottom: 5px;
-  color: #333;
+  color: var(--heading-color, #333);
 }
 
 .user-profile-orders-list {
   margin-top: 10px;
 }
 
-/* Responsive */
+/* Hover elevation */
+.user-profile-wishlist-section:hover,
+.user-profile-orders-section:hover {
+  box-shadow: var(--card-shadow-hover, 0 4px 12px rgba(0,0,0,0.12));
+}
+
+/* ===============================
+   Responsive
+   =============================== */
 @media (max-width: 900px) {
   .user-profile-secondary-sections {
     flex-direction: column;
   }
-
   .user-profile-wishlist-section,
   .user-profile-orders-section {
     width: 100%;
   }
+}
+
+/* ===============================
+   Theme bindings (scoped)
+   =============================== */
+
+/* Light */
+.light .user-profile {
+  --page-bg: #f9f9fb;
+  --text-color: #222;
+  --heading-color: #333;
+
+  --card-bg: #ffffff;
+  --border-color: #e2e2e2;
+  --card-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.12);
+
+  --accent-color: #2196f3;
+}
+
+/* Dark */
+.dark .user-profile {
+  --page-bg: #161616;
+  --text-color: #e9e9e9;
+  --heading-color: #f0f0f0;
+
+  --card-bg: #1f1f1f;
+  --border-color: #2c2c2c;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  --card-shadow-hover: 0 6px 16px rgba(0,0,0,0.6);
+
+  --accent-color: #64b5f6;
 }

@@ -46,6 +46,7 @@
 
 .navbar-links-group a,
 .navbar-login-link {
+  cursor: pointer;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
@@ -223,6 +224,7 @@
 .light .navbar-cart-icon,
 .light .navbar-profile-icon-fa {
   color: #222;
+  cursor: pointer;
 }
 
 .light .navbar-search-input {
@@ -255,6 +257,7 @@
 .dark .navbar-cart-icon,
 .dark .navbar-profile-icon-fa {
   color: #f1f1f1;
+  cursor: pointer;
 }
 
 .dark .navbar-search-input {
