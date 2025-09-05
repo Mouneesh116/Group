@@ -7,7 +7,7 @@ export const createProduct = async (req,res) => {
             if(!product){
               return res.status(400).json({message: "Error creating product, please try again"});
             }
-            console.log("Product created successfully", product);
+            console.log("Product created successfully");
             return res.status(200).json({message: "Product created successfully"});
         } catch (error) {
             console.log(error,error.message);
@@ -47,7 +47,7 @@ export const getProducts = async (req, res) => {
       }
   
       const products = await Product.find(filter);
-      console.log(products);
+      console.log("products fetched successfully");
       res.status(200).json(products);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -62,7 +62,7 @@ export const getProduct = async (req,res) => {
         if(!product){
             res.send("Produt not found for this Id");
         }
-        console.log("Product", product);
+        console.log("Product");
         return res.status(200).json({message: "product fetched successfully", product});
     } catch (error) {
         console.log("Error occured", error, error.message);
@@ -154,7 +154,7 @@ export const getImageUrl = async (req, res) => {
       return res.status(400).json({ message: "Order product ID is required" });
     }
     const product = await Product.findById(orderProductId);
-    console.log(product);
+    // console.log(product);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -178,7 +178,7 @@ export const getAllProducts = async (req, res) => {
         if (!products || products.length === 0) {
             return res.status(404).json({ message: "No products found" });
         }
-        console.log("All Products fetched successfully", products);
+        console.log("All Products fetched successfully");
         return res.status(200).json({ message: "Products fetched successfully", products: products });
     } catch (error) {
         console.error("Error fetching all products:", error);
