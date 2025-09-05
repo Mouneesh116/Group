@@ -41,13 +41,14 @@ const Products = () => {
   const [editedProductImageUrl, setEditedProductImageUrl] = useState('');
 
   // Category and Subcategory Options
-  const categoryOptions = ['fashion', 'electronics', 'shoes'];
+  const categoryOptions = ['fashion', 'electronics', 'shoes','Sports','Home Decor'];
   const subcategoryMapping = {
-    fashion: ['Mens', 'Womens', 'Kids'],
-    electronics: ['Mobiles', 'Laptops', 'Fridges', 'TVs'],
-    shoes: ['Mens', 'Womens', 'Heels', 'Sneakers'],
+    "fashion": ['Mens', 'Womens', 'Kids'],
+    "electronics": ['Mobiles', 'Laptops', 'Fridges', 'TVs'],
+    "shoes": ['Mens', 'Womens', 'Heels', 'Sneakers'],
+    "Sports": ['cricket', 'football', 'basketball','badminton','tennis','volleyball','boxing','swimming','running','gym', 'fitness'],
+    "Home Decor": ['furniture', 'lighting', 'wall art', 'rugs', 'bedding', 'kitchen decor', 'bathroom decor', 'outdoor decor'],
   };
-
   useEffect(() => {
     // Update subcategory options when category filter changes for the filter section
     setSubcategoryOptions(categoryFilter ? subcategoryMapping[categoryFilter] : []);
