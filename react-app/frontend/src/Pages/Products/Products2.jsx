@@ -104,7 +104,6 @@ export const Products2 = () => {
  
     return (
         <div className="products-p2-main-container">
-            {/* Filter Toggle Button for smaller screens */}
             <button className="products-mobile-filter-toggle-button" onClick={toggleFilterVisibility}>
                 Filter
             </button>
