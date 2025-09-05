@@ -15,7 +15,7 @@ const CategoriesRow = () => {
     { img: cart3, label: "Shoes" },
     { img: cart4, label: "Beauty" },
     { img: cart5, label: "Sports" },
-    { img: cart6, label: "Home Decor" },
+    { img: cart6, label: "HomeDecor" },
   ];
  
   return (
@@ -28,7 +28,7 @@ const CategoriesRow = () => {
             key={index}
             style={{ backgroundImage: `url(${category.img})` }}
           >
-            <Link to={`/categories/${category.label.toLowerCase().replace(/\s/g, '-')}`} className="categories-row-link">
+            <Link to={`/categories/${category.label.toLowerCase()}`} className="categories-row-link">
               <div className="categories-row-label-overlay">
                 <p>{category.label}</p>
               </div>
