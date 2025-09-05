@@ -15,7 +15,7 @@ const CategoriesRow = () => {
     { img: cart3, label: "Shoes" },
     { img: cart4, label: "Beauty" },
     { img: cart5, label: "Sports" },
-    { img: cart6, label: "HomeDecor" },
+    { img: cart6, label: "Home Decor" },
   ];
  
   return (

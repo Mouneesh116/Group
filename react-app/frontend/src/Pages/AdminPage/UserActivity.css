@@ -1,39 +1,48 @@
-/* Container for the entire user activity section */
+/* ===============================
+   User Activity Container
+   =============================== */
 .user-activity-container {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--card-bg, #ffffff);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow, 0 4px 10px rgba(0,0,0,0.1));
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: var(--text-color, #222);
 }
 
-/* Title for the user activity section */
+/* ===============================
+   Title
+   =============================== */
 .user-activity-title {
   text-align: center;
   margin-bottom: 30px;
   font-size: 28px;
   font-weight: bold;
-  color: #333;
-  border-bottom: 2px solid #007bff;
+  color: var(--heading-color, #333);
+  border-bottom: 2px solid var(--primary, #007bff);
   padding-bottom: 10px;
 }
 
-/* Section titles for each user activity category */
+/* ===============================
+   Section Titles
+   =============================== */
 .user-activity-section-title {
   margin-bottom: 15px;
   font-size: 22px;
   font-weight: bold;
-  color: #007bff;
-  border-left: 4px solid #007bff;
+  color: var(--primary, #007bff);
+  border-left: 4px solid var(--primary, #007bff);
   padding-left: 10px;
 }
 
-/* User details and activity sections */
+/* ===============================
+   Sections (Details, Searches, etc.)
+   =============================== */
 .user-activity-details,
 .user-activity-recent-searches,
 .user-activity-purchased-products,
@@ -42,15 +51,17 @@
 .user-activity-reviews {
   margin-bottom: 30px;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: var(--elevated-bg, #f9f9f9);
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color, #ddd);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* List styling for activity items */
+/* ===============================
+   Activity List
+   =============================== */
 .user-activity-list {
   list-style-type: none;
   padding: 0;
@@ -62,16 +73,16 @@
   align-items: center;
   margin-bottom: 15px;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: var(--card-bg, #ffffff);
   border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow, 0 2px 5px rgba(0,0,0,0.1));
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   flex-wrap: wrap;
 }
 
 .user-activity-list-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow-hover, 0 4px 10px rgba(0,0,0,0.15));
 }
 
 .user-activity-image {
@@ -80,31 +91,29 @@
   margin-right: 15px;
   border-radius: 6px;
   object-fit: contain;
+  background: var(--elevated-bg, #f0f0f0);
 }
 
 .user-activity-text {
   margin: 0;
   font-size: 16px;
-  color: #555;
+  color: var(--muted-text, #555);
   flex: 1;
 }
 
-/* Paragraph styling */
-.user-activity-text {
-  margin: 5px 0;
-  color: #555;
-  font-size: 16px;
-}
-
-/* Loading spinner or message */
+/* ===============================
+   Loading
+   =============================== */
 .user-activity-loading {
   text-align: center;
   font-size: 18px;
-  color: #555;
+  color: var(--muted-text, #555);
   margin-top: 50px;
 }
 
-/* Dropdown for user selection */
+/* ===============================
+   Dropdown for User Selection
+   =============================== */
 .user-activity-selection {
   margin-bottom: 30px;
   display: flex;
@@ -116,31 +125,35 @@
 .user-activity-label {
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: var(--heading-color, #333);
 }
 
 .user-activity-select {
   padding: 10px 15px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color, #ddd);
   border-radius: 6px;
-  background-color: #ffffff;
+  background-color: var(--input-bg, #ffffff);
+  color: var(--input-text, #222);
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
 .user-activity-select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--primary, #007bff);
 }
 
-/* Card for individual user activity */
+/* ===============================
+   User Activity Card
+   =============================== */
 .user-activity-card {
   margin-bottom: 30px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--card-bg, #ffffff);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow, 0 4px 10px rgba(0,0,0,0.1));
+  border: 1px solid var(--border-color, #e2e2e2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -149,49 +162,45 @@
 
 .user-activity-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow-hover, 0 6px 15px rgba(0,0,0,0.15));
 }
 
 .user-activity-card h3 {
   font-size: 20px;
   font-weight: bold;
-  color: #007bff;
+  color: var(--primary, #007bff);
   margin-bottom: 15px;
 }
 
 .user-activity-card p {
   font-size: 16px;
-  color: #555;
+  color: var(--muted-text, #555);
   margin-bottom: 10px;
 }
 
-/* Responsive Design */
+/* ===============================
+   Responsive Design
+   =============================== */
 @media (max-width: 1024px) {
   .user-activity-container {
     padding: 15px;
   }
-
   .user-activity-title {
     font-size: 24px;
   }
-
   .user-activity-section-title {
     font-size: 20px;
   }
-
   .user-activity-image {
     width: 50px;
     height: 50px;
   }
-
   .user-activity-text {
     font-size: 14px;
   }
-
   .user-activity-label {
     font-size: 16px;
   }
-
   .user-activity-select {
     font-size: 14px;
   }
@@ -201,28 +210,22 @@
   .user-activity-container {
     padding: 10px;
   }
-
   .user-activity-title {
     font-size: 20px;
   }
-
   .user-activity-section-title {
     font-size: 18px;
   }
-
   .user-activity-image {
     width: 40px;
     height: 40px;
   }
-
   .user-activity-text {
     font-size: 12px;
   }
-
   .user-activity-label {
     font-size: 14px;
   }
-
   .user-activity-select {
     font-size: 12px;
   }
@@ -232,28 +235,22 @@
   .user-activity-container {
     padding: 5px;
   }
-
   .user-activity-title {
     font-size: 18px;
   }
-
   .user-activity-section-title {
     font-size: 16px;
   }
-
   .user-activity-image {
     width: 30px;
     height: 30px;
   }
-
   .user-activity-text {
     font-size: 10px;
   }
-
   .user-activity-label {
     font-size: 12px;
   }
-
   .user-activity-select {
     font-size: 10px;
   }
