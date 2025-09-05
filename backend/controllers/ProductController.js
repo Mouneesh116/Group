@@ -1,5 +1,6 @@
 import Product from "../models/ProductModel.js";
 import mongoose from "mongoose";
+
 export const createProduct = async (req,res) => {
     try {
             const product = await Product.create(req.body);
@@ -53,6 +54,7 @@ export const getProducts = async (req, res) => {
       res.status(500).json({ message: 'Server Error', error: error.message });
     }
   };
+
 export const getProduct = async (req,res) => {
     try {
         const { id } = req.params;
@@ -119,6 +121,7 @@ export const updateProduct = async (req, res) => {
         res.status(500).json({ message: "Error updating product", error: error.message });
     }
 };
+
 export const searchProducts = async (req,res) => {
     try{
         const searchQuery = req.query.query;
@@ -183,14 +186,22 @@ export const getAllProducts = async (req, res) => {
     }
 }
 
+// 🔥 Only updated function
 export const bulkCreateProducts = async (req, res) => {
     try {
         const products = req.body;
+
         if (!Array.isArray(products) || products.length === 0) {
-            return res.status(400).json({ message: "Invalid product data" });
+            return res.status(400).json({ message: "Invalid product data. Expected an array of products." });
         }
-        const createdProducts = await Product.insertMany(products);
-        return res.status(201).json({ message: "Products created successfully", products: createdProducts });
+
+        const createdProducts = await Product.insertMany(products, { ordered: false });
+
+        return res.status(201).json({
+            message: "Products created successfully",
+            count: createdProducts.length,
+            products: createdProducts
+        });
     } catch (error) {
         console.error("Error creating products:", error);
         return res.status(500).json({ message: "Error creating products", error: error.message });
