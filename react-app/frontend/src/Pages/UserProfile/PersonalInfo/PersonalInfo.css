@@ -1,24 +1,28 @@
+/* ================================
+   Personal Info Card (Theme Aware)
+   ================================ */
 .personal-info {
-  background: #fff;
-  border: 1px solid #e2e2e2;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e2e2e2);
   border-radius: 10px;
   padding: 20px 25px;
   margin: 20px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: var(--card-shadow, 0 2px 6px rgba(0,0,0,0.08));
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: var(--text-color, #222);
 }
 
 .personal-info:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: var(--card-shadow-hover, 0 4px 12px rgba(0,0,0,0.12));
 }
 
 .personal-info-title {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #333;
-  border-bottom: 2px solid #2196f3;
+  color: var(--heading-color, #333);
+  border-bottom: 2px solid var(--accent-color, #2196f3);
   padding-bottom: 5px;
   display: inline-block;
 }
@@ -26,11 +30,11 @@
 .personal-info p {
   font-size: 1rem;
   margin: 8px 0;
-  color: #444;
+  color: var(--muted-text, #444);
 }
 
 .personal-info strong {
-  color: #222;
+  color: var(--text-strong, #222);
 }
 
 /* Responsive */
@@ -46,4 +50,30 @@
   .personal-info p {
     font-size: 0.95rem;
   }
+}
+
+/* ============ Light Theme ============ */
+.light .personal-info {
+  --card-bg: #fff;
+  --text-color: #222;
+  --heading-color: #333;
+  --muted-text: #444;
+  --text-strong: #222;
+  --border-color: #e2e2e2;
+  --accent-color: #2196f3;
+  --card-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* ============ Dark Theme ============ */
+.dark .personal-info {
+  --card-bg: #2b2b2b;
+  --text-color: #eee;
+  --heading-color: #fff;
+  --muted-text: #c9c9c9;
+  --text-strong: #fff;
+  --border-color: #3e3e3e;
+  --accent-color: #64b5f6;
+  --card-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.7);
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './DisplayCard.css'; // Make sure this path is correct
+import './DisplayCard.css'; 
 import { FaStar } from "react-icons/fa";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 
@@ -8,7 +8,7 @@ export const DisplayCard = ({ product }) => {
 
   const handleImageError = (e) => {
     e.target.onerror = null;
-    e.target.src = 'https://placehold.co/150x150/cccccc/000000?text=No+Image'; // Fallback image
+    e.target.src = 'https://placehold.co/150x150/cccccc/000000?text=No+Image'; 
   };
 
   return (

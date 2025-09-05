@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+// import { set } from 'mongoose';
 
 export const AuthContext = createContext();
 
@@ -16,68 +17,77 @@ export const AuthProvider = ({ children }) => {
   
 
   const processToken = useCallback((token) => {
-    if (!token) {
+  if (!token) {
+    setIsLoggedIn(false);
+    setUser(null);
+    setRole(null);
+    setUserName(null);
+    setUserId(null);
+    return;
+  }
+  try {
+    const decoded = jwtDecode(token);
+    if (decoded.exp * 1000 < Date.now()) {
+      localStorage.removeItem("token");
       setIsLoggedIn(false);
       setUser(null);
       setRole(null);
-      return;
+      setUserName(null);
+      setUserId(null);
+    } else {
+      setIsLoggedIn(true);
+      setUser(decoded.user);
+      setRole(decoded.user.role);
+      setUserName(decoded.user.userName);
+      setUserId(decoded.user.id);
     }
-    try {
-      const decoded = jwtDecode(token);
-      if (decoded.exp * 1000 < Date.now()) {
-        console.log('Token expired, logging out');
-        setIsLoggedIn(false);
-        setUser(null);
-        setRole(null);
-      } else {
-        setIsLoggedIn(true);
-        setUser(decoded.user);
-        setRole(decoded.user.role);
-        setUserName(decoded.user.userName);
-        setUserId(decoded.user.id);
-      }
-    } catch (error) {
-      console.log('Error decoding token:', error);
-      localStorage.removeItem('token');
-      setIsLoggedIn(false);
-      setUser(null);
-      setRole(null);
-    }
-  }, []);
+  } catch (e) {
+    console.log("Error decoding token:", e);
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUser(null);
+    setRole(null);
+    setUserName(null);
+    setUserId(null);
+  }
+}, []);
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     processToken(token);
   }, [processToken]);
 
-  const signup = async (userData) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/api/users/signup`,
-        userData,
-        { headers: { 'Content-Type': 'application/json' } }
-      );
+ const signup = async (userData) => {
+  try {
+    const res = await axios.post(
+      "http://localhost:8080/api/users/signup",
+      userData,
+      { headers: { "Content-Type": "application/json" } }
+    );
 
-      if (response.status === 200) {
-        console.log('Signup successful:', response.data.message);
-        return { success: true, message: response.data.message };
-      } else {
-        console.error('Signup failed:', response.data.message);
-        return { success: false, error: response.data.message };
-      }
-    } catch (error) {
-      console.error('Error in AuthContext signup:', error);
+    // Any 2xx is success (backend sends 201 on create)
+    if (res.status >= 200 && res.status < 300) {
+      const { token, role, userId, userName, email } = res.data || {};
 
-      let errorMessage = 'An unexpected error occurred. Please try again.';
-      if (error.response && error.response.data && error.response.data.message) {
-        errorMessage = error.response.data.message;
-      } else if (error.message) {
-        errorMessage = error.message;
+      // If backend returns a token, persist and hydrate context
+      if (token) {
+        localStorage.setItem("token", token);
+        processToken(token); // sets isLoggedIn, user, role, userName, userId
       }
 
-      return { success: false, error: errorMessage };
+      return { success: true, message: res.data?.message || "Signup successful", role, userId, userName, email };
     }
-  };
+
+    // Fallback (shouldn't hit with axios unless you throw above)
+    return { success: false, error: res.data?.message || "Unexpected signup response" };
+  } catch (err) {
+    const msg = err.response?.data?.message || err.message || "Signup failed";
+    console.error("AuthContext signup error:", msg);
+    return { success: false, error: msg };
+  }
+};
+
 
   const login = async (userData) => {
     try {

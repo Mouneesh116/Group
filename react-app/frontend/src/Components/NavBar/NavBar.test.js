@@ -1,16 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
+import { MemoryRouter } from 'react-router-dom'; 
 import NavBar from './NavBar';
-
-
-
-
-// jest.mock('react-router-dom', () => ({
-//     ...jest.requireActual('react-router-dom'),
-//     useLocation: jest.fn().mockReturnValue({ pathname: '/' }),
-//     useNavigate: jest.fn(),
-//   }));
 
 describe('NavBar Component', () => {
   it('should display Login button when not logged in', () => {
@@ -21,7 +12,7 @@ describe('NavBar Component', () => {
     );
     expect(screen.getByText('Login')).toBeInTheDocument();
   });
-
+  
   it('should display Logout button when logged in', () => {
     render(
       <MemoryRouter>

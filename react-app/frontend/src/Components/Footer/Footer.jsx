@@ -12,7 +12,7 @@ const Footer = () => {
                     <a href="#">Contact Us</a>
                     <a href="#">About Us</a>
                     <a href="#">Careers</a>
-                    <a href="#">E-Commerce Stories</a>
+                    <a href="#">Loyalty Stories</a>
                     <a href="#">Press</a>
                     <a href="#">Corporate Info</a>
                 </div>
@@ -30,7 +30,7 @@ const Footer = () => {
                     <a href="#">Terms of Use</a>
                     <a href="#">Security</a>
                     <a href="#">Privacy</a>
-                    <a href="#">&copy; E-Commerce.com</a>
+                    <a href="#">&copy; LoyaltyMethods.com</a>
                 </div>
                 <div className="footer-column">
                     <h5>Social</h5>
@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
             <div className="footer-bottom">
                 <p>
-                    E-Commerce Internet Pvt. Ltd., Embassy Tech Village, Bengaluru, 560103, Karnataka, India
+                    loyaltyMethods  Pvt. Ltd., Embassy Tech Village, Bengaluru, 560103, Karnataka, India
                 </p>
             </div>
         </footer>

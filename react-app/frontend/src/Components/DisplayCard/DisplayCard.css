@@ -1,3 +1,6 @@
+/* ===============================
+   Display Card (Theme-ready)
+   =============================== */
 .displaycard-main-container {
   display: flex;
   justify-content: center;
@@ -5,23 +8,25 @@
   padding: 15px;
 }
 
+/* Card */
 .displaycard-container {
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #eee);
   border-radius: 12px;
   width: 250px;
   min-height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--card-shadow, 0 2px 8px rgba(0,0,0,0.08));
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
+  color: var(--text-color, #222);
 }
 
 .displaycard-container:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: var(--card-shadow-hover, 0 6px 20px rgba(0,0,0,0.15));
 }
 
 /* --- Image Section --- */
@@ -35,6 +40,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--elevated-bg, transparent);
+  border-radius: 10px;
 }
 
 .displaycard-image {
@@ -57,7 +64,7 @@
 .displaycard-title h2 {
   font-size: 1rem;
   font-weight: 600;
-  color: #222;
+  color: var(--heading-color, #222);
   margin: 0 0 8px 0;
   line-height: 1.3;
 }
@@ -66,11 +73,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  gap: 6px;
 }
 
 .displaycard-review-button {
-  background: #f0f8ff;
-  color: #333;
+  background: var(--pill-bg, #f0f8ff);
+  color: var(--pill-text, #333);
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -79,7 +87,7 @@
 }
 
 .displaycard-star-icon {
-  color: #FFD700;
+  color: var(--star-color, #FFD700);
   margin-left: 4px;
   font-size: 0.9rem;
 }
@@ -89,24 +97,24 @@
   padding: 0;
   margin: 0;
   font-size: 0.85rem;
-  color: #555;
+  color: var(--muted-text, #555);
 }
 
 .displaycard-company-assured {
   display: flex;
   align-items: center;
   font-weight: 500;
-  color: #444;
+  color: var(--muted-text, #444);
 }
 
 .displaycard-trusted-icon {
-  color: #2196f3;
+  color: var(--primary, #2196f3);
   margin-right: 5px;
 }
 
 /* --- Price & Order Section --- */
 .displaycard-row3 {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color, #eee);
   padding: 12px 15px;
   display: flex;
   justify-content: space-between;
@@ -122,39 +130,42 @@
 .displaycard-current-price {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #e53935;
+  color: var(--price, #e53935);
 }
 
 .displaycard-prev-price {
   font-size: 0.9rem;
-  color: #888;
+  color: var(--muted-text, #888);
   margin-left: 2px;
+  text-decoration: line-through;
 }
 
 .displaycard-discount {
   font-size: 0.85rem;
-  color: green;
+  color: var(--success, green);
   font-weight: 500;
 }
 
+/* Button */
 .displaycard-order-section {
   display: flex;
 }
 
 .displaycard-order-button {
-  background: #2196f3;
-  color: #fff;
+  background: var(--primary, #2196f3);
+  color: var(--primary-contrast, #fff);
   border: none;
   padding: 8px 14px;
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: filter 0.2s ease, transform 0.15s ease, background 0.2s ease;
 }
 
 .displaycard-order-button:hover {
-  background: #1976d2;
+  filter: brightness(1.05);
+  transform: translateY(-1px);
 }
 
 /* --- Responsive --- */
@@ -162,4 +173,47 @@
   .displaycard-container {
     width: 100%;
   }
+}
+
+/* ===============================
+   Theme Tokens
+   These inherit from your .light / .dark root.
+   =============================== */
+
+/* Light */
+.light {
+  --card-bg: #ffffff;
+  --border-color: #eeeeee;
+  --text-color: #222222;
+  --heading-color: #1f1f1f;
+  --muted-text: #555555;
+  --elevated-bg: #fafafa;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 6px 20px rgba(0,0,0,0.15);
+  --primary: #2196f3;
+  --primary-contrast: #ffffff;
+  --price: #e53935;
+  --success: #2e7d32;
+  --pill-bg: #f0f8ff;
+  --pill-text: #333333;
+  --star-color: #FFD700;
+}
+
+/* Dark */
+.dark {
+  --card-bg: #2a2a2a;
+  --border-color: #3a3a3a;
+  --text-color: #eaeaea;
+  --heading-color: #ffffff;
+  --muted-text: #c9c9c9;
+  --elevated-bg: #1e1e1e;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --card-shadow-hover: 0 6px 22px rgba(0,0,0,0.55);
+  --primary: #5aa9ff;
+  --primary-contrast: #0c0c0c;
+  --price: #ff7b7b;
+  --success: #7bd88f;
+  --pill-bg: #2f3b46;
+  --pill-text: #e6f0ff;
+  --star-color: #ffd86b;
 }

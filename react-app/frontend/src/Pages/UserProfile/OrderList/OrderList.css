@@ -1,5 +1,5 @@
 /* ===============================
-   Order List Container
+   Order List Container (Theme Aware)
    =============================== */
 .order-list {
   width: 100%;
@@ -9,12 +9,30 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: var(--text-color, #222);
+  background: var(--bg-color, transparent);
 }
 
-/* Empty State */
+/* ===============================
+   Empty State
+   =============================== */
 .order-list p {
   text-align: center;
   font-size: 1.1rem;
-  color: #777;
+  color: var(--muted-text, #777);
   margin-top: 20px;
+}
+
+/* ============ Light Theme ============ */
+.light .order-list {
+  --text-color: #222;
+  --muted-text: #000000;
+  --bg-color: transparent;
+}
+
+/* ============ Dark Theme ============ */
+.dark .order-list {
+  --text-color: #f1f1f1;
+  --muted-text: #fffdfd;
+  --bg-color: transparent; /* keep transparent so background shows through */
 }

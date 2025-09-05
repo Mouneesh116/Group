@@ -6,7 +6,7 @@ import { faSearch, faUser, faShoppingCart, faBars, faMoon, faSun } from '@fortaw
 import logo from "../../assets/Images/logo_fsp3.png";
 import { CartContext } from '../../Context/CartContext';
 import { AuthContext } from '../../Context/AuthContext';
-import { useTheme } from '../../Context/ThemeContext';   // ✅ import theme context
+import { useTheme } from '../../Context/ThemeContext';   
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,7 +20,7 @@ const NavBar = () => {
   const cartCount = cartItems.length;
 
   const { isLoggedIn, logout } = useContext(AuthContext);
-  const { theme, toggleTheme } = useTheme();  // ✅ use theme
+  const { theme, toggleTheme } = useTheme();  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

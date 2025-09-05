@@ -1,6 +1,4 @@
-/* ================================
-   Categories Row Container
-   ================================ */
+
 .categories-row-container {
   width: 100vw; 
   min-height: 100vh;
@@ -36,8 +34,8 @@
    ================================ */
 .categories-row-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 60px;
   justify-items: center;
 }
 
@@ -49,6 +47,7 @@
   padding-top: 100%; /* Square ratio */
   position: relative;
   border-radius: 12px;
+
   overflow: hidden;
   background-size: cover;
   background-position: center;

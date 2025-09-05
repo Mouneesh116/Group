@@ -30,16 +30,18 @@
   padding: 60px 20px;
   box-sizing: border-box;
   transition: color 0.3s ease;
+  margin-bottom: 30px;
 }
 
 /* ================================
    Categories Section
    ================================ */
 .homepage-categories-section {
-  padding: 60px 20px;
+  padding: 60px 40px;
   background: var(--categories-bg);
   color: var(--categories-text);
   transition: background 0.3s ease, color 0.3s ease;
+  margin-bottom: 0px;
 }
 
 /* ================================
@@ -104,7 +106,7 @@
   --homepage-bg: #ffffff;
   --homepage-text: #222;
 
-  --hero-text: #ffffff;
+  --hero-text: #000000;
 
   --categories-bg: #fafafa;
   --categories-text: #222;
@@ -127,7 +129,7 @@
   --homepage-bg: #121212;
   --homepage-text: #e0e0e0;
 
-  --hero-text: #f1f1f1;
+  --hero-text: #000000;
 
   --categories-bg: #1f1f1f;
   --categories-text: #f1f1f1;
