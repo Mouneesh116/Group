@@ -114,7 +114,7 @@ export const updateProduct = async (req, res) => {
             return res.status(404).json({ message: "Product not found for the given ID" });
         }
 
-        // console.log("Product updated successfully:", updatedProduct);
+        console.log("Product updated successfully");
         res.status(200).json({ message: "Product updated successfully", product: updatedProduct });
     } catch (error) {
         console.error("Error updating product:", error);

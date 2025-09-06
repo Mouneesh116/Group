@@ -164,7 +164,7 @@ export const deleteAfterOrdering = async (req,res) => {
             return res.status(404).json({ message: "Cart not found for the user" });
         }
 
-        console.log("Cart deleted after ordering", deletedCart);
+        console.log("Cart deleted after ordering");
         return res.status(200).json({ message: "Cart deleted after ordering", deletedCart });
     } catch (error) {
         console.log("Error deleting cart after ordering", error);
