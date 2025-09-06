@@ -1,4 +1,3 @@
-
 :root {
   /* Background & text */
   --bg-color: #f5f7fb;
@@ -19,21 +18,37 @@
   --warning: #ff9800;
   --danger: #f44336;
 
+  /* Filter & table */
+  --filter-bg: #e9ecef;
+  --table-header-bg: #f1f1f1;
+
+  /* Pagination & buttons */
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
+
   /* Chart specific fallbacks */
   --chart-tick-color: #555;
   --chart-grid-color: rgba(0,0,0,0.06);
   --chart-legend-color: #333;
 }
 
-/* Light theme overrides (optional — you likely already have .light) */
+/* Light theme overrides */
 .light {
   --bg-color: #f5f7fb;
   --card-bg: #fff;
   --text-color: #222;
   --muted-text: #666;
   --heading-color: #333;
+
   --border-color: #e0e0e0;
   --shadow-color: rgba(0,0,0,0.10);
+
+  --filter-bg: #e9ecef;
+  --table-header-bg: #f1f1f1;
+
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
+
   --chart-tick-color: #555;
   --chart-grid-color: rgba(0,0,0,0.06);
   --chart-legend-color: #333;
@@ -46,12 +61,21 @@
   --text-color: #f1f1f1;
   --muted-text: #bdbdbd;
   --heading-color: #f5f5f7;
+
   --border-color: rgba(255,255,255,0.06);
   --shadow-color: rgba(0,0,0,0.6);
+
+  --filter-bg: #1f1f1f;
+  --table-header-bg: #333;
+
+  --button-bg: #0d6efd;
+  --button-hover-bg: #0a58ca;
+
   --chart-tick-color: #cfcfcf;
   --chart-grid-color: rgba(255,255,255,0.04);
   --chart-legend-color: #f1f1f1;
 }
+
 
 /* ===============================
    Page / content wrapper

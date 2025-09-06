@@ -540,7 +540,7 @@ const Products = () => {
                           >
                             Edit
                           </button>
-                          <button onClick={() => handleDeleteProduct(product._id)}>
+                          <button style={{color:"black"}} onClick={() => handleDeleteProduct(product._id)}>
                             Delete
                           </button>
                         </>

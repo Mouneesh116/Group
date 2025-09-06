@@ -1,111 +1,235 @@
-/* src/components/Products.css */
-
 .adminproducts-product-management {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .adminproducts-add-product-form {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #eee;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .adminproducts-add-product-form h4 {
-    grid-column: 1 / 3;
-    margin-bottom: 10px;
-  }
-  
-  .adminproducts-add-product-form label {
-    font-weight: bold;
-  }
-  
-  .adminproducts-add-product-form input[type="text"],
-  .adminproducts-add-product-form input[type="number"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .adminproducts-add-product-form button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    grid-column: 1 / 3;
-  }
-  
-  .adminproducts-add-product-form button:hover {
-    background-color: #218838;
-  }
-  
-  .adminproducts-product-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .adminproducts-product-table th,
-  .adminproducts-product-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .adminproducts-product-table th {
-    background-color: #f1f1f1;
-  }
-  
-  .adminproducts-product-table input[type="text"],
-  .adminproducts-product-table input[type="number"] {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .adminproducts-product-actions {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-  }
-  
-  .adminproducts-product-actions button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
-  .adminproducts-product-actions button:hover {
-    background-color: #c82333;
-  }
-  
-  .adminproducts-product-actions .adminproducts-edit-button {
-    background-color: #007bff;
-  }
-  
-  .adminproducts-product-actions .adminproducts-edit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .adminproducts-product-actions .adminproducts-cancel-button {
-    background-color: #6c757d;
-  }
-  
-  .adminproducts-product-actions .adminproducts-cancel-button:hover {
-    background-color: #5a6268;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.adminproducts-add-product-form {
+  background: var(--elevated-bg, #f9f9f9);
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color, #eee);
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.adminproducts-add-product-form h4 {
+  grid-column: 1 / 3;
+  margin-bottom: 10px;
+  color: var(--heading-color, #333);
+}
+
+.adminproducts-add-product-form label {
+  font-weight: bold;
+  color: var(--text-color, #222);
+}
+
+.adminproducts-add-product-form input[type="text"],
+.adminproducts-add-product-form input[type="number"] {
+  padding: 8px;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #222);
+}
+
+.adminproducts-add-product-form button {
+  background-color: var(--success, #28a745);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  grid-column: 1 / 3;
+}
+
+.adminproducts-add-product-form button:hover {
+  background-color: var(--success-hover, #218838);
+}
+
+.adminproducts-product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminproducts-product-table th,
+.adminproducts-product-table td {
+  border: 1px solid var(--border-color, #ddd);
+  padding: 10px;
+  text-align: left;
+}
+
+.adminproducts-product-table th {
+  background-color: var(--table-header-bg, #f1f1f1);
+  color: var(--heading-color, #333);
+}
+
+.adminproducts-product-table input[type="text"],
+.adminproducts-product-table input[type="number"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #222);
+  box-sizing: border-box;
+}
+
+.adminproducts-product-actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.adminproducts-product-actions button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.adminproducts-product-actions .adminproducts-delete-button {
+  background-color: var(--danger, #dc3545);
+}
+.adminproducts-product-actions .adminproducts-delete-button:hover {
+  background-color: var(--danger-hover, #c82333);
+}
+
+.adminproducts-product-actions .adminproducts-edit-button {
+  background-color: var(--primary, #007bff);
+}
+.adminproducts-product-actions .adminproducts-edit-button:hover {
+  background-color: var(--primary-hover, #0056b3);
+}
+
+.adminproducts-product-actions .adminproducts-cancel-button {
+  background-color: var(--secondary, #6c757d);
+}
+.adminproducts-product-actions .adminproducts-cancel-button:hover {
+  background-color: var(--secondary-hover, #5a6268);
+}
+
+/* ===============================
+   Filter & Sort Section
+   =============================== */
+.adminproducts-filter-section {
+  background: var(--elevated-bg, #f9f9f9);
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #ddd);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.adminproducts-filter-section h4 {
+  flex-basis: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--heading-color, #333);
+  border-bottom: 1px solid var(--border-color, #ddd);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.adminproducts-filter-section label {
+  font-weight: 600;
+  color: var(--text-color, #222);
+}
+
+.adminproducts-filter-section select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #222);
+  cursor: pointer;
+}
+
+.adminproducts-filter-section select:focus {
+  outline: none;
+  border-color: var(--primary, #007bff);
+}
+
+/* ===============================
+   Current Products Table
+   =============================== */
+.adminproducts-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg, #fff);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow, 0 2px 5px rgba(0,0,0,0.1));
+}
+
+.adminproducts-product-table th,
+.adminproducts-product-table td {
+  border: 1px solid var(--border-color, #ddd);
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--text-color, #222);
+}
+
+.adminproducts-product-table th {
+  background-color: var(--table-header-bg, #f1f1f1);
+  color: var(--heading-color, #333);
+  font-weight: bold;
+}
+
+.adminproducts-product-table input,
+.adminproducts-product-table select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #222);
+  box-sizing: border-box;
+}
+
+.adminproducts-product-table img {
+  border-radius: 4px;
+  background: var(--elevated-bg, #f0f0f0);
+}
+
+/* ===============================
+   Pagination Controls
+   =============================== */
+.adminproducts-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-color, #222);
+}
+
+.adminproducts-pagination button {
+  background: var(--primary, #007bff);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.adminproducts-pagination button:disabled {
+  background: var(--border-color, #ccc);
+  cursor: not-allowed;
+}
+
+.adminproducts-pagination button:hover:not(:disabled) {
+  background: var(--primary-hover, #0056b3);
+}

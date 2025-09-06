@@ -1,8 +1,9 @@
 /* Base Sidebar */
 .sidebar-container {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: -250px; /* Hidden by default (mobile) */
+  margin-left: -200px;
   width: 200px;
   height: 100vh;
   background: var(--sidebar-bg, #111);
