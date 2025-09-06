@@ -9,7 +9,7 @@ export const addReview = async (req, res) => {
         }
         const { review, rating, userName } = req.body; // Extract userName from the request body
         const userId = req.user._id; // Get userId from req.user (populated by AuthMiddleware)
-        console.log(productId, review, userName);
+        // console.log(productId, review, userName);
         // Validate required fields
         if (!productId || !review || !userName) {
             return res.status(400).json({ message: "Product ID, review text, and user name are required." });
@@ -69,7 +69,7 @@ export const addReview = async (req, res) => {
         };
 
         const createdReview = await Review.create(newReview);
-        console.log("Review created successfully", createdReview);
+        console.log("Review created successfully");
 
         return res.status(200).json({
             message: "Review created successfully",
@@ -94,7 +94,7 @@ export const getReviews = async (req,res) => {
         if(!productReviews){
             return res.status(200).json({message: "No reviews found for this product"});
         };
-        console.log("Product Reviews", productReviews.reviews,);
+        // console.log("Product Reviews", productReviews.reviews,);
         return res.status(200).json({message: "Product reviews fetched successfully", reviews: productReviews.reviews});
     } catch (error) {
         console.log("Error fetching product reviews", error);
@@ -129,7 +129,7 @@ export const deleteReview = async (req,res) => {
         // Remove the review from the array
         productReviews.reviews.splice(userReviewIndex,1);
         await productReviews.save();
-        console.log("Review deleted successfully", productReviews.reviews);
+        console.log("Review deleted successfully");
         return res.status(200).json({message: "Review deleted successfully", reviews: productReviews.reviews});
         
     } catch (error) {
