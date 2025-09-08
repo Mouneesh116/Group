@@ -30,3 +30,5 @@ export const sendMail = async ({ to, subject, text, html }) => {
   const info = await transporter.sendMail(mailOptions);
   return info;
 };
+
+
