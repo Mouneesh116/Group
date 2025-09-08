@@ -1,3 +1,4 @@
+// OrderCard.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import './OrderCard.css';
 import axios from 'axios';
@@ -6,54 +7,85 @@ import { AuthContext } from '../../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Accessibility for React Modal
+// Ensure the app element is set once in your app root (you can keep this here if not set elsewhere)
 Modal.setAppElement('#root');
 
-const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, initialItemStatus }) => {
+const OrderCard = ({
+  order,
+  productId,
+  image = null,           // optional image prop (use if provided)
+  price,
+  title,
+  onOrderChange,
+  quantity,
+  initialItemStatus = ''
+}) => {
   const { userName } = useContext(AuthContext);
   const token = localStorage.getItem('token');
 
-  const [orderImg, setOrderImg] = useState('');
+  const [orderImg, setOrderImg] = useState(image || '');
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
-  const [orderStatus, setOrderStatus] = useState(initialItemStatus);
+  const [orderStatus, setOrderStatus] = useState(initialItemStatus || '');
   const [isCancelDisabled, setIsCancelDisabled] = useState(false);
   const [isReturnDisabled, setIsReturnDisabled] = useState(false);
 
-  // Fetch product image & set button states
+  // Keep local status in sync if parent changes initialItemStatus
   useEffect(() => {
+    if (initialItemStatus && initialItemStatus !== orderStatus) {
+      setOrderStatus(initialItemStatus);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialItemStatus]);
+
+  // Fetch product image if not provided via props and set button states
+  useEffect(() => {
+    let cancelled = false;
+
     const fetchImageUrl = async () => {
+      if (image) return; // already provided
+      if (!productId) return;
+
       try {
         const response = await axios.get(
           `http://localhost:8080/api/products/getProductImage/${productId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
-        // console.log("Image URL response:", response.data);
-        if (response.data?.imageUrl) {
-          setOrderImg(response.data.imageUrl);
+
+        if (!cancelled && response?.data) {
+          // accept both imageUrl or image (defensive)
+          const img = response.data.imageUrl || response.data.image || null;
+          if (img) setOrderImg(img);
         }
       } catch (err) {
-        console.error('Error fetching image URL:', err);
+        // don't spam the console if it's expected to be missing
+        console.error('Error fetching image URL:', err?.response?.data || err.message || err);
       }
     };
 
-    // Disable buttons based on status
-    if (['cancelled', 'refunded', 'delivered', 'returned & refunded', 'return requested'].includes(orderStatus.toLowerCase())) {
+    // Determine disabled states from status
+    const statusLower = (orderStatus || '').toLowerCase();
+
+    if (['cancelled', 'refunded', 'delivered', 'returned & refunded', 'return requested'].includes(statusLower)) {
       setIsCancelDisabled(true);
     } else {
       setIsCancelDisabled(false);
     }
 
-    if (orderStatus.toLowerCase() !== 'delivered' || ['returned & refunded', 'return requested'].includes(orderStatus.toLowerCase())) {
+    if (statusLower !== 'delivered' || ['returned & refunded', 'return requested'].includes(statusLower)) {
       setIsReturnDisabled(true);
     } else {
       setIsReturnDisabled(false);
     }
-    fetchImageUrl();
-  }, [productId, token, orderStatus]);
+
+    // fetch image only if not provided
+    if (!image && productId) fetchImageUrl();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [productId, token, orderStatus, image]);
 
   // Cancel order item
   const handleCancelOrderItem = async () => {
@@ -74,9 +106,11 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
         setOrderStatus('Cancelled');
         setIsCancelDisabled(true);
 
-        if (onOrderChange) {
+        if (typeof onOrderChange === 'function') {
           onOrderChange(order.id, productId, 'Cancelled');
         }
+      } else {
+        toast.error(response.data?.message || 'Failed to cancel order.');
       }
     } catch (error) {
       console.error('Error cancelling order:', error);
@@ -104,9 +138,11 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
         setIsReturnDisabled(true);
         setIsCancelDisabled(true);
 
-        if (onOrderChange) {
+        if (typeof onOrderChange === 'function') {
           onOrderChange(order.id, productId, 'Return Requested');
         }
+      } else {
+        toast.error(response.data?.message || 'Failed to request return.');
       }
     } catch (error) {
       console.error('Error requesting return:', error);
@@ -134,7 +170,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
         setRating(0);
         setReview('');
       } else {
-        toast.error(response.data.message || 'Failed to submit review.');
+        toast.error(response.data?.message || 'Failed to submit review.');
       }
     } catch (error) {
       console.error('Error submitting review:', error);
@@ -142,9 +178,12 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
     }
   };
 
-  // Format date
-  const orderDate = order?.date ? new Date(order.date) : null;
-  const formattedDate = orderDate && !isNaN(orderDate) ? orderDate.toLocaleDateString() : 'N/A';
+  // Format date (safe)
+  const orderDate = order?.date ? new Date(order.date) : (order?.orderDate ? new Date(order.orderDate) : null);
+  const formattedDate = orderDate && !isNaN(orderDate.getTime()) ? orderDate.toLocaleDateString() : 'N/A';
+
+  // Only enable review button if orderStatus is delivered (case-insensitive)
+  const isReviewEnabled = (orderStatus || '').toLowerCase() === 'delivered';
 
   return (
     <div className="order-card-container">
@@ -161,7 +200,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
           <p><strong>Price:</strong> ₹{price}</p>
           <p><strong>Quantity:</strong> {quantity}</p>
           <p><strong>Status:</strong> {orderStatus}</p>
-          <p><strong>Total Price:</strong> ₹{price * quantity}</p>
+          <p><strong>Total Price:</strong> ₹{(Number(price) * Number(quantity)).toFixed(2)}</p>
         </div>
       </div>
 
@@ -181,7 +220,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
           onClick={handleCancelOrderItem}
           disabled={isCancelDisabled}
         >
-          {['cancelled', 'returned & refunded', 'delivered', 'return requested'].includes(orderStatus.toLowerCase())
+          {['cancelled', 'returned & refunded', 'delivered', 'return requested'].includes((orderStatus || '').toLowerCase())
             ? orderStatus
             : 'Cancel Order'}
         </button>
@@ -189,7 +228,7 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
         <button
           className="order-card-review-button"
           onClick={() => setIsReviewModalOpen(true)}
-          disabled={orderStatus.toLowerCase() === 'delivered'|| orderStatus.toLowerCase() === 'cancelled'}
+          disabled={!isReviewEnabled}
         >
           Review
         </button>
@@ -198,17 +237,21 @@ const OrderCard = ({ order, productId,  price, title, onOrderChange, quantity, i
       {/* Review Modal */}
       <Modal
         isOpen={isReviewModalOpen}
-        onRequestClose={() => setIsReviewModalOpen(true)}
+        onRequestClose={() => setIsReviewModalOpen(false)}
         className="order-card-modal"
         overlayClassName="order-card-modal-overlay"
       >
         <h4 className="order-card-modal-title">Leave a Review for {title}</h4>
-        <div className="order-card-rating-stars">
+        <div className="order-card-rating-stars" aria-label="Rating">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
               key={star}
+              role="button"
+              tabIndex={0}
+              aria-pressed={star <= rating}
               className={`order-card-star ${star <= rating ? 'order-card-star-selected' : ''}`}
               onClick={() => setRating(star)}
+              onKeyDown={(e) => { if (e.key === 'Enter') setRating(star); }}
             >
               ★
             </span>

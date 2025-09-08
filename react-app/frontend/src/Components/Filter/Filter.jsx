@@ -1,14 +1,11 @@
-// Filter.jsx
 import React, { useState, useEffect, useMemo } from "react";
 import "./Filter.css";
 
 const DEFAULT_RANGE = { label: "All", min: null, max: null };
-
-// format rupee with Indian grouping
 const fmt = (n) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(n);
 
-// build buckets with fixed step (1000 by default)
+// fixed step buckets (₹1000 by default)
 function buildBucketsFixedStep(min, max, stepSize = 1000, maxBuckets = 15) {
   if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) {
     return [DEFAULT_RANGE];
@@ -37,161 +34,125 @@ function buildBucketsFixedStep(min, max, stepSize = 1000, maxBuckets = 15) {
     }
   }
 
-  // dedupe safe-guard
-  const dedup = [];
-  for (const r of ranges) {
-    if (!dedup.some((x) => String(x.min) === String(r.min) && String(x.max) === String(r.max))) {
-      dedup.push(r);
-    }
-  }
-
-  return dedup;
+  // dedupe
+  return ranges.filter(
+    (r, i, arr) =>
+      arr.findIndex((x) => x.min === r.min && x.max === r.max) === i
+  );
 }
 
 const Filter = ({
   category = null,
   subCategories = [],
-  onFilter = () => {},
-  onCloseFilter = () => {},
   data = [],
+  onFilter = () => {},
   stepSize = 1000,
   maxBuckets = 15,
 }) => {
-  const [activeSubCategory, setActiveSubCategory] = useState(null);
-  const [selectedPriceRangeLabel, setSelectedPriceRangeLabel] = useState(DEFAULT_RANGE.label);
+  const [subCategory, setSubCategory] = useState("");
+  const [priceLabel, setPriceLabel] = useState(DEFAULT_RANGE.label);
   const [priceRanges, setPriceRanges] = useState([DEFAULT_RANGE]);
-  const [pendingFilter, setPendingFilter] = useState({ subCategory: null, minPrice: null, maxPrice: null });
 
-  // derive numeric prices for the scope (category or all)
+  // derive prices for current category (or all if none)
   const pricesForScope = useMemo(() => {
     const items = Array.isArray(data) ? data : [];
-
     const normalizedCategory = (() => {
       if (!category && category !== 0) return null;
       if (typeof category === "string") return category.trim().toLowerCase();
-      if (typeof category === "object") return (category.name || category.title || category._id || "").toString().trim().toLowerCase();
+      if (typeof category === "object")
+        return (
+          (category.name || category.title || category._id || "")
+            .toString()
+            .trim()
+            .toLowerCase()
+        );
       return String(category).trim().toLowerCase();
     })();
 
     const filtered = normalizedCategory
-      ? items.filter((it) => ((it?.category ?? it?.categoryName ?? "") + "").toString().toLowerCase().trim() === normalizedCategory)
+      ? items.filter(
+          (it) =>
+            ((it?.category ?? it?.categoryName ?? "") + "")
+              .toString()
+              .toLowerCase()
+              .trim() === normalizedCategory
+        )
       : items;
 
-    const prices = filtered
+    return filtered
       .map((it) => {
         const val = it?.newPrice ?? it?.price ?? it?.mrp ?? it?.amount ?? null;
-        if (val === null || val === undefined) return null;
+        if (val == null) return null;
         const num = Number(String(val).replace(/[^\d.-]+/g, ""));
         return Number.isFinite(num) ? num : null;
       })
       .filter((p) => p !== null)
       .sort((a, b) => a - b);
-
-    return prices;
   }, [data, category]);
 
-  // compute price ranges whenever prices or config changes
+  // build price ranges
   useEffect(() => {
-    if (!pricesForScope || pricesForScope.length === 0) {
+    if (!pricesForScope.length) {
       setPriceRanges([DEFAULT_RANGE]);
-      setSelectedPriceRangeLabel(DEFAULT_RANGE.label);
-      setPendingFilter({ subCategory: null, minPrice: null, maxPrice: null });
+      setPriceLabel(DEFAULT_RANGE.label);
       return;
     }
-
     const min = pricesForScope[0];
     const max = pricesForScope[pricesForScope.length - 1];
-
     const ranges = buildBucketsFixedStep(min, max, stepSize, maxBuckets);
     setPriceRanges(ranges);
-    setSelectedPriceRangeLabel(ranges[0].label);
-    setPendingFilter({ subCategory: null, minPrice: null, maxPrice: null });
+    setPriceLabel(ranges[0].label);
   }, [pricesForScope, stepSize, maxBuckets]);
 
-  // handlers
-  const handleSubCategory = (sub) => {
-    setActiveSubCategory(sub);
-    setSelectedPriceRangeLabel(DEFAULT_RANGE.label);
-    setPendingFilter({ subCategory: sub, minPrice: null, maxPrice: null });
-  };
+  // fire filter immediately
+  useEffect(() => {
+    const range = priceRanges.find((r) => r.label === priceLabel) || DEFAULT_RANGE;
+    onFilter({
+      subCategory: subCategory || null,
+      minPrice: range.min,
+      maxPrice: range.max,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subCategory, priceLabel, priceRanges]);
 
-  const handlePriceChange = (e) => {
-    const label = e.target.value;
-    setSelectedPriceRangeLabel(label);
-    setActiveSubCategory(null);
-    const range = priceRanges.find((r) => r.label === label) || DEFAULT_RANGE;
-    setPendingFilter({ subCategory: null, minPrice: range.min, maxPrice: range.max });
-  };
-
-  const handleApply = () => {
-    if (typeof onFilter === "function") onFilter(pendingFilter);
-  };
-
-  const handleCancel = () => {
-    // clear local state then notify parent to close
-    setActiveSubCategory(null);
-    setSelectedPriceRangeLabel(DEFAULT_RANGE.label);
-    setPendingFilter({ subCategory: null, minPrice: null, maxPrice: null });
-    if (typeof onCloseFilter === "function") onCloseFilter();
+  const handleClear = () => {
+    setSubCategory("");
+    setPriceLabel(DEFAULT_RANGE.label);
   };
 
   return (
-    <div className="filter-vertical" role="region" aria-label="Product filters">
-      {/* Header */}
-      <div className="fv-header">
-        <h3 className="fv-title">FILTER</h3>
-      </div>
+    <nav className="navbar-filter">
+      <span className="nf-label">Filter</span>
 
-      {/* Subcategory */}
-      <div className="fv-section" aria-label="Sub categories">
-        <h4 className="fv-heading">SUB CATEGORY</h4>
-        <div className="fv-sub-buttons" role="list">
-          {Array.isArray(subCategories) && subCategories.length > 0 ? (
-            subCategories.map((sc, idx) => {
-              const label = String(sc);
-              const isActive = activeSubCategory === sc;
-              return (
-                <button
-                  key={`${label}-${idx}`}
-                  type="button"
-                  className={`fv-chip ${isActive ? "active" : ""}`}
-                  onClick={() => handleSubCategory(sc)}
-                  aria-pressed={isActive}
-                >
-                  {label}
-                </button>
-              );
-            })
-          ) : (
-            <div className="fv-empty">No sub categories</div>
-          )}
-        </div>
-      </div>
+      <select
+        value={subCategory}
+        onChange={(e) => setSubCategory(e.target.value)}
+        className="nf-select"
+      >
+        <option value="">All Subcategories</option>
+        {subCategories.map((sc, idx) => (
+          <option key={`${sc}-${idx}`} value={sc}>
+            {sc}
+          </option>
+        ))}
+      </select>
 
-      {/* Price range */}
-      <div className="fv-section" aria-label="Price range">
-        <h4 className="fv-heading">PRICE RANGE</h4>
-        <div className="fv-price">
-          <select value={selectedPriceRangeLabel} onChange={handlePriceChange} aria-label="Price range">
-            {priceRanges.map((r, i) => (
-              <option key={`${r.label}-${i}`} value={r.label}>
-                {r.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      <select
+        value={priceLabel}
+        onChange={(e) => setPriceLabel(e.target.value)}
+        className="nf-select"
+      >
+        {priceRanges.map((r, i) => (
+          <option key={`${r.label}-${i}`} value={r.label}>
+            {r.label}
+          </option>
+        ))}
+      </select>
 
-      {/* Actions */}
-      <div className="fv-actions">
-        <button type="button" className="fv-apply" onClick={handleApply} aria-label="Apply filters">
-          Apply
-        </button>
-        <button type="button" className="fv-cancel" onClick={handleCancel} aria-label="Cancel filters">
-          Cancel
-        </button>
-      </div>
-    </div>
+      <button className="nf-clear-btn" onClick={handleClear}>
+        Clear
+      </button>
+    </nav>
   );
 };
 
