@@ -30,8 +30,7 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(morgan("dev"))
 
-// const cs = "mongodb://localhost:27017/compassdb";
-// const localConnectionString = "mongodb://localhost:27017/"
+
 mongoose.connect(mongoUri).then(() => {
         console.log("Connected to MongoDB database");
     })
