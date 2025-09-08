@@ -48,6 +48,7 @@
    Offers Section
    ================================ */
 .homepage-offers-section {
+  width: 100%;
   padding: 60px 20px;
   background: var(--offers-bg);
   color: var(--offers-text);

@@ -24,7 +24,6 @@ const SingleProduct = () => {
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [userReviews, setUserReviews] = useState([]);
-  // Fetch the product based on the ID
   useEffect(() => {
     const fetchUserReviews = async () => {
       try {
@@ -84,10 +83,8 @@ const SingleProduct = () => {
     } else {
         addToWishlist(filteredProduct);
     }
-    // Optimistically toggle local state, WishlistContext will handle backend sync
     setIsLiked(prevIsLiked => !prevIsLiked);
 };
-  // Handle "Add to Cart" button click
   const handleAddToCart = () => {
     if(isLoggedIn){
       const productDetails = {
@@ -111,7 +108,6 @@ const SingleProduct = () => {
     }
   };
  
-  // Handle "Buy Now" button click
   const handleClick = () => {
     if(isLoggedIn){
       const productDetails = {
@@ -146,16 +142,14 @@ const SingleProduct = () => {
   return (
     <div className="singleproduct-app">
       <div className="singleproduct-mainPage">
-        {/* Left-hand side: Main Image */}
         <div className="singleproduct-imagePart">
           <div className="singleproduct-mainimg">
             <div className="singleproduct-img">
-              {/* Wishlist icon wrapper */}
               <div className="singleproduct-wishlist-icon" onClick={handleLikeToggle}>
                                 {isLiked ? (
-                                    <FaHeart style={{ color: 'red' }} /> // Filled heart if liked
+                                    <FaHeart style={{ color: 'red' }} /> 
                                 ) : (
-                                    <FaRegHeart /> // Outline heart if not liked
+                                    <FaRegHeart /> 
                                 )}
               </div>
               <img src={mainImage} alt={filteredProduct.title} height="400px" width="425px" />
@@ -167,7 +161,6 @@ const SingleProduct = () => {
           </div>
         </div>
  
-        {/* Right-hand side: Product Details */}
         <div className="singleproduct-detailsPart">
           <div className="singleproduct-det-1">
             <div className="singleproduct-product-title">
@@ -189,7 +182,7 @@ const SingleProduct = () => {
             <p>Category - {filteredProduct.subCategory}</p>
             <p>{filteredProduct.company} Assured Product</p>
             <div className="singleproduct-color-row">
-              <p>{selectedColor}:</p> {/* Display the selected color */}
+              <p>{selectedColor}:</p> 
               <div className="singleproduct-color-options">
                 <div className="singleproduct-color-wrapper" onClick={() => handleColorSelect('Red')}>
                   <div className="singleproduct-color-circle" style={{ backgroundColor: 'red' }}></div>
@@ -232,7 +225,7 @@ const SingleProduct = () => {
           </div>
           <div className="singleproduct-user-info">
             <p className="user-name">{review.userName}</p>
-            {/* <p className="review-date">
+            <p className="review-date">
               {review.reviewDate
                 ? new Date(review.reviewDate).toLocaleDateString('en-GB', {
                     day: '2-digit',
@@ -240,7 +233,7 @@ const SingleProduct = () => {
                     year: 'numeric',
                   })
                 : "Date not available"}
-            </p> */}
+            </p>
           </div>
           <div className="singleproduct-review-rating">
             {[...Array(review.rating)].map((_, i) => (

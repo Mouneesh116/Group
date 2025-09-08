@@ -31,7 +31,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import FloatingChatBot from "./Pages/ChatBot/FloatingChatBot";
 import { ThemeProvider } from "./Context/ThemeContext";
-
+import Payment from "./Pages/Payment/Payment";
 import EditProfile from "./Pages/AdminPage/EditProfile";
 import ChangePassword from "./Pages/AdminPage/ChangePassword";
 import Payment from "./Pages/Payment/Payment";
@@ -87,6 +87,7 @@ const AppContent = () => {
                 path="/categories/:category/:id"
                 element={<SingleProduct />}
               />
+              <Route path="/payment" element={<Payment />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/payment" element={<ProductCard />} />
               <Route path="/search" element={<SearchResults />} />

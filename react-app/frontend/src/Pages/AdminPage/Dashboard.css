@@ -2,9 +2,9 @@
   /* Background & text */
   --bg-color: #f5f7fb;
   --card-bg: #fff;
-  --text-color: #222;
+  --text-color: #ffeeee;
   --muted-text: #666;
-  --heading-color: #333;
+  --heading-color: #fff5f5;
 
   /* Borders & shadows */
   --border-color: #e0e0e0;
@@ -50,7 +50,7 @@
   --button-hover-bg: #0056b3;
 
   --chart-tick-color: #555;
-  --chart-grid-color: rgba(0,0,0,0.06);
+  --chart-grid-color: rgba(247, 237, 237, 0.06);
   --chart-legend-color: #333;
 }
 

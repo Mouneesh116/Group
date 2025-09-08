@@ -1,32 +1,98 @@
 /* ================================
+   Theme variables (fallbacks)
+   ================================ */
+:root {
+  --bg: #f9f9fb;
+  --text: #222;
+  --muted-text: #666;
+  --card-bg: #fff;
+  --card-shadow: 0 5px 18px rgba(0,0,0,0.07);
+  --card-hover-shadow: 0 6px 22px rgba(0,0,0,0.10);
+  --accent: #6a00ff;
+  --accent-2: #00bcd4;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --input-text: #111;
+  --button-bg: var(--accent);
+  --button-bg-hover: #5200cc;
+  --hero-overlay-from: rgba(106,0,255,0.6);
+  --hero-overlay-to: rgba(0,188,212,0.6);
+  --info-card-bg: var(--card-bg);
+}
+
+/* Light theme (applies when .light is present on a parent element) */
+.light {
+  --bg: #f9f9fb;
+  --text: #222;
+  --muted-text: #666;
+  --card-bg: #fff;
+  --card-shadow: 0 5px 18px rgba(0,0,0,0.05);
+  --card-hover-shadow: 0 6px 22px rgba(0,0,0,0.08);
+  --accent: #6a00ff;
+  --accent-2: #00bcd4;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --input-text: #111;
+  --button-bg: var(--accent);
+  --button-bg-hover: #5200cc;
+  --hero-overlay-from: rgba(106,0,255,0.6);
+  --hero-overlay-to: rgba(0,188,212,0.6);
+  --info-card-bg: #fff;
+}
+
+/* Dark theme (applies when .dark is present on a parent element) */
+.dark {
+  --bg: #0f1113;
+  --text: #e9eef8;
+  --muted-text: #c3c7d0;
+  --card-bg: #16171a;
+  --card-shadow: 0 5px 18px rgba(0,0,0,0.6);
+  --card-hover-shadow: 0 6px 22px rgba(0,0,0,0.7);
+  --accent: #7c6cff;
+  --accent-2: #00aab8;
+  --input-bg: #121214;
+  --input-border: #2a2a2a;
+  --input-text: #e9eef8;
+  --button-bg: var(--accent);
+  --button-bg-hover: #5a49d9;
+  --hero-overlay-from: rgba(30, 10, 60, 0.65);
+  --hero-overlay-to: rgba(0, 80, 90, 0.4);
+  --info-card-bg: #1e1f23;
+}
+
+/* ================================
    Container
    ================================ */
 .contact-us-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
 }
 
 /* ================================
    Hero Section
    ================================ */
 .contact-hero-section {
-  background: linear-gradient(rgba(106, 0, 255, 0.6), rgba(0, 188, 212, 0.6)),
+  background:
+    linear-gradient(var(--hero-overlay-from), var(--hero-overlay-to)),
     url("https://img.freepik.com/free-photo/contact-us-hand-showing-with-phone-email-address-icons_1232-3062.jpg")
       no-repeat center center/cover;
-  color: #fff;
+  color: var(--text);
   text-align: center;
   padding: 100px 20px;
   border-radius: 12px;
   margin-bottom: 60px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--card-shadow);
 }
 
 .contact-hero-section .hero-title {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 15px;
+  color: #fff; /* hero text better small-contrast over overlay */
 }
 
 .contact-hero-section .hero-subtitle {
@@ -34,10 +100,11 @@
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
+  color: rgba(255,255,255,0.92);
 }
 
 /* ================================
-   Contact Info Section
+   Info Cards Grid
    ================================ */
 .info-cards-grid {
   display: grid;
@@ -46,31 +113,39 @@
   margin-top: 30px;
 }
 
+/* Use card variables */
 .info-card {
   text-align: center;
   padding: 25px;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.light .info-card {
-  background: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.dark .info-card {
-  background: #2a2a2a;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.2s;
+  background: var(--info-card-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 .info-card:hover {
   transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+  border-color: rgba(0,0,0,0.06);
 }
 
 .info-icon {
   font-size: 2rem;
   margin-bottom: 15px;
-  color: #6a00ff;
+  color: var(--accent);
+}
+
+/* subtle heading inside card */
+.info-card h4 {
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--muted-text);
 }
 
 /* ================================
@@ -92,7 +167,7 @@
 .form-image {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow);
 }
 
 .contact-form {
@@ -100,6 +175,7 @@
   min-width: 300px;
 }
 
+/* form fields */
 .form-group {
   margin-bottom: 15px;
 }
@@ -109,27 +185,39 @@
   font-weight: bold;
   margin-bottom: 6px;
   font-size: 0.95rem;
+  color: var(--text);
 }
 
+/* inputs & textarea */
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
   font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: var(--input-bg);
+  color: var(--input-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+  box-sizing: border-box;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba( var(--input-text-rgb, 0,0,0), 0.45 );
+}
+
+/* focus states */
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #6a00ff;
-  box-shadow: 0 0 6px rgba(106, 0, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba( var(--accent-rgb, 106,0,255), 0.12 );
   outline: none;
 }
 
+/* submit button */
 .submit-button {
-  background: #6a00ff;
+  background: var(--button-bg);
   color: #fff;
   padding: 12px 30px;
   border: none;
@@ -137,11 +225,12 @@
   font-weight: bold;
   font-size: 1.05rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.08s;
 }
 
 .submit-button:hover {
-  background: #5200cc;
+  background: var(--button-bg-hover);
+  transform: translateY(-1px);
 }
 
 /* ================================
@@ -149,7 +238,8 @@
    ================================ */
 .map-section iframe {
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
+  border: 0;
 }
 
 /* ================================
@@ -170,29 +260,43 @@
 .social-icons a {
   font-size: 2rem;
   transition: transform 0.3s ease, color 0.3s ease;
-  color: #6a00ff;
+  color: var(--accent);
 }
 
 .social-icons a:hover {
   transform: scale(1.2);
-  color: #00bcd4;
+  color: var(--accent-2);
+}
+
+/* ================================
+   Accessibility & small tweaks
+   ================================ */
+.contact-us-container a,
+.contact-us-container button {
+  color: inherit;
 }
 
 /* ================================
    Responsive Adjustments
    ================================ */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .contact-hero-section {
-    padding: 70px 15px;
+    padding: 70px 20px;
   }
   .contact-hero-section .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   .contact-hero-section .hero-subtitle {
     font-size: 1rem;
   }
+}
 
+@media (max-width: 768px) {
   .contact-form-content {
     flex-direction: column;
+  }
+
+  .contact-hero-section {
+    padding: 60px 15px;
   }
 }
