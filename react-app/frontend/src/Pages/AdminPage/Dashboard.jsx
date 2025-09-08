@@ -47,7 +47,7 @@ const Dashboard = () => {
       return {
         tickColor: read('--chart-tick-color', '#555'),
         gridColor: read('--chart-grid-color', 'rgba(0,0,0,0.06)'),
-        legendColor: read('--chart-legend-color', '#333'),
+        legendColor: read('--chart-legend-color', '#ffffffff'),
         cardBg: read('--card-bg', '#fff'),
         textColor: read('--text-color', '#222'),
         primary: read('--primary', '#2196f3'),
@@ -59,7 +59,7 @@ const Dashboard = () => {
         gridColor: 'rgba(0,0,0,0.06)',
         legendColor: '#333',
         cardBg: '#fff',
-        textColor: '#222',
+        textColor: '#2ea3baff',
         primary: '#2196f3',
         accent: '#007bff'
       };
@@ -68,7 +68,6 @@ const Dashboard = () => {
 
   const [themeVars, setThemeVars] = useState(getThemeVars());
 
-  // Watch for theme changes (class/style toggles on <html> or <body>)
   useEffect(() => {
     const applyTheme = () => setThemeVars(getThemeVars());
 
@@ -79,10 +78,8 @@ const Dashboard = () => {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
     observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'style'] });
 
-    // Also listen for manual window resizes or potential runtime changes
     window.addEventListener('resize', applyTheme);
 
-    // initial
     applyTheme();
 
     return () => {
@@ -91,7 +88,6 @@ const Dashboard = () => {
     };
   }, []);
 
-  // Fetch data from backend (once on mount)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -116,9 +112,7 @@ const Dashboard = () => {
               data: data.map((d) => d.value ?? d.count ?? d.sales ?? 0)
             };
           }
-          // some endpoints return an object keyed by month etc.
           if (typeof data === 'object') {
-            // try { labels: Object.keys, data: Object.values } fallback
             const keys = Object.keys(data || {});
             if (keys.length && typeof data[keys[0]] === 'number') {
               return { labels: keys, data: keys.map((k) => data[k]) };
@@ -139,9 +133,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, []); // run once
-
-  // memoized chart options driven by themeVars
+  }, []); 
   const salesChartOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
