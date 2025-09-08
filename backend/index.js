@@ -14,6 +14,7 @@ import PasswordResetRoute from './routes/PasswordResetRoute.js';
 import cors from 'cors';
 import User from './models/UserModel.js';
 import bcrypt from 'bcrypt';
+import morgan from 'morgan';
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,7 @@ const mongoUri = process.env.MONGO_URI_CONNECTION_STRING;
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
+app.use(morgan("dev"))
 
 
 mongoose.connect(mongoUri).then(() => {

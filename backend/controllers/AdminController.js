@@ -190,7 +190,7 @@ export const getAdminStats = async ( req, res ) => {
             totalUsers,
             totalRevenue: totalRevenue.length > 0 ? totalRevenue[0].totalRevenue : 0 // Handle case where no orders exist
         }
-        console.log(totalUsers, totalOrders, totalProducts, totalRevenue);
+        // console.log(totalUsers, totalOrders, totalProducts, totalRevenue);
         return res.status(200).json({message: "Admin stats fetched successfully",stats: stats});
         
     } catch (error) {

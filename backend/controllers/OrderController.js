@@ -171,12 +171,12 @@ export const updateOrderStatus = async (req, res) => {
  * ----------------------------------------- */
 export const verifyDeliveryOtp = async (req, res) => {
   try {
-    console.log("Verifying OTP with data:", req.params, req.body);
+    // console.log("Verifying OTP with data:", req.params, req.body);
     const { orderId } = req.params;
     const { userOtp } = req.body;
 
     const order = await Order.findById(orderId);
-    console.log("Found order:", order);
+    // console.log("Found order:", order);
 
     if (!order) return res.status(404).json({ message: "Order not found" });
 

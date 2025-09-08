@@ -64,7 +64,7 @@ const AdminDetails = () => {
           </div>
           <div className="admindetails-stat-card">
             <h4>Total Revenue</h4>
-            <p>₹{stats.totalRevenue}</p>
+            <p>₹{stats.totalRevenue?.toFixed(2)}</p>
           </div>
         </div>
       </div>

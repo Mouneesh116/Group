@@ -3,11 +3,7 @@ import "./ProductCard.css"; // Make sure this path is correct
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Ensure Link is imported if it's used
 
-const ProductCard = ({
-  image,
-  title,
-  company,
-  prevPrice,
+const ProductCard = ({ image, title, company, prevPrice,
   newPrice,
   reviews,
   color,

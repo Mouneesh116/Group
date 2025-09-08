@@ -1,14 +1,15 @@
 .adminorder-orders-view {
   padding: 20px;
-  background-color: #f8f9fa; /* Light background */
+  background-color: var(--bg-color);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Space from other content */
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin-bottom: 20px;
+  color: var(--text-color);
 }
  
 .adminorder-orders-view h3 {
   text-align:left;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 30px;
   font-size: 1.8em;
 }
@@ -20,22 +21,26 @@
   gap: 15px; /* Space between filter elements */
   margin-bottom: 30px;
   padding: 15px;
-  background-color: #e9ecef;
+  background-color: var(--filter-bg);
   border-radius: 8px;
   align-items: center; /* Vertically align items */
   justify-content: center; /* Center filters */
+  border: 1px solid var(--border-color);
+
 }
  
 .adminorder-filters-section input[type="text"],
 .adminorder-filters-section input[type="date"],
 .adminorder-filters-section select {
   padding: 10px 12px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 1em;
-  flex: 1; /* Allows inputs to grow and shrink */
-  min-width: 150px; /* Minimum width for inputs */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  flex: 1;
+  min-width: 150px;
+  box-sizing: border-box;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
  
 .adminorder-filters-section .adminorder-search-input {
@@ -93,21 +98,18 @@
  
 /* Individual Order Card */
 .order-card {
-  text-align: left;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  display: flex; /* Use flexbox for internal card layout */
-  flex-direction: column; /* Stack left and right sections vertically on small screens */
-  overflow: hidden;
+  box-shadow: 0 4px 8px var(--shadow-color);
   transition: transform 0.2s ease-in-out;
   padding: 15px;
 }
- 
+
 .order-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px var(--shadow-color);
 }
  
 .adminorder-order-card-left,
@@ -163,8 +165,7 @@
 .adminorder-order-total {
   font-size: 1.1em;
   font-weight: bold;
-  color: #28a745; /* Green for total amount */
-  margin-top: 10px;
+  color: var(--success-color);
 }
  
 /* Order Status Dropdown */
@@ -228,7 +229,7 @@
  
 .adminorder-pagination-controls button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: var(--button-bg);
   color: white;
   border: none;
   border-radius: 5px;
@@ -243,7 +244,7 @@
 }
  
 .adminorder-pagination-controls button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: var(--button-hover-bg);
 }
  
 .adminorder-pagination-controls span {
@@ -255,14 +256,11 @@
 .adminorder-loading-message,
 .adminorder-error-message,
 .adminorder-no-orders-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.1em;
-  color: #6c757d;
+  color: var(--muted-text-color);
 }
  
 .adminorder-error-message {
-  color: #dc3545;
+  color: var(--error-color);
   font-weight: bold;
 }
  
