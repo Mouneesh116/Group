@@ -7,7 +7,7 @@ import { sendMail } from "../utils/MailSender.js";
 
 dotenv.config();
 
-// ---- helpers ----
+
 const requireEnv = (k) => {
   if (!process.env[k]) {
     console.warn(`[WARN] Missing env var: ${k}`);
@@ -28,7 +28,7 @@ const generateToken = (user) => {
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
-// ================== CREATE USER ==================
+//CREATE USER
 export const createUser = async (req, res) => {
   try {
     let { username, email, password } = req.body || {};
@@ -49,10 +49,10 @@ export const createUser = async (req, res) => {
     ]);
 
     if (usernameExists) {
-      return res.status(409).json({ message: "Username already taken" });
+      return res.status(409).json({ message: "Username  already exsits" });
     }
     if (emailExists) {
-      return res.status(409).json({ message: "Email already taken" });
+      return res.status(409).json({ message: "Email already exists " });
     }
 
     // Hash password
