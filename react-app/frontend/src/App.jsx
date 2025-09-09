@@ -34,6 +34,7 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import Payment from "./Pages/Payment/Payment";
 import EditProfile from "./Pages/AdminPage/EditProfile";
 import ChangePassword from "./Pages/AdminPage/ChangePassword";
+import Payment from "./Pages/Payment/Payment";
 
 const AppContent = () => {
   const { role } = useContext(AuthContext);
@@ -88,6 +89,7 @@ const AppContent = () => {
               />
               <Route path="/payment" element={<Payment />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/payment" element={<ProductCard />} />
               <Route path="/search" element={<SearchResults />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/chat" element={<ChatBot />} />
