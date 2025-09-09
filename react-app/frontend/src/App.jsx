@@ -31,7 +31,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import FloatingChatBot from "./Pages/ChatBot/FloatingChatBot";
 import { ThemeProvider } from "./Context/ThemeContext";
-import Payment from "./Pages/Payment/Payment";
+// import Payment from "./Pages/Payment/Payment";
 import EditProfile from "./Pages/AdminPage/EditProfile";
 import ChangePassword from "./Pages/AdminPage/ChangePassword";
 import Payment from "./Pages/Payment/Payment";

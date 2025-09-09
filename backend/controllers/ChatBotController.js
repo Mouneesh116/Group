@@ -172,12 +172,7 @@ export const replyChatBot = async (req, res) => {
     if (inputMessage.includes("payment methods") || inputMessage.includes("payment")) {
       intent = "payments";
       botReply = "We accept Visa, MasterCard, Amex, Discover, PayPal, and Google Pay.";
-<<<<<<< HEAD
-    } else if (inputMessage.includes("hello") || message.toLowerCase() === "hi") {
-      botReply = "Hello there! How can I help you today regarding MS Trendzz's products or your orders?";
-=======
       return res.status(200).json({ reply: botReply, intent, contextProvided: false });
->>>>>>> a2adfe3e3ba73ec389d3598862451b430cf6cdf2
     }
 
     if (["hello", "hi", "hey"].includes(inputMessage) || inputMessage.startsWith("hello") || inputMessage.startsWith("hi")) {

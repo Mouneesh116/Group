@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
             <div className="footer-bottom">
                 <p>
-                    loyaltyMethods  Pvt. Ltd., Embassy Tech Village, Bengaluru, 560103, Karnataka, India
+                    loyaltyMethods  Pvt. Ltd., Vamsiram Suvarnadurga Tech Park, Hyderabad, 500032, Telangana, India
                 </p>
             </div>
         </footer>
