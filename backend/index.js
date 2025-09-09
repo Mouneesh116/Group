@@ -1,23 +1,27 @@
-// server.js (updated)
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cors from "cors";
-import morgan from "morgan";
-import crypto from "crypto";
-import Razorpay from "razorpay";
-import helmet from "helmet";
+// server.js (ESM)
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import crypto from 'crypto';
+import Razorpay from 'razorpay';
+import bcrypt from 'bcrypt';
 
-import ProductRoute from "./routes/ProductRoute.js";
-import OrderRoute from "./routes/OrderRoute.js";
-import UserRoute from "./routes/UserRoute.js";
-import CartRoute from "./routes/CartRoute.js";
-import AddressRoute from "./routes/AddressRoute.js";
-import ChatBotRoute from "./routes/ChatBotRoute.js";
-import wishListRoute from "./routes/WishListRoutes.js";
-import ReviewRoute from "./routes/ReviewRoute.js";
-import AdminRoute from "./routes/AdminRoute.js";
-import PasswordResetRoute from "./routes/PasswordResetRoute.js";
+// import routes (make sure these paths exist)
+import ProductRoute from './routes/ProductRoute.js';
+import OrderRoute from './routes/OrderRoute.js';
+import UserRoute from './routes/UserRoute.js';
+import CartRoute from './routes/CartRoute.js';
+import AddressRoute from './routes/AddressRoute.js';
+import ChatBotRoute from './routes/ChatBotRoute.js';
+import wishListRoute from './routes/WishListRoutes.js';
+import ReviewRoute from './routes/ReviewRoute.js';
+import AdminRoute from './routes/AdminRoute.js';
+import PasswordResetRoute from './routes/PasswordResetRoute.js';
+
+import User from './models/UserModel.js';
 
 dotenv.config();
 
@@ -26,7 +30,7 @@ const app = express();
 // Basic env-checking / defaults
 const mongoUri = process.env.MONGO_URI_CONNECTION_STRING;
 if (!mongoUri) {
-  console.error("Missing MONGO_URI_CONNECTION_STRING in .env");
+  console.error("Missing MONGO_URI_CONNECTION_STRING in .env — please set it and restart.");
 }
 
 const PORT = process.env.PORT || 4000;
@@ -38,6 +42,7 @@ if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
 
 // Middlewares
 app.use(helmet());
+
 app.use(
   cors({
     origin: FRONTEND_ORIGIN,
@@ -45,155 +50,142 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+
+// Parse JSON bodies
+app.use(express.json({ limit: "1mb" }));
+
+// HTTP request logger
 app.use(morgan("dev"));
 
 // connect to mongodb
-mongoose
-  .connect(mongoUri)
-  .then(() => {
+(async function connectDB() {
+  try {
+    if (!mongoUri) {
+      console.error("No MongoDB URI provided; skipping connection attempt.");
+      return;
+    }
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("Connected to MongoDB database");
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error?.message || error);
-  });
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error && error.message ? error.message : error);
+    // don't exit here in case the developer wants to debug locally;
+    // you may choose to process.exit(1) in production
+  }
+})();
 
-// app routes (keep your route order)
-app.use("/", ProductRoute);
-app.use("/", OrderRoute);
-app.use("/", UserRoute);
-app.use("/", CartRoute);
-app.use("/", ChatBotRoute);
-app.use("/", AddressRoute);
-app.use("/", wishListRoute);
-app.use("/", ReviewRoute);
-app.use("/", AdminRoute);
-app.use("/", PasswordResetRoute);
+// app routes (mounted at root — your routers should define specific paths)
+app.use('/', ProductRoute);
+app.use('/', OrderRoute);
+app.use('/', UserRoute);
+app.use('/', CartRoute);
+app.use('/', ChatBotRoute);
+app.use('/', AddressRoute);
+app.use('/', wishListRoute);
+app.use('/', ReviewRoute);
+app.use('/', AdminRoute);
+app.use('/', PasswordResetRoute);
 
-// Example admin creation endpoint (unchanged behaviour)
-app.post("/api/users/admin/create", async (req, res) => {
+// Admin creation endpoint (dev-only usage expected)
+app.post('/api/users/admin/create', async (req, res) => {
   try {
     const secretKey = req.body.secretKey;
     if (secretKey !== process.env.ADMIN_SECRET_KEY) {
       return res.status(403).json({ message: "Unauthorized" });
     }
-    // lazy import User model here to avoid circulars if any
-    const User = (await import("./models/UserModel.js")).default;
-    const existingAdmin = await User.findOne({ role: "admin" });
+    const existingAdmin = await User.findOne({ role: 'admin' });
     if (existingAdmin) {
       return res.status(400).json({ message: "Admin already exists" });
     }
     const password = req.body.password;
-    const salt = (await import("bcrypt")).genSaltSync(10);
-    const hashedPassword = (await import("bcrypt")).hashSync(password, salt);
+    if (!password) {
+      return res.status(400).json({ message: "Password is required" });
+    }
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
     const newAdmin = await User.create({
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      role: "admin",
+      role: 'admin'
     });
     return res.status(200).json({ message: "Admin created successfully", admin: newAdmin });
   } catch (error) {
-    console.error("Admin creation error:", error);
+    console.error("Error creating admin:", error);
     res.status(500).json({ message: "Error creating admin" });
   }
 });
 
-// Razorpay client
+//
+// Razorpay integration
+//
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID || "",
-  key_secret: process.env.RAZORPAY_KEY_SECRET || "",
+  key_id: process.env.RAZORPAY_KEY_ID || '',
+  key_secret: process.env.RAZORPAY_KEY_SECRET || ''
 });
 
 // health check for payments
-app.get("/api/payment", (_, res) => res.send("Razorpay Backend OK"));
+app.get('/api/payment', (_, res) => res.send('Razorpay Backend OK'));
 
 // Create an order
-// Accepts either:
-// - { amountInRupees: number }   // rupees (decimal allowed) - legacy/demo
-// - { amountInPaise: integer }    // paise (preferred if caller already converted)
-// - { orderPayload: { totalAmount: number } } // extract rupees from frontend order
-app.post("/api/create-order", async (req, res) => {
+app.post('/api/create-order', async (req, res) => {
   try {
-    // Determine amount (paise)
-    let amountInPaise = null;
+    // Accept either amountInRupees or amountInPaise (prefer paise when present)
+    let { amountInRupees, amountInPaise, receiptNotes } = req.body;
 
-    if (typeof req.body.amountInPaise === "number" && Number.isInteger(req.body.amountInPaise) && req.body.amountInPaise > 0) {
-      amountInPaise = req.body.amountInPaise;
-    } else if (typeof req.body.amountInRupees !== "undefined") {
-      const numeric = Number(req.body.amountInRupees);
+    if (amountInPaise == null) {
+      const numeric = Number(amountInRupees ?? 2);
       if (isNaN(numeric) || numeric <= 0) {
-        return res.status(400).json({ error: "Invalid amountInRupees" });
+        return res.status(400).json({ error: 'Invalid amountInRupees' });
       }
-      amountInPaise = Math.round(numeric * 100);
-    } else if (req.body.orderPayload && typeof req.body.orderPayload.totalAmount !== "undefined") {
-      const numeric = Number(req.body.orderPayload.totalAmount);
-      if (isNaN(numeric) || numeric <= 0) {
-        return res.status(400).json({ error: "Invalid orderPayload.totalAmount" });
-      }
-      amountInPaise = Math.round(numeric * 100);
+      amountInPaise = Math.round(numeric * 100); // convert to paise
     } else {
-      // fallback/demo: charge 2 INR
-      amountInPaise = 2 * 100;
+      amountInPaise = Number(amountInPaise);
+      if (isNaN(amountInPaise) || amountInPaise <= 0) {
+        return res.status(400).json({ error: 'Invalid amountInPaise' });
+      }
     }
 
-    if (!razorpay.key_id || !razorpay.key_secret) {
-      console.error("Razorpay keys not configured. Aborting create-order.");
-      return res.status(500).json({ error: "Payment gateway not configured" });
-    }
-
-    const { receiptNotes } = req.body;
     const order = await razorpay.orders.create({
       amount: amountInPaise,
-      currency: "INR",
-      receipt: "rcpt_" + Date.now(),
-      notes: Object.assign({ purpose: "React demo" }, receiptNotes || {}),
+      currency: 'INR',
+      receipt: 'rcpt_' + Date.now(),
+      notes: Object.assign({ purpose: 'React demo' }, receiptNotes || {})
     });
 
-    // return only minimal necessary data
+    // Respond with the fields the frontend expects
     res.json({ id: order.id, amount: order.amount, currency: order.currency });
   } catch (err) {
-    console.error("Create order error:", err);
-    res.status(500).json({ error: "Failed to create order" });
+    console.error('Create order error:', err && (err.message || err));
+    res.status(500).json({ error: 'Failed to create order' });
   }
 });
 
 // Verify payment signature
-// Accepts fields: razorpay_order_id, razorpay_payment_id, razorpay_signature
-// Also accepts alternative names: order_id, payment_id, signature (some clients)
-app.post("/api/verify-payment", (req, res) => {
+app.post('/api/verify-payment', (req, res) => {
   try {
-    const razorpay_order_id = req.body.razorpay_order_id || req.body.order_id;
-    const razorpay_payment_id = req.body.razorpay_payment_id || req.body.payment_id;
-    const razorpay_signature = req.body.razorpay_signature || req.body.signature;
-
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
-      return res.status(400).json({ ok: false, error: "Missing required fields" });
+      return res.status(400).json({ ok: false, error: 'Missing required fields: razorpay_order_id, razorpay_payment_id, razorpay_signature' });
     }
-
-    if (!process.env.RAZORPAY_KEY_SECRET) {
-      console.error("RAZORPAY_KEY_SECRET missing - cannot verify signature");
-      return res.status(500).json({ ok: false, error: "Payment verification unavailable" });
-    }
-
-    const body = razorpay_order_id + "|" + razorpay_payment_id;
-    const expected = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(body).digest("hex");
+    const body = razorpay_order_id + '|' + razorpay_payment_id;
+    const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || '')
+      .update(body).digest('hex');
     const ok = expected === razorpay_signature;
-
-    if (ok) {
-      return res.json({ ok: true });
-    } else {
-      console.warn("Invalid razorpay signature. expected:", expected, "got:", razorpay_signature);
-      return res.status(400).json({ ok: false, error: "Invalid signature" });
-    }
+    if (ok) return res.json({ ok: true });
+    return res.status(400).json({ ok: false, error: 'Invalid signature' });
   } catch (err) {
-    console.error("Verify payment error:", err);
-    res.status(500).json({ ok: false, error: "Verification error" });
+    console.error('Verify payment error:', err && (err.message || err));
+    res.status(500).json({ ok: false, error: 'Verification error' });
   }
 });
+
+// Generic root health-check
+app.get('/', (req, res) => res.send('API server is running'));
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Allowed frontend origin: ${FRONTEND_ORIGIN}`);
 });
