@@ -1,10 +1,3 @@
-/* Navbar.fabulous.css
-   Fabulous navbar styles (light + dark) — modern, glassy, responsive
-   - Assumes CSS variables from your main theme (e.g., --surface, --accent, --text).
-   - Works standalone but shines when used with your existing variables.
-   - Toggle dark mode by adding class `theme-dark` to <body> or `.dark` on a parent element.
-*/
-
 :root{
   --nav-height: 72px;
   --nav-pad: 18px 22px;
@@ -18,8 +11,8 @@
 
 /* Base container */
 .navbar-container {
-  position: sticky;
-  top: 12px; /* float a bit from top */
+  position: relative; /* no sticky */
+  top: 0;
   z-index: 1100;
   display: flex;
   gap: 8px;
@@ -28,11 +21,9 @@
   padding: var(--nav-pad);
   height: var(--nav-height);
   width: 100%;
-  transition: background 280ms cubic-bezier(.2,.9,.27,1), box-shadow 280ms ease, transform 280ms ease;
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  border-radius: 12px;
-  margin: 8px 12px; /* small spacing so the sticky card looks elevated */
+  transition: background 280ms ease, box-shadow 280ms ease;
+  border-radius: 0; 
+  margin: 0;
 }
 
 /* header row content wrapper */
@@ -46,7 +37,7 @@
 
 /* logo */
 .navbar-logo-image{
-  height: 48px;
+  height: 78px;
   width: auto;
   cursor: pointer;
   display: block;
@@ -100,18 +91,42 @@
   .navbar-search-input{ width:140px; max-width:48vw; }
 }
 
-/* THEME SCAFFOLD — light / dark help */
 /* Light */
-.light .navbar-container{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.65)); color: var(--text,#0f1724); border: 1px solid rgba(15,23,42,0.04); }
-.light .navbarmobile-menu-overlay{ background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.9)); color: var(--text,#0f1724); }
-.light .navbar-search-input{ background: rgba(255,255,255,0.95); border: 1px solid rgba(15,23,42,0.06); }
-.light .theme-toggle-btn{ color: var(--text,#0f1724); }
+.navbar-container.light {
+  background: #ffffff;
+  color: var(--text,#0f1724);
+  border: 1px solid rgba(15,23,42,0.04);
+}
+.navbar-container.light .navbarmobile-menu-overlay {
+  background: #ffffff;
+  color: var(--text,#0f1724);
+}
+.navbar-container.light .navbar-search-input {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(15,23,42,0.06);
+}
+.navbar-container.light .theme-toggle-btn {
+  color: var(--text,#0f1724);
+}
 
 /* Dark */
-.theme-dark .navbar-container{ background: linear-gradient(180deg, rgba(10,12,18,0.66), rgba(6,10,20,0.6)); color: var(--text,#e6eef6); border: 1px solid rgba(255,255,255,0.04); }
-.theme-dark .navbarmobile-menu-overlay{ background: linear-gradient(180deg, rgba(8,10,16,0.9), rgba(8,10,16,0.8)); color: var(--text,#e6eef6); }
-.theme-dark .navbar-search-input{ background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); color: var(--text,#e6eef6); }
-.theme-dark .theme-toggle-btn{ color: var(--text,#e6eef6); }
+.navbar-container.theme-dark {
+  background: #000000;
+  color: #e6eef6;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.navbar-container.theme-dark .navbarmobile-menu-overlay {
+  background: #000000;
+  color: #e6eef6;
+}
+.navbar-container.theme-dark .navbar-search-input {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #e6eef6;
+}
+.navbar-container.theme-dark .theme-toggle-btn {
+  color: #e6eef6;
+}
 
 /* small helpers */
 .navbar-logo-badge{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:10px; background:linear-gradient(90deg, rgba(123,92,255,0.08), rgba(0,194,209,0.04)); border:1px solid rgba(123,92,255,0.06); }

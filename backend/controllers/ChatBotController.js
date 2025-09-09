@@ -9,7 +9,7 @@ const openai = new OpenAI({
 });
 
 const SYSTEM_INSTRUCTION = `
-You are ShopBot, a helpful and friendly e-commerce customer support assistant for "MyAwesomeShop".
+You are ShopBot, a helpful and friendly e-commerce customer support assistant for "MS Trendzz".
 Your primary goal is to assist users with:
 1. Order Tracking
 2. Displaying User's Orders
@@ -123,7 +123,7 @@ export const replyChatBot = async (req, res) => {
     } else if (inputMessage.includes("payment methods")) {
       botReply = "We accept Visa, MasterCard, Amex, Discover, PayPal, and Google Pay.";
     } else if (inputMessage.includes("hello") || message.toLowerCase() === "hi") {
-      botReply = "Hello there! How can I help you today regarding MyAwesomeShop's products or your orders?";
+      botReply = "Hello there! How can I help you today regarding MS Trendzz's products or your orders?";
     }
 
     // -----------------------------

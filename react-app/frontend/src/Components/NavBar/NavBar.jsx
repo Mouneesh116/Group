@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser, faShoppingCart, faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import logo from "../../assets/Images/logo_fsp3.png";
+import logoLight from "../../assets/Images/Logo_white.webp";
+import logoDark from "../../assets/Images/Logo_dark.webp";
 import { CartContext } from '../../Context/CartContext';
 import { AuthContext } from '../../Context/AuthContext';
 import { useTheme } from '../../Context/ThemeContext';   
@@ -15,12 +16,21 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const { cartItems } = useContext(CartContext);
   const cartCount = cartItems.length;
 
   const { isLoggedIn, logout } = useContext(AuthContext);
   const { theme, toggleTheme } = useTheme();  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,10 +62,15 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar-container">
+    <nav className={`navbar-container ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-header-row">
         <div className="navbar-logo">
-          <img src={logo} alt="Logo" className="navbar-logo-image" onClick={() => navigate('/')} />
+          <img 
+            src={theme === 'light' ? logoLight : logoDark} 
+            alt="Logo" 
+            className="navbar-logo-image" 
+            onClick={() => navigate('/')} 
+          />
         </div>
 
         <div className="navbar-desktop-group">
